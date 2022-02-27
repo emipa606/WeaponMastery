@@ -2,6 +2,9 @@
 
 <LanguageData>
     <SK_WeaponMastery_SettingsListItemName>Weapon Mastery</SK_WeaponMastery_SettingsListItemName>
+    <SK_WeaponMastery_ModSettingsSectionTitle>Mod Settings: </SK_WeaponMastery_ModSettingsSectionTitle>
+    <SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel>Chance for weapon to be renamed (%): </SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel>
+    <SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip>On gaining the first mastery level, there's a chance for pawns to rename their weapon</SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip>
     <SK_WeaponMastery_LevelSectionTitle>Levels Section: </SK_WeaponMastery_LevelSectionTitle>
     <SK_WeaponMastery_LevelSectionDetail>Add or remove mastery levels up to a max of 15 levels. Each time a pawn levels up, they will get a random stat bonus. On gaining the first level, the pawn's primary weapon's name will be rerolled.</SK_WeaponMastery_LevelSectionDetail>
     <SK_WeaponMastery_LevelSectionAddButton>Add Level</SK_WeaponMastery_LevelSectionAddButton>

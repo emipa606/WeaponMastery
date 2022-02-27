@@ -130,7 +130,6 @@ namespace SK_WeaponMastery
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.AppendLine(base.GetDescriptionPart());
-            if (!isActive) return sb.ToString();
             sb.AppendLine("SK_WeaponMastery_WeaponMasteryDescriptionItem".Translate());
             List<KeyValuePair<Pawn, MasteryCompData>> data = bonusStatsPerPawn.ToList();
             string positiveValueColumn = ": +";
@@ -149,6 +148,7 @@ namespace SK_WeaponMastery
         // Display all mastered pawns with their bonuses
         public override string GetDescriptionPart()
         {
+            if (!isActive) return base.GetDescriptionPart();
             if (masteryDescription == null)
                 masteryDescription = GenerateDescription();
             return masteryDescription;

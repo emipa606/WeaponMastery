@@ -261,8 +261,8 @@ namespace SK_WeaponMastery
 
         private static void DrawModOptionsSection(Listing_Standard list)
         {
-            list.Label("Mod Settings: ");
-            list.Label("Chance for weapon to be renamed (%): ", -1, "On gaining the first mastery level, there's a chance for pawns to rename their weapon");
+            list.Label("SK_WeaponMastery_ModSettingsSectionTitle".Translate());
+            list.Label("SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel".Translate(), -1, "SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip".Translate());
             ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider(list.GetRect(22f), ModSettings.chanceToNameWeapon, 0.01f, 1f, false, ModSettings.chanceToNameWeapon.ToStringPercent(), null, null, 0.01f);
             list.GapLine();
         }
