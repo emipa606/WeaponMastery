@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+    <SK_WeaponMastery_SettingsListItemName>Weapon Mastery</SK_WeaponMastery_SettingsListItemName>
+    <SK_WeaponMastery_LevelSectionTitle>Levels Section: </SK_WeaponMastery_LevelSectionTitle>
+    <SK_WeaponMastery_LevelSectionDetail>Add or remove mastery levels up to a max of 15 levels. Each time a pawn levels up, they will get a random stat bonus. On gaining the first level, the pawn's primary weapon's name will be rerolled.</SK_WeaponMastery_LevelSectionDetail>
+    <SK_WeaponMastery_LevelSectionAddButton>Add Level</SK_WeaponMastery_LevelSectionAddButton>
+    <SK_WeaponMastery_LevelSectionRemoveButton>Remove Level</SK_WeaponMastery_LevelSectionRemoveButton>
+    <SK_WeaponMastery_LevelSectionDropdownOptionLabel>Level {0}</SK_WeaponMastery_LevelSectionDropdownOptionLabel>
+    <SK_WeaponMastery_LevelSectionLevelExpLabel>Experience Needed for level({0}) </SK_WeaponMastery_LevelSectionLevelExpLabel>
+    <SK_WeaponMastery_RangedStatsSectionTitle>Configure Allowed Ranged Stats:</SK_WeaponMastery_RangedStatsSectionTitle>
+    <SK_WeaponMastery_MeleeStatsSectionTitle>Configure Allowed Melee Stats:</SK_WeaponMastery_MeleeStatsSectionTitle>
+    <SK_WeaponMastery_RangedAndMeleeStatsSectionLabel>Bonus Stat Value:</SK_WeaponMastery_RangedAndMeleeStatsSectionLabel>
+    <SK_WeaponMastery_RangedAndMeleeStatsSectionEnableButton>Enable Stat</SK_WeaponMastery_RangedAndMeleeStatsSectionEnableButton>
+    <SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton>Disable Stat</SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton>
+    <SK_WeaponMastery_RangedAndMeleeStatsSectionWarning>Warning: Only certain stat defs are applicable to weapons and pawns, the rest are just ignored. If you don't know what you're doing, I would highly recommend not editing anything in this section. The current menu's UI is poor and does not explain its intention decently.</SK_WeaponMastery_RangedAndMeleeStatsSectionWarning>
+    <SK_WeaponMastery_RangedAndMeleeStatsSectionNote>Note: Percentage stats use values from 0 -> 1 which maps to 0% -> 100%</SK_WeaponMastery_RangedAndMeleeStatsSectionNote>
+    <SK_WeaponMastery_MessageEnabledRangedStat>{0} was added to the pool of ranged weapon stats</SK_WeaponMastery_MessageEnabledRangedStat>
+    <SK_WeaponMastery_MessageEnabledMeleeStat>{0} was added to the pool of melee weapon stats</SK_WeaponMastery_MessageEnabledMeleeStat>
+    <SK_WeaponMastery_MessageDisabledRangedStat>{0} was remove from the pool of ranged weapon stats</SK_WeaponMastery_MessageDisabledRangedStat>
+    <SK_WeaponMastery_MessageDisabledMeleeStat>{0} was remove from the pool of melee weapon stats</SK_WeaponMastery_MessageDisabledMeleeStat>
+</LanguageData>

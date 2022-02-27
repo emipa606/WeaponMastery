@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Weapon Mastery</name> <!-- The name of your mod in the mod list -->
+  <author>Sk</author>
+  <packageId>Sk.WeaponMastery</packageId> <!-- a unique identifier for your mod. Must contain only a-z and periods, no spaces. -->
+  <supportedVersions> <!-- the version(s) your mod supports -->
+    <li>1.3</li>
+  </supportedVersions>
+  <description>Adds a new simple weapon mastery mechanic into the game. Pawns use the same weapon for a decent amount of time, naturally they should start getting better at handling/using said weapon. This mod adds a new hidden skill that levels up as pawns use their weapons (similar to shooting/melee). Pawns will gradually receive some minor randomized bonuses from mastering a weapon and will also rename their weapon for sentimental value.</description>
+</ModMetaData>
