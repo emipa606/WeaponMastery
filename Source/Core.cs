@@ -96,8 +96,6 @@ namespace SK_WeaponMastery
                 def.comps.Add(compProperties);
         }
 
-        // I have to save twice because I need to handle saving lists. I need
-        // to wait for menu to close before saving those lists.
         public static void OnModWriteSettings(Mod __instance)
         {
             if (__instance.Content.Name != WeaponMasteryMod.modName || writeLock) return;
