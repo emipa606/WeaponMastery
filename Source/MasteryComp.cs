@@ -66,7 +66,8 @@ namespace SK_WeaponMastery
             // Update cached description when pawn levels up
             bonusStatsPerPawn[pawn].AddExp(experience, this.parent.def.IsMeleeWeapon, delegate (int level)
             {
-                if (level == 1 && weaponName == null)
+                float roll = (float)new System.Random().NextDouble();
+                if (level == 1 && weaponName == null && roll <= ModSettings.chanceToNameWeapon)
                 {
                     weaponName = ModSettings.weaponNamesPool.RandomElement();
                     Messages.Message(ModSettings.messages.RandomElement().Translate(pawn.NameShortColored, weaponName), MessageTypeDefOf.NeutralEvent);
@@ -120,7 +121,7 @@ namespace SK_WeaponMastery
         // Weapon's name in GUI menus
         public override string TransformLabel(string label)
         {
-            if (IsActive() && weaponName != null)
+            if (isActive && weaponName != null)
                 return weaponName;
             return base.TransformLabel(label);
         }
@@ -129,6 +130,7 @@ namespace SK_WeaponMastery
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.AppendLine(base.GetDescriptionPart());
+            if (!isActive) return sb.ToString();
             sb.AppendLine("SK_WeaponMastery_WeaponMasteryDescriptionItem".Translate());
             List<KeyValuePair<Pawn, MasteryCompData>> data = bonusStatsPerPawn.ToList();
             string positiveValueColumn = ": +";

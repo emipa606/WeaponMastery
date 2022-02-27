@@ -37,7 +37,7 @@ namespace SK_WeaponMastery
             {
                 // Stat bonuses for gun
                 MasteryComp comp = req.Thing.TryGetComp<MasteryComp>();
-                if (!comp.IsActive()) return;
+                if (comp == null || !comp.IsActive()) return;
                 val += comp.GetStatBonus(parentStat);
             }
         }
@@ -58,7 +58,7 @@ namespace SK_WeaponMastery
             {
                 // Stat bonuses for gun
                 MasteryComp comp = req.Thing.TryGetComp<MasteryComp>();
-                if (!comp.IsActive()) return "";
+                if (comp == null || !comp.IsActive()) return "";
                 bonus = comp.GetStatBonus(parentStat);
             }
             else bonus = 0;

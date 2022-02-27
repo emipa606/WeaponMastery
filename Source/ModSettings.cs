@@ -17,6 +17,7 @@ namespace SK_WeaponMastery
         public static List<int> experiencePerLevel;
         public static int maxLevel = 3;
         public static bool initialLoad = false;
+        public static float chanceToNameWeapon = 0.35f;
         public static List<MasteryStat> rangedStats;
         public static List<MasteryStat> meleeStats;
         public static List<string> weaponNamesPool;
@@ -31,6 +32,7 @@ namespace SK_WeaponMastery
             Scribe_Collections.Look(ref rangedStats, true, "rangedstats", LookMode.Deep);
             Scribe_Collections.Look(ref meleeStats, true, "meleestats", LookMode.Deep);
             Scribe_Values.Look(ref maxLevel, "maxLevel");
+            Scribe_Values.Look(ref chanceToNameWeapon, "chancetonameweapon");
         }
 
         // Set default settings

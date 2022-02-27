@@ -86,8 +86,15 @@ namespace SK_WeaponMastery
             parent.yMax -= 15f;
             Listing_Standard list = new Listing_Standard(GameFont.Medium);
 
-            DrawExperiencePerLevelSection(list, parent);
+            Rect outerRect = new Rect(parent.x, parent.y + 20, parent.width, parent.height - 20);
+            Rect scrollRect = new Rect(0f, 150f, parent.width - 16f, parent.height * 3f + 50);
+            Widgets.BeginScrollView(outerRect, ref scrollPosition, scrollRect, true);
+            list.Begin(scrollRect);
+
+            DrawModOptionsSection(list);
+            DrawExperiencePerLevelSection(list);
             DrawStatsSection(list);
+
             list.End();
             Widgets.EndScrollView();
         }
@@ -164,12 +171,8 @@ namespace SK_WeaponMastery
             }
         }
 
-        private static void DrawExperiencePerLevelSection(Listing_Standard list, Rect parent)
+        private static void DrawExperiencePerLevelSection(Listing_Standard list)
         {
-            Rect outerRect = new Rect(parent.x, parent.y + 20, parent.width, parent.height - 20);
-            Rect scrollRect = new Rect(0f, 150f, parent.width - 16f, parent.height * 3f + 50);
-            Widgets.BeginScrollView(outerRect, ref scrollPosition, scrollRect, true);
-            list.Begin(scrollRect);
             list.Label("SK_WeaponMastery_LevelSectionTitle".Translate());
             list.Gap();
             list.Label("SK_WeaponMastery_LevelSectionDetail".Translate());
@@ -253,6 +256,14 @@ namespace SK_WeaponMastery
             list.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionNote".Translate());
             list.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionWarning".Translate());
             list.Gap();
+            list.GapLine();
+        }
+
+        private static void DrawModOptionsSection(Listing_Standard list)
+        {
+            list.Label("Mod Settings: ");
+            list.Label("Chance for weapon to be renamed (%): ", -1, "On gaining the first mastery level, there's a chance for pawns to rename their weapon");
+            ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider(list.GetRect(22f), ModSettings.chanceToNameWeapon, 0.01f, 1f, false, ModSettings.chanceToNameWeapon.ToStringPercent(), null, null, 0.01f);
             list.GapLine();
         }
 
