@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
@@ -24,6 +25,24 @@ namespace SK_WeaponMastery
                 if (comp == null) return;
                 if (!comp.IsActive()) comp.Init(caster);
                 comp.AddExp(caster, (int)(num * num2));
+            }
+        }
+
+        // Add mastery experience to melee pawn
+        public static void OnPawnMelee(Verb_MeleeAttack __instance, LocalTargetInfo ___currentTarget)
+        {
+            Pawn casterPawn = __instance.CasterPawn;
+            Thing thing = ___currentTarget.Thing;
+            Pawn pawn = thing as Pawn;
+            if ((!(thing.def.category != ThingCategory.Pawn || pawn.Downed || pawn.GetPosture() > PawnPosture.Standing)) && casterPawn.skills != null)
+            {
+                float exp = 200f * __instance.verbProps.AdjustedFullCycleTime(__instance, casterPawn);
+                Thing weapon = casterPawn?.equipment?.Primary;
+                if (weapon == null) return;
+                MasteryComp comp = weapon.TryGetComp<MasteryComp>();
+                if (comp == null) return;
+                if (!comp.IsActive()) comp.Init(casterPawn);
+                comp.AddExp(casterPawn, (int)exp);
             }
         }
 

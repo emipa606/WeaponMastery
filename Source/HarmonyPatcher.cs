@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using HarmonyLib;
+using RimWorld;
 using Verse;
 
 
@@ -22,6 +23,11 @@ namespace SK_WeaponMastery
             MethodInfo warmupCompleteMethod = AccessTools.Method(typeof(Verb_Shoot), "WarmupComplete");
             HarmonyMethod onPawnShootMethod = new HarmonyMethod(typeof(Core).GetMethod("OnPawnShoot"));
             instance.Patch(warmupCompleteMethod, null, onPawnShootMethod);
+
+            // Patch TryCastShot method
+            MethodInfo tryCastShotMethod = AccessTools.Method(typeof(Verb_MeleeAttack), "TryCastShot");
+            HarmonyMethod onPawnMelee = new HarmonyMethod(typeof(Core).GetMethod("OnPawnMelee"));
+            instance.Patch(tryCastShotMethod, null, onPawnMelee);
 
             // Patch OnEquipNotify method
             MethodInfo notifyEquipmentAddedMethod = AccessTools.Method(typeof(Pawn_EquipmentTracker), "Notify_EquipmentAdded");
