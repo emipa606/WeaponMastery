@@ -22,7 +22,7 @@ namespace SK_WeaponMastery
         public static List<MasteryStat> meleeStats;
         public static List<string> weaponNamesPool;
         public static List<string> messages;
-        private static readonly string WEAPON_NAMES_FILENAME = "WeaponNamesList.txt";
+        private static readonly string WEAPON_NAMES_DEF_PATH = "Languages\\English\\WeaponNamesList.txt";
 
         public override void ExposeData()
         {
@@ -112,14 +112,11 @@ namespace SK_WeaponMastery
 
         public static void LoadWeaponNames()
         {
-            string[] names = Files.GetLinesFromTextFile(WEAPON_NAMES_FILENAME, true);
+            string[] names = Files.GetLinesFromTextFile("Languages\\" + LanguageDatabase.activeLanguage.folderName + "\\WeaponNamesList.txt", true);
             if (names != null)
                 weaponNamesPool = new List<string>(names);
             else
-            {
-                weaponNamesPool = new List<string>();
-                weaponNamesPool.Add("Weapon Names Missing!");
-            }
+                weaponNamesPool = new List<string>(Files.GetLinesFromTextFile(WEAPON_NAMES_DEF_PATH, true));
         }
 
         // Message Language Keys
