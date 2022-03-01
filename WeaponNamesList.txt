@@ -48,3 +48,39 @@ Boomer
 Big Daddy
 Alpha
 Beta
+Skull Crusher
+Deathbringer
+Justice
+Armageddon
+Whirlwind
+Severance
+Hope's End
+Worldslayer
+Cyclone
+Nethersbane
+Comet
+Doomblade
+The End
+Vanquisher
+Stormcaller
+Warbringer
+Exterminator
+Last Laugh
+Typhoon
+Widow Maker
+Skullcleaver
+Betrayer
+End Of Dreams
+Cataclysm
+Disturbance
+Dragonkiller
+Soulless Godslayer
+Silence
+Headhunter
+The Judge
+Bloodrage
+Serenity
+Damnation
+Fate
+Moonsight
+Light Neutralizor
