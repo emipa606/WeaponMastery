@@ -112,9 +112,12 @@ namespace SK_WeaponMastery
 
         public static void LoadWeaponNames()
         {
+            string[] legacy = Files.GetLinesFromTextFile("Languages\\" + LanguageDatabase.activeLanguage.LegacyFolderName + "\\WeaponNamesList.txt", true);
             string[] names = Files.GetLinesFromTextFile("Languages\\" + LanguageDatabase.activeLanguage.folderName + "\\WeaponNamesList.txt", true);
             if (names != null)
                 weaponNamesPool = new List<string>(names);
+            else if (legacy != null)
+                weaponNamesPool = new List<string>(legacy);
             else
                 weaponNamesPool = new List<string>(Files.GetLinesFromTextFile(WEAPON_NAMES_DEF_PATH, true));
         }
