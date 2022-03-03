@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using RimWorld.IO;
 using Verse;
 
 namespace SK_WeaponMastery
@@ -23,6 +25,7 @@ namespace SK_WeaponMastery
         public static List<string> weaponNamesPool;
         public static List<string> messages;
         private static readonly string WEAPON_NAMES_DEF_PATH = "Languages\\English\\WeaponNamesList.txt";
+        private static readonly string MOD_PACKAGE_ID = "Sk.WeaponMastery";
 
         public override void ExposeData()
         {
@@ -112,13 +115,48 @@ namespace SK_WeaponMastery
 
         public static void LoadWeaponNames()
         {
-            string[] legacy = Files.GetLinesFromTextFile("Languages\\" + LanguageDatabase.activeLanguage.LegacyFolderName + "\\WeaponNamesList.txt", true);
-            string[] names = Files.GetLinesFromTextFile("Languages\\" + LanguageDatabase.activeLanguage.folderName + "\\WeaponNamesList.txt", true);
-            if (names != null)
-                weaponNamesPool = new List<string>(names);
-            else if (legacy != null)
-                weaponNamesPool = new List<string>(legacy);
-            else
+            // Loop on all mods and find any mods that loadafter or 
+            // depend on my mod as they might be translation mods
+            List<string> dependecyModsRootDirectories = new List<string>();
+            foreach (ModContentPack mod in LoadedModManager.RunningMods)
+            {
+                ModMetaData meta = mod.ModMetaData;
+                if (meta.LoadAfter != null)
+                {
+                    foreach (string package in meta.LoadAfter)
+                    {
+                        if (package == MOD_PACKAGE_ID)
+                        {
+                            dependecyModsRootDirectories.Add(mod.RootDir);
+                            break;
+                        }
+                    }
+                }
+                if (meta.Dependencies != null)
+                {
+                    foreach (ModDependency dependency in meta.Dependencies)
+                    {
+                        if (dependency.packageId == MOD_PACKAGE_ID)
+                        {
+                            dependecyModsRootDirectories.Add(mod.RootDir);
+                            break;
+                        }
+                    }
+                }
+            }
+            // Check if they actually have a language folder for the 
+            // current language
+            foreach (string path in dependecyModsRootDirectories)
+            {
+                string[] namesFromLegacyFolder = Files.GetLinesFromTextFile(path + "\\Languages\\" + LanguageDatabase.activeLanguage.LegacyFolderName + "\\WeaponNamesList.txt", false);
+                string[] namesFromCurrentFolder = Files.GetLinesFromTextFile(path + "\\Languages\\" + LanguageDatabase.activeLanguage.folderName + "\\WeaponNamesList.txt", false);
+                if (namesFromCurrentFolder != null)
+                    weaponNamesPool = new List<string>(namesFromCurrentFolder);
+                else if (namesFromLegacyFolder != null)
+                    weaponNamesPool = new List<string>(namesFromLegacyFolder);
+            }
+            // Default case
+            if (weaponNamesPool == null)
                 weaponNamesPool = new List<string>(Files.GetLinesFromTextFile(WEAPON_NAMES_DEF_PATH, true));
         }
 
