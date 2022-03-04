@@ -296,14 +296,16 @@ namespace SK_WeaponMastery
             subSection.Begin(subSectionRect);
             subSection.Label("SK_WeaponMastery_ModSettingsSectionTitle".Translate());
             subSection.Label("SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel".Translate(), -1, "SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip".Translate());
-            subSection.Label("SK_WeaponMastery_ModSettingsSectionBondedWeaponExperienceMultiplierLabel".Translate(), -1);
+            if (ModsConfig.RoyaltyActive)
+                subSection.Label("SK_WeaponMastery_ModSettingsSectionBondedWeaponExperienceMultiplierLabel".Translate(), -1);
             if (ModsConfig.IdeologyActive)
                 subSection.Label("SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberLabel".Translate(), -1, "SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberTooltip".Translate());
             subSection.NewColumn();
             subSection.ColumnWidth = 500;
             subSection.Label("");
             ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.chanceToNameWeapon, 0.01f, 1f, false, ModSettings.chanceToNameWeapon.ToStringPercent(), null, null, 0.01f);
-            ModSettings.bondedWeaponExperienceMultipier = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.bondedWeaponExperienceMultipier, MIN_BONDED_WEAPON_MULTIPLIER, MAX_BONDED_WEAPON_MULTIPLIER, false, ModSettings.bondedWeaponExperienceMultipier.ToString("F1") + "x", null, null, 0.01f);
+            if (ModsConfig.RoyaltyActive)
+                ModSettings.bondedWeaponExperienceMultipier = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.bondedWeaponExperienceMultipier, MIN_BONDED_WEAPON_MULTIPLIER, MAX_BONDED_WEAPON_MULTIPLIER, false, ModSettings.bondedWeaponExperienceMultipier.ToString("F1") + "x", null, null, 0.01f);
             if (ModsConfig.IdeologyActive)
                 ModSettings.numberOfRelicBonusStats = (int)Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.numberOfRelicBonusStats, MIN_RELIC_BONUS_STATS, MAX_RELIC_BONUS_STATS, false, ModSettings.numberOfRelicBonusStats.ToString(), null, null, 1f);
             subSection.End();

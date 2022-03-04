@@ -94,7 +94,7 @@ namespace SK_WeaponMastery
                 bonusStatsPerPawn[pawn] = new MasteryCompData(pawn);
 
             float multiplier = 1;
-            if (IsBondedWeapon()) multiplier = ModSettings.bondedWeaponExperienceMultipier;
+            if (ModsConfig.RoyaltyActive && IsBondedWeapon()) multiplier = ModSettings.bondedWeaponExperienceMultipier;
 
             // Update cached description when pawn levels up
             bonusStatsPerPawn[pawn].AddExp((int)(experience * multiplier), this.parent.def.IsMeleeWeapon, delegate (int level)
