@@ -67,7 +67,10 @@ namespace SK_WeaponMastery
         // Get stat bonus for current owner
         public float GetStatBonus(StatDef stat)
         {
-            if (!bonusStatsPerPawn.ContainsKey(currentOwner))
+            // The currentOwner could be deleted by the game due to 
+            // different reasons. Raid, dying, a visitor, etc ...
+            // Let's put a null check here
+            if (currentOwner == null || !bonusStatsPerPawn.ContainsKey(currentOwner))
                 return 0;
             return bonusStatsPerPawn[currentOwner].GetStatBonus(stat);
         }
@@ -85,7 +88,7 @@ namespace SK_WeaponMastery
         private bool OwnerBelievesInSameIdeology()
         {
             Precept_ThingStyle per = this.parent.StyleSourcePrecept;
-            return currentOwner.ideo != null && per != null && per.ideo == currentOwner.ideo.Ideo;
+            return currentOwner?.ideo != null && per?.ideo == currentOwner?.ideo?.Ideo;
         }
 
         public void AddExp(Pawn pawn, int experience)
@@ -116,6 +119,16 @@ namespace SK_WeaponMastery
             return link?.CodedPawn == currentOwner;
         }
 
+        // Remove null pawns before saving
+        void FilterNullPawns()
+        {
+            List<KeyValuePair<Pawn, MasteryCompData>> filtered = bonusStatsPerPawn.ToList();
+            bonusStatsPerPawn.Clear();
+            foreach (KeyValuePair<Pawn, MasteryCompData> item in filtered)
+                if (item.Key != null) bonusStatsPerPawn.Add(item.Key, item.Value);
+            if (bonusStatsPerPawn.Count == 0) bonusStatsPerPawn = null;
+        }
+
         // Save/Load comp data to/from rws file
         public override void PostExposeData()
         {
@@ -129,8 +142,11 @@ namespace SK_WeaponMastery
                 {
                     List<Pawn> pawns = bonusStatsPerPawn.Keys.ToList();
                     List<MasteryCompData> data = bonusStatsPerPawn.Values.ToList();
-                    Scribe_References.Look(ref currentOwner, "currentowner");
-                    Scribe_Collections.Look(ref bonusStatsPerPawn, "bonusstatsperpawn", LookMode.Reference, LookMode.Deep, ref pawns, ref data);
+                    if (currentOwner != null)
+                        Scribe_References.Look(ref currentOwner, "currentowner");
+                    FilterNullPawns();
+                    if (bonusStatsPerPawn != null)
+                        Scribe_Collections.Look(ref bonusStatsPerPawn, "bonusstatsperpawn", LookMode.Reference, LookMode.Deep, ref pawns, ref data);
                     Scribe_Values.Look(ref isActive, "isactive");
                     Scribe_Values.Look(ref weaponName, "weaponname");
                     if (this.parent.IsRelic() && relicBonuses != null)
@@ -147,6 +163,7 @@ namespace SK_WeaponMastery
                     Scribe_Collections.Look(ref bonusStatsPerPawn, "bonusstatsperpawn", LookMode.Reference, LookMode.Deep, ref dictKeysAsList, ref dictValuesAsList);
                     Scribe_Values.Look(ref weaponName, "weaponname");
                     Scribe_Collections.Look(ref relicBonuses, "relicbonuses", LookMode.Def, LookMode.Value);
+                    if (bonusStatsPerPawn != null) masteryDescription = GenerateDescription();
                 }
             }
         }
