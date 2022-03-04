@@ -12,6 +12,7 @@ namespace SK_WeaponMastery
     {
 
         private Dictionary<Pawn, MasteryCompData> bonusStatsPerPawn;
+        private Dictionary<StatDef, float> relicBonuses;
         private Pawn currentOwner;
         private bool isActive = false;
         private string masteryDescription;
@@ -25,6 +26,18 @@ namespace SK_WeaponMastery
         {
             currentOwner = owner;
             bonusStatsPerPawn = new Dictionary<Pawn, MasteryCompData>();
+            if (ModsConfig.IdeologyActive && this.parent.IsRelic())
+            {
+                relicBonuses = new Dictionary<StatDef, float>();
+                for (int i = 0; i < ModSettings.numberOfRelicBonusStats; i++)
+                {
+                    MasteryStat bonus = ModSettings.PickBonus(this.parent.def.IsMeleeWeapon);
+                    if (relicBonuses.ContainsKey(bonus.GetStat()))
+                        relicBonuses[bonus.GetStat()] += bonus.GetOffset();
+                    else
+                        relicBonuses[bonus.GetStat()] = bonus.GetOffset();
+                }
+            }
             isActive = true;
         }
 
@@ -59,12 +72,32 @@ namespace SK_WeaponMastery
             return bonusStatsPerPawn[currentOwner].GetStatBonus(stat);
         }
 
+        // Get Relic bonus
+        public float GetStatBonusRelic(StatDef stat)
+        {
+            if (relicBonuses == null || !relicBonuses.ContainsKey(stat) || !OwnerBelievesInSameIdeology())
+                return 0;
+
+            return relicBonuses[stat];
+        }
+
+        // Check if current owner believes in this relic's ideology
+        private bool OwnerBelievesInSameIdeology()
+        {
+            Precept_ThingStyle per = this.parent.StyleSourcePrecept;
+            return currentOwner.ideo != null && per != null && per.ideo == currentOwner.ideo.Ideo;
+        }
+
         public void AddExp(Pawn pawn, int experience)
         {
             if (!bonusStatsPerPawn.ContainsKey(pawn))
                 bonusStatsPerPawn[pawn] = new MasteryCompData(pawn);
+
+            float multiplier = 1;
+            if (IsBondedWeapon()) multiplier = ModSettings.bondedWeaponExperienceMultipier;
+
             // Update cached description when pawn levels up
-            bonusStatsPerPawn[pawn].AddExp(experience, this.parent.def.IsMeleeWeapon, delegate (int level)
+            bonusStatsPerPawn[pawn].AddExp((int)(experience * multiplier), this.parent.def.IsMeleeWeapon, delegate (int level)
             {
                 float roll = (float)new System.Random().NextDouble();
                 if (level == 1 && weaponName == null && roll <= ModSettings.chanceToNameWeapon)
@@ -74,6 +107,13 @@ namespace SK_WeaponMastery
                 }
                 masteryDescription = GenerateDescription();
             });
+        }
+
+        // Check if weapon is bonded to current owner
+        private bool IsBondedWeapon()
+        {
+            CompBladelinkWeapon link = this.parent.TryGetComp<CompBladelinkWeapon>();
+            return link?.CodedPawn == currentOwner;
         }
 
         // Save/Load comp data to/from rws file
@@ -93,6 +133,8 @@ namespace SK_WeaponMastery
                     Scribe_Collections.Look(ref bonusStatsPerPawn, "bonusstatsperpawn", LookMode.Reference, LookMode.Deep, ref pawns, ref data);
                     Scribe_Values.Look(ref isActive, "isactive");
                     Scribe_Values.Look(ref weaponName, "weaponname");
+                    if (this.parent.IsRelic() && relicBonuses != null)
+                        Scribe_Collections.Look(ref relicBonuses, "relicbonuses", LookMode.Def, LookMode.Value);
                 }
             }
             else if (Scribe.mode == LoadSaveMode.LoadingVars || Scribe.mode == LoadSaveMode.ResolvingCrossRefs)
@@ -104,6 +146,7 @@ namespace SK_WeaponMastery
                     Scribe_References.Look(ref currentOwner, "currentowner");
                     Scribe_Collections.Look(ref bonusStatsPerPawn, "bonusstatsperpawn", LookMode.Reference, LookMode.Deep, ref dictKeysAsList, ref dictValuesAsList);
                     Scribe_Values.Look(ref weaponName, "weaponname");
+                    Scribe_Collections.Look(ref relicBonuses, "relicbonuses", LookMode.Def, LookMode.Value);
                 }
             }
         }
@@ -139,6 +182,13 @@ namespace SK_WeaponMastery
                 sb.AppendLine();
                 sb.AppendLine(item.Key.Name.ToString());
                 foreach (KeyValuePair<StatDef, float> statbonus in item.Value.GetStatBonusesAsList())
+                    sb.AppendLine(" " + statbonus.Key.label.CapitalizeFirst() + (statbonus.Value >= 0f ? positiveValueColumn : negativeValueColumn) + statbonus.Key.ValueToString(statbonus.Value));
+            }
+            sb.AppendLine();
+            if (relicBonuses != null)
+            {
+                sb.AppendLine("SK_WeaponMastery_WeaponMasteryDescriptionTitleRelicBonus".Translate());
+                foreach (KeyValuePair<StatDef, float> statbonus in relicBonuses.ToList())
                     sb.AppendLine(" " + statbonus.Key.label.CapitalizeFirst() + (statbonus.Value >= 0f ? positiveValueColumn : negativeValueColumn) + statbonus.Key.ValueToString(statbonus.Value));
             }
             return sb.ToString();

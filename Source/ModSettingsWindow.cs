@@ -26,12 +26,16 @@ namespace SK_WeaponMastery
         public static bool isMeleeStatPercentage;
         public static bool isOpen = false;
         public static bool initSemaphore = false;
-        static Vector2 scrollPosition = Vector2.zero;
+        private static Vector2 scrollPosition = Vector2.zero;
         public const int MAX_LEVELS = 15;
         private readonly static int DEFAULT_EXP = 15000;
         private readonly static float DEFAULT_STAT_OFFSET = 1f;
         private readonly static float MIN_STAT_BONUS = -5f;
         private readonly static float MAX_STAT_BONUS = 5;
+        private readonly static float MIN_BONDED_WEAPON_MULTIPLIER = 1f;
+        private readonly static float MAX_BONDED_WEAPON_MULTIPLIER = 3f;
+        private readonly static int MIN_RELIC_BONUS_STATS = 1;
+        private readonly static int MAX_RELIC_BONUS_STATS = 10;
 
         public static void Init()
         {
@@ -87,9 +91,16 @@ namespace SK_WeaponMastery
             Listing_Standard list = new Listing_Standard(GameFont.Medium);
 
             Rect outerRect = new Rect(parent.x, parent.y + 20, parent.width, parent.height - 20);
-            Rect scrollRect = new Rect(0f, 150f, parent.width - 16f, parent.height * 3f + 50);
-            Widgets.BeginScrollView(outerRect, ref scrollPosition, scrollRect, true);
-            list.Begin(scrollRect);
+            Rect innerRect = new Rect(outerRect);
+            innerRect.x += 5;
+            innerRect.width -= 35;
+            innerRect.y += 10;
+            innerRect.height -= 20;
+            Widgets.DrawBox(outerRect, 1, Texture2D.whiteTexture);
+            Rect scrollRect = new Rect(0f, innerRect.y, innerRect.width - 20f, parent.height * 3f + 50);
+            Widgets.DrawMenuSection(outerRect);
+            Widgets.BeginScrollView(innerRect, ref scrollPosition, scrollRect, true);
+            list.Begin(innerRect);
 
             DrawModOptionsSection(list);
             DrawExperiencePerLevelSection(list);
@@ -173,86 +184,103 @@ namespace SK_WeaponMastery
 
         private static void DrawExperiencePerLevelSection(Listing_Standard list)
         {
-            list.Label("SK_WeaponMastery_LevelSectionTitle".Translate());
-            list.Gap();
-            list.Label("SK_WeaponMastery_LevelSectionDetail".Translate());
-
+            Rect subSectionRect = list.GetRect(100);
+            subSectionRect.width -= 30;
+            Listing_Standard subSection = new Listing_Standard();
+            subSection.Begin(subSectionRect);
+            subSection.Label("SK_WeaponMastery_LevelSectionTitle".Translate());
+            subSection.Gap();
+            Rect lblRect = subSection.Label("SK_WeaponMastery_LevelSectionDetail".Translate());
+            Rect dropdownRect = new Rect(subSectionRect.x, lblRect.y + 30, 100, 20);
             // This is an incorrect usage of the dropdown's API but I can't
             // wrap my head around how it works exactly. This is good enough
             // for my needs and it works.
-            Widgets.Dropdown(list.GetRect(30), null, null, (string s) => GenerateLevelOptions(), "SK_WeaponMastery_LevelSectionDropdownOptionLabel".Translate(selectedLevelIndex + 1));
-            list.Label("SK_WeaponMastery_LevelSectionLevelExpLabel".Translate(selectedLevelIndex + 1));
-            list.TextFieldNumeric(ref selectedLevelValue, ref selectedLevelStringBuffer);
-
+            Widgets.Dropdown(dropdownRect, null, null, (string s) => GenerateLevelOptions(), "SK_WeaponMastery_LevelSectionDropdownOptionLabel".Translate(selectedLevelIndex + 1));
+            Rect expLblRect = new Rect(dropdownRect.x + 110, lblRect.y + 30, 900, 30);
+            Listing_Standard expLblRectList = new Listing_Standard();
+            expLblRectList.Begin(expLblRect);
+            expLblRectList.ColumnWidth = 230;
+            expLblRectList.Label("SK_WeaponMastery_LevelSectionLevelExpLabel".Translate(selectedLevelIndex + 1));
+            expLblRectList.NewColumn();
+            expLblRectList.ColumnWidth = 200;
+            expLblRectList.TextFieldNumeric(ref selectedLevelValue, ref selectedLevelStringBuffer);
             if (ModSettings.maxLevel != MAX_LEVELS)
             {
-                bool addButtonClicked = list.ButtonText("SK_WeaponMastery_LevelSectionAddButton".Translate());
+                expLblRectList.NewColumn();
+                expLblRectList.ColumnWidth = 100;
+                bool addButtonClicked = expLblRectList.ButtonText("SK_WeaponMastery_LevelSectionAddButton".Translate());
                 if (addButtonClicked)
                     OnAddLevel();
             }
             if (ModSettings.maxLevel != 1)
             {
-                bool removeButtonClicked = list.ButtonText("SK_WeaponMastery_LevelSectionRemoveButton".Translate());
+                expLblRectList.NewColumn();
+                expLblRectList.ColumnWidth = 100;
+                bool removeButtonClicked = expLblRectList.ButtonText("SK_WeaponMastery_LevelSectionRemoveButton".Translate());
                 if (removeButtonClicked)
                     OnRemoveLevel();
             }
-            list.Gap();
+            expLblRectList.End();
+            subSection.End();
             list.GapLine();
         }
 
         private static void DrawStatsSection(Listing_Standard list)
         {
+            Rect subSectionRect = list.GetRect(150);
+            subSectionRect.width -= 30;
+            Listing_Standard subSection = new Listing_Standard();
+            subSection.Begin(subSectionRect);
+            subSection.ColumnWidth = 400;
             // Ranged Stats Section
-            list.Label("SK_WeaponMastery_RangedStatsSectionTitle".Translate());
-            list.Gap();
+            subSection.Label("SK_WeaponMastery_RangedStatsSectionTitle".Translate());
+            subSection.Gap();
             // Bad dropdown API usage
-            Widgets.Dropdown(list.GetRect(30), null, null, (string s) => GenerateRangedStatsOptions(), selectedRangedDef.defName);
-            list.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionLabel".Translate());
+            Widgets.Dropdown(subSection.GetRect(30), null, null, (string s) => GenerateRangedStatsOptions(), selectedRangedDef.defName);
+            subSection.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionLabel".Translate());
             // Percentage stats use values from 0 -> 1 which maps to 0% -> 100%
             if (!isRangedStatPercentage)
-                rangedStatOffset = Widgets.HorizontalSlider(list.GetRect(22f), rangedStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, rangedStatOffset.ToString(), null, null, 0.01f);
+                rangedStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), rangedStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, rangedStatOffset.ToString(), null, null, 0.01f);
             else
-                rangedStatOffset = Widgets.HorizontalSlider(list.GetRect(22f), rangedStatOffset, 0f, 1f, false, rangedStatOffset.ToString(), null, null, 0.01f);
+                rangedStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), rangedStatOffset, 0f, 1f, false, rangedStatOffset.ToString(), null, null, 0.01f);
             if (isRangedStatEnabled)
             {
-                bool disableStatButtonClicked = list.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton".Translate());
+                bool disableStatButtonClicked = subSection.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton".Translate());
                 if (disableStatButtonClicked)
                     OnDisableStat(false);
             }
             else
             {
-                bool enableStatButtonClicked = list.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionEnableButton".Translate());
+                bool enableStatButtonClicked = subSection.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionEnableButton".Translate());
                 if (enableStatButtonClicked)
                     OnEnableStat(false);
             }
-            list.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionNote".Translate());
-            list.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionWarning".Translate());
-            list.Gap();
-            list.GapLine();
-
+            subSection.NewColumn();
+            subSection.ColumnWidth = 400;
             // Melee Stats Section
-            list.Label("SK_WeaponMastery_MeleeStatsSectionTitle".Translate());
-            list.Gap();
+            subSection.Label("SK_WeaponMastery_MeleeStatsSectionTitle".Translate());
+            subSection.Gap();
             // Bad dropdown API usage
-            Widgets.Dropdown(list.GetRect(30), null, null, (string s) => GenerateMeleeStatsOptions(), selectedMeleeDef.defName);
-            list.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionLabel".Translate());
+            Widgets.Dropdown(subSection.GetRect(30), null, null, (string s) => GenerateMeleeStatsOptions(), selectedMeleeDef.defName);
+            subSection.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionLabel".Translate());
             // Percentage stats use values from 0 -> 1 which maps to 0% -> 100%
             if (!isMeleeStatPercentage)
-                meleeStatOffset = Widgets.HorizontalSlider(list.GetRect(22f), meleeStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, meleeStatOffset.ToString(), null, null, 0.01f);
+                meleeStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), meleeStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, meleeStatOffset.ToString(), null, null, 0.01f);
             else
-                meleeStatOffset = Widgets.HorizontalSlider(list.GetRect(22f), meleeStatOffset, 0f, 1f, false, meleeStatOffset.ToString(), null, null, 0.01f);
+                meleeStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), meleeStatOffset, 0f, 1f, false, meleeStatOffset.ToString(), null, null, 0.01f);
             if (isMeleeStatEnabled)
             {
-                bool disableStatButtonClicked = list.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton".Translate());
+                bool disableStatButtonClicked = subSection.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton".Translate());
                 if (disableStatButtonClicked)
                     OnDisableStat(true);
             }
             else
             {
-                bool enableStatButtonClicked = list.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionEnableButton".Translate());
+                bool enableStatButtonClicked = subSection.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionEnableButton".Translate());
                 if (enableStatButtonClicked)
                     OnEnableStat(true);
             }
+            subSection.End();
             list.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionNote".Translate());
             list.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionWarning".Translate());
             list.Gap();
@@ -261,9 +289,24 @@ namespace SK_WeaponMastery
 
         private static void DrawModOptionsSection(Listing_Standard list)
         {
-            list.Label("SK_WeaponMastery_ModSettingsSectionTitle".Translate());
-            list.Label("SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel".Translate(), -1, "SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip".Translate());
-            ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider(list.GetRect(22f), ModSettings.chanceToNameWeapon, 0.01f, 1f, false, ModSettings.chanceToNameWeapon.ToStringPercent(), null, null, 0.01f);
+            Rect subSectionRect = list.GetRect(100);
+            subSectionRect.width -= 30;
+            Listing_Standard subSection = new Listing_Standard();
+            subSection.ColumnWidth = 300;
+            subSection.Begin(subSectionRect);
+            subSection.Label("SK_WeaponMastery_ModSettingsSectionTitle".Translate());
+            subSection.Label("SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel".Translate(), -1, "SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip".Translate());
+            subSection.Label("SK_WeaponMastery_ModSettingsSectionBondedWeaponExperienceMultiplierLabel".Translate(), -1);
+            if (ModsConfig.IdeologyActive)
+                subSection.Label("SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberLabel".Translate(), -1, "SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberTooltip".Translate());
+            subSection.NewColumn();
+            subSection.ColumnWidth = 500;
+            subSection.Label("");
+            ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.chanceToNameWeapon, 0.01f, 1f, false, ModSettings.chanceToNameWeapon.ToStringPercent(), null, null, 0.01f);
+            ModSettings.bondedWeaponExperienceMultipier = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.bondedWeaponExperienceMultipier, MIN_BONDED_WEAPON_MULTIPLIER, MAX_BONDED_WEAPON_MULTIPLIER, false, ModSettings.bondedWeaponExperienceMultipier.ToString("F1") + "x", null, null, 0.01f);
+            if (ModsConfig.IdeologyActive)
+                ModSettings.numberOfRelicBonusStats = (int)Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.numberOfRelicBonusStats, MIN_RELIC_BONUS_STATS, MAX_RELIC_BONUS_STATS, false, ModSettings.numberOfRelicBonusStats.ToString(), null, null, 1f);
+            subSection.End();
             list.GapLine();
         }
 
@@ -345,8 +388,8 @@ namespace SK_WeaponMastery
         // Checks if StatDef is represented by % or numbers
         private static bool IsStatDefPercentage(StatDef def)
         {
-            return def.toStringStyle == ToStringStyle.PercentZero || 
-                def.toStringStyle == ToStringStyle.PercentOne || 
+            return def.toStringStyle == ToStringStyle.PercentZero ||
+                def.toStringStyle == ToStringStyle.PercentOne ||
                 def.toStringStyle == ToStringStyle.PercentTwo;
         }
     }
