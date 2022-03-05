@@ -56,27 +56,19 @@ namespace SK_WeaponMastery
             return isActive;
         }
 
-        // Get stat bonus for a pawn
-        public float GetStatBonus(Pawn pawn, StatDef stat)
-        {
-            if (!bonusStatsPerPawn.ContainsKey(pawn))
-                return 0;
-            return bonusStatsPerPawn[pawn].GetStatBonus(stat);
-        }
-
         // Get stat bonus for current owner
-        public float GetStatBonus(StatDef stat)
+        private float GetStatBonus(StatDef stat)
         {
             // The currentOwner could be deleted by the game due to 
             // different reasons. Raid, dying, a visitor, etc ...
             // Let's put a null check here
-            if (currentOwner == null || !bonusStatsPerPawn.ContainsKey(currentOwner))
+            if (!bonusStatsPerPawn.ContainsKey(currentOwner))
                 return 0;
             return bonusStatsPerPawn[currentOwner].GetStatBonus(stat);
         }
 
         // Get Relic bonus
-        public float GetStatBonusRelic(StatDef stat)
+        private float GetStatBonusRelic(StatDef stat)
         {
             if (relicBonuses == null || !relicBonuses.ContainsKey(stat) || !OwnerBelievesInSameIdeology())
                 return 0;
@@ -84,11 +76,18 @@ namespace SK_WeaponMastery
             return relicBonuses[stat];
         }
 
+        // Get bonus from mastery and relics
+        public float GetCombinedBonus(StatDef stat)
+        {
+            if (currentOwner == null) return 0;
+            return GetStatBonus(stat) + GetStatBonusRelic(stat);
+        }
+
         // Check if current owner believes in this relic's ideology
         private bool OwnerBelievesInSameIdeology()
         {
             Precept_ThingStyle per = this.parent.StyleSourcePrecept;
-            return currentOwner?.ideo != null && per?.ideo == currentOwner?.ideo?.Ideo;
+            return per?.ideo == currentOwner.ideo?.Ideo;
         }
 
         public void AddExp(Pawn pawn, int experience)

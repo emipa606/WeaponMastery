@@ -31,14 +31,14 @@ namespace SK_WeaponMastery
                 if (pawn == null || pawn.equipment?.Primary == null) return;
                 MasteryComp comp = pawn.equipment.Primary.TryGetComp<MasteryComp>();
                 if (comp == null || !comp.IsActive()) return;
-                val += comp.GetStatBonus(pawn, parentStat) + comp.GetStatBonusRelic(parentStat);
+                val += comp.GetCombinedBonus(parentStat);
             }
             else if (req.Thing.def.HasComp(typeof(MasteryComp)))
             {
                 // Stat bonuses for gun
                 MasteryComp comp = req.Thing.TryGetComp<MasteryComp>();
                 if (comp == null || !comp.IsActive()) return;
-                val += comp.GetStatBonus(parentStat) + comp.GetStatBonusRelic(parentStat);
+                val += comp.GetCombinedBonus(parentStat);
             }
         }
 
@@ -52,14 +52,14 @@ namespace SK_WeaponMastery
                 if (pawn == null || pawn.equipment?.Primary == null) return "";
                 MasteryComp comp = pawn.equipment.Primary.TryGetComp<MasteryComp>();
                 if (comp == null || !comp.IsActive()) return "";    
-                bonus = comp.GetStatBonus(pawn, parentStat) + comp.GetStatBonusRelic(parentStat);
+                bonus = comp.GetCombinedBonus(parentStat);
             }
             else if (req.Thing.def.HasComp(typeof(MasteryComp)))
             {
                 // Stat bonuses for gun
                 MasteryComp comp = req.Thing.TryGetComp<MasteryComp>();
                 if (comp == null || !comp.IsActive()) return "";
-                bonus = comp.GetStatBonus(parentStat) + comp.GetStatBonusRelic(parentStat);
+                bonus = comp.GetCombinedBonus(parentStat);
             }
             else bonus = 0;
 

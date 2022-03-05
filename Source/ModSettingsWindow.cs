@@ -242,7 +242,7 @@ namespace SK_WeaponMastery
             if (!isRangedStatPercentage)
                 rangedStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), rangedStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, rangedStatOffset.ToString(), null, null, 0.01f);
             else
-                rangedStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), rangedStatOffset, 0f, 1f, false, rangedStatOffset.ToString(), null, null, 0.01f);
+                rangedStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), rangedStatOffset, -1f, 1f, false, rangedStatOffset.ToString(), null, null, 0.01f);
             if (isRangedStatEnabled)
             {
                 bool disableStatButtonClicked = subSection.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton".Translate());
@@ -267,7 +267,7 @@ namespace SK_WeaponMastery
             if (!isMeleeStatPercentage)
                 meleeStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), meleeStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, meleeStatOffset.ToString(), null, null, 0.01f);
             else
-                meleeStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), meleeStatOffset, 0f, 1f, false, meleeStatOffset.ToString(), null, null, 0.01f);
+                meleeStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), meleeStatOffset, -1f, 1f, false, meleeStatOffset.ToString(), null, null, 0.01f);
             if (isMeleeStatEnabled)
             {
                 bool disableStatButtonClicked = subSection.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton".Translate());
