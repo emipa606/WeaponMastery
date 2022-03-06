@@ -40,7 +40,7 @@ namespace SK_WeaponMastery
             Scribe_Collections.Look(ref meleeStats, true, "meleestats", LookMode.Deep);
             Scribe_Values.Look(ref maxLevel, "maxLevel");
             Scribe_Values.Look(ref chanceToNameWeapon, "chancetonameweapon", 0.35f);
-            Scribe_Values.Look(ref bondedWeaponExperienceMultipier, "chancetonameweapon", 1.5f);
+            Scribe_Values.Look(ref bondedWeaponExperienceMultipier, "bondedweaponexperiencemultipier", 1.5f);
             Scribe_Values.Look(ref numberOfRelicBonusStats, "numberofrelicbonusstats", 5);
             Scribe_Values.Look(ref useCustomNames, "usecustomnames", false);
             Scribe_Collections.Look(ref customWeaponNamesPool, "customweaponnamespool", LookMode.Value);
