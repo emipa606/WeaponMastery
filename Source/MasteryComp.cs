@@ -104,7 +104,10 @@ namespace SK_WeaponMastery
                 float roll = (float)new System.Random().NextDouble();
                 if (level == 1 && weaponName == null && roll <= ModSettings.chanceToNameWeapon)
                 {
-                    weaponName = ModSettings.weaponNamesPool.RandomElement();
+                    if (ModSettings.useCustomNames && ModSettings.customWeaponNamesPool.Count > 0)
+                        weaponName = ModSettings.customWeaponNamesPool.RandomElement();
+                    else
+                        weaponName = ModSettings.weaponNamesPool.RandomElement();
                     Messages.Message(ModSettings.messages.RandomElement().Translate(pawn.NameShortColored, weaponName), MessageTypeDefOf.NeutralEvent);
                 }
                 masteryDescription = GenerateDescription();

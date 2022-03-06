@@ -5,7 +5,9 @@
     <SK_WeaponMastery_ModSettingsSectionTitle>Mod Settings: </SK_WeaponMastery_ModSettingsSectionTitle>
     <SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel>Chance for weapon to be renamed: </SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel>
     <SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip>On gaining the first mastery level, there's a chance for pawns to rename their weapon</SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip>
-    <SK_WeaponMastery_ModSettingsSectionBondedWeaponExperienceMultiplierLabel>Bonded Weapon Experience Multiplier: </SK_WeaponMastery_ModSettingsSectionBondedWeaponExperienceMultiplierLabel>
+    <SK_WeaponMastery_ModSettingsSectionRoyaltyRequiredLabel>This configuration option requires Royalty DLC</SK_WeaponMastery_ModSettingsSectionRoyaltyRequiredLabel>
+    <SK_WeaponMastery_ModSettingsSectionIdeologyRequiredLabel>This configuration option requires Ideology DLC</SK_WeaponMastery_ModSettingsSectionIdeologyRequiredLabel>
+    <SK_WeaponMastery_ModSettingsSectionBondedWeaponExperienceMultiplierLabel>Bonded weapon experience multiplier: </SK_WeaponMastery_ModSettingsSectionBondedWeaponExperienceMultiplierLabel>
     <SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberLabel>Number of bonus stats for relic: </SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberLabel>
     <SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberTooltip>Bonuses only apply to pawns that believe in the relic's ideology</SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberTooltip>
     <SK_WeaponMastery_LevelSectionTitle>Levels Section: </SK_WeaponMastery_LevelSectionTitle>
@@ -25,4 +27,13 @@
     <SK_WeaponMastery_MessageEnabledMeleeStat>{0} was added to the pool of melee weapon stats</SK_WeaponMastery_MessageEnabledMeleeStat>
     <SK_WeaponMastery_MessageDisabledRangedStat>{0} was remove from the pool of ranged weapon stats</SK_WeaponMastery_MessageDisabledRangedStat>
     <SK_WeaponMastery_MessageDisabledMeleeStat>{0} was remove from the pool of melee weapon stats</SK_WeaponMastery_MessageDisabledMeleeStat>
+    <SK_WeaponMastery_CustomNamesSectionTitle>Custom Names: </SK_WeaponMastery_CustomNamesSectionTitle>
+    <SK_WeaponMastery_CustomNamesSectionCheckbox>Use Custom Names</SK_WeaponMastery_CustomNamesSectionCheckbox>
+    <SK_WeaponMastery_CustomNamesSectionCheckboxTooltip>Using custom names will override the default list</SK_WeaponMastery_CustomNamesSectionCheckboxTooltip>
+    <SK_WeaponMastery_CustomNamesAddNameLabel>Add Name: </SK_WeaponMastery_CustomNamesAddNameLabel>
+    <SK_WeaponMastery_CustomNamesRemoveNameLabel>Remove Name: </SK_WeaponMastery_CustomNamesRemoveNameLabel>
+    <SK_WeaponMastery_CustomNamesAddButton>Add</SK_WeaponMastery_CustomNamesAddButton>
+    <SK_WeaponMastery_CustomNamesRemoveButton>Remove</SK_WeaponMastery_CustomNamesRemoveButton>
+    <SK_WeaponMastery_CustomNamesAddNameMessage>Name: {0} was added to the custom names pool</SK_WeaponMastery_CustomNamesAddNameMessage>
+    <SK_WeaponMastery_CustomNamesRemoveNameMessage>Name: {0} was removed from the custom names pool</SK_WeaponMastery_CustomNamesRemoveNameMessage>
 </LanguageData>

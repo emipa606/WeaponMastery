@@ -18,7 +18,6 @@ Ghost
 Big Mack
 Silver
 Luci
-Source Code
 Phoenix
 Excelsior
 Big Boom
@@ -115,3 +114,88 @@ Epilogue
 Vortex
 Toots
 Purifier
+Devil
+Carnage
+Eraser
+Swarm
+Storm
+Stret Sweper
+Sweeper
+Demolisher
+Plague
+Sinster
+Custom
+Cyclops
+Severe
+Lightning
+Sanity
+Abstract
+Sensei
+Onesan
+Void
+Sonar
+Odin
+Ares
+Gungnir
+Medusa
+Twilight
+Moon
+Contrast
+Hollow
+Tin Can
+Limbo
+Magma
+Cruiser
+Battery
+Malice
+Deep Freezer
+Sync
+Wizard
+Witch
+Yayo
+Sunset
+Scorch
+Jade
+Quota
+Randy
+Cassandra
+Phoebe
+Lament
+Demise
+Big Game
+Ashes
+Betty
+Big Betty
+Justifier
+Reckoning
+Sugar
+Spitfire
+Boomstick
+Crimson
+Sweetie
+Sassy
+Sentinel
+Mercury
+Allegiance
+Grace
+Obsidian
+Glass
+Tremor
+Treachery
+Nirvana
+Peacemaker
+Remorse
+Equality
+Scar
+Quick Fix
+Extinction
+Big Bertha
+Abomination
+Sandstorm
+Harmony
+Desolation
+Legacy
+Suspension
+Bloodweep
+Finality
+K9

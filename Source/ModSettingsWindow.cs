@@ -12,6 +12,8 @@ namespace SK_WeaponMastery
         public static int selectedLevelIndex;
         public static int selectedLevelValue;
         private static string selectedLevelStringBuffer;
+        private static string customNameInputStringBuffer;
+        private static string selectedCustomName;
         private static ModSettingsWindowThread thread;
         private static List<StatDef> allStatDefs;
         private static StatDef selectedRangedDef;
@@ -75,6 +77,8 @@ namespace SK_WeaponMastery
                 isMeleeStatEnabled = false;
             }
 
+            if (ModSettings.customWeaponNamesPool.Count > 0) selectedCustomName = ModSettings.customWeaponNamesPool[0];
+
             thread = new ModSettingsWindowThread(selectedLevelValue, rangedStatOffset, meleeStatOffset);
             new System.Threading.Thread(new System.Threading.ThreadStart(thread.Run)).Start();
             initSemaphore = false;
@@ -100,11 +104,12 @@ namespace SK_WeaponMastery
             Rect scrollRect = new Rect(0f, innerRect.y, innerRect.width - 20f, parent.height * 3f + 50);
             Widgets.DrawMenuSection(outerRect);
             Widgets.BeginScrollView(innerRect, ref scrollPosition, scrollRect, true);
-            list.Begin(innerRect);
+            list.Begin(scrollRect);
 
             DrawModOptionsSection(list);
             DrawExperiencePerLevelSection(list);
             DrawStatsSection(list);
+            DrawCustomNamesSection(list);
 
             list.End();
             Widgets.EndScrollView();
@@ -182,6 +187,23 @@ namespace SK_WeaponMastery
             }
         }
 
+        private static IEnumerable<Widgets.DropdownMenuElement<string>> GenerateCustomNameOptions()
+        {
+            for (int i = 0; i < ModSettings.customWeaponNamesPool.Count; i++)
+            {
+                int localCopyOfI = i;
+
+                yield return new Widgets.DropdownMenuElement<string>
+                {
+                    option = new FloatMenuOption(ModSettings.customWeaponNamesPool[localCopyOfI], delegate ()
+                    {
+                        selectedCustomName = ModSettings.customWeaponNamesPool[localCopyOfI];
+                    }, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0),
+                    payload = ModSettings.customWeaponNamesPool[localCopyOfI]
+                };
+            }
+        }
+
         private static void DrawExperiencePerLevelSection(Listing_Standard list)
         {
             Rect subSectionRect = list.GetRect(100);
@@ -202,7 +224,7 @@ namespace SK_WeaponMastery
             expLblRectList.ColumnWidth = 230;
             expLblRectList.Label("SK_WeaponMastery_LevelSectionLevelExpLabel".Translate(selectedLevelIndex + 1));
             expLblRectList.NewColumn();
-            expLblRectList.ColumnWidth = 200;
+            expLblRectList.ColumnWidth = 160;
             expLblRectList.TextFieldNumeric(ref selectedLevelValue, ref selectedLevelStringBuffer);
             if (ModSettings.maxLevel != MAX_LEVELS)
             {
@@ -215,7 +237,7 @@ namespace SK_WeaponMastery
             if (ModSettings.maxLevel != 1)
             {
                 expLblRectList.NewColumn();
-                expLblRectList.ColumnWidth = 100;
+                expLblRectList.ColumnWidth = 120;
                 bool removeButtonClicked = expLblRectList.ButtonText("SK_WeaponMastery_LevelSectionRemoveButton".Translate());
                 if (removeButtonClicked)
                     OnRemoveLevel();
@@ -298,8 +320,12 @@ namespace SK_WeaponMastery
             subSection.Label("SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel".Translate(), -1, "SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip".Translate());
             if (ModsConfig.RoyaltyActive)
                 subSection.Label("SK_WeaponMastery_ModSettingsSectionBondedWeaponExperienceMultiplierLabel".Translate(), -1);
+            else
+                subSection.Label("SK_WeaponMastery_ModSettingsSectionRoyaltyRequiredLabel".Translate());
             if (ModsConfig.IdeologyActive)
                 subSection.Label("SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberLabel".Translate(), -1, "SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberTooltip".Translate());
+            else
+                subSection.Label("SK_WeaponMastery_ModSettingsSectionIdeologyRequiredLabel".Translate());
             subSection.NewColumn();
             subSection.ColumnWidth = 500;
             subSection.Label("");
@@ -308,6 +334,41 @@ namespace SK_WeaponMastery
                 ModSettings.bondedWeaponExperienceMultipier = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.bondedWeaponExperienceMultipier, MIN_BONDED_WEAPON_MULTIPLIER, MAX_BONDED_WEAPON_MULTIPLIER, false, ModSettings.bondedWeaponExperienceMultipier.ToString("F1") + "x", null, null, 0.01f);
             if (ModsConfig.IdeologyActive)
                 ModSettings.numberOfRelicBonusStats = (int)Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.numberOfRelicBonusStats, MIN_RELIC_BONUS_STATS, MAX_RELIC_BONUS_STATS, false, ModSettings.numberOfRelicBonusStats.ToString(), null, null, 1f);
+            subSection.End();
+            list.GapLine();
+        }
+
+        private static void DrawCustomNamesSection(Listing_Standard list)
+        {
+            Rect subSectionRect = list.GetRect(ModSettings.useCustomNames ? 130 : 50);
+            subSectionRect.width -= 30;
+            Listing_Standard subSection = new Listing_Standard();
+            subSection.Begin(subSectionRect);
+            subSection.Label("SK_WeaponMastery_CustomNamesSectionTitle".Translate());
+            subSection.CheckboxLabeled("SK_WeaponMastery_CustomNamesSectionCheckbox".Translate(), ref ModSettings.useCustomNames, "SK_WeaponMastery_CustomNamesSectionCheckboxTooltip".Translate());
+            if (ModSettings.useCustomNames)
+            {
+                Rect addRemoveContainer = new Rect(subSectionRect.x, 50, 620, 100);
+                Listing_Standard addRemoveList = new Listing_Standard();
+                addRemoveList.Begin(addRemoveContainer);
+                addRemoveList.ColumnWidth = 300;
+                addRemoveList.Label("SK_WeaponMastery_CustomNamesAddNameLabel".Translate());
+                addRemoveList.Label("SK_WeaponMastery_CustomNamesRemoveNameLabel".Translate());
+                bool addButtonClicked = addRemoveList.ButtonText("SK_WeaponMastery_CustomNamesAddButton".Translate());
+                if (addButtonClicked)
+                    OnAddName();
+                addRemoveList.NewColumn();
+                addRemoveList.ColumnWidth = 300;
+                customNameInputStringBuffer = addRemoveList.TextEntry(customNameInputStringBuffer);
+                if (ModSettings.customWeaponNamesPool.Count > 0)
+                    Widgets.Dropdown(addRemoveList.GetRect(22f), null, null, (string s) => GenerateCustomNameOptions(), selectedCustomName);
+                else
+                    addRemoveList.None();
+                bool removeButtonClicked = addRemoveList.ButtonText("SK_WeaponMastery_CustomNamesRemoveButton".Translate());
+                if (removeButtonClicked)
+                    OnRemoveName();
+                addRemoveList.End();
+            }
             subSection.End();
             list.GapLine();
         }
@@ -373,6 +434,27 @@ namespace SK_WeaponMastery
             }
         }
 
+        // Add custom name to ModSettings
+        private static void OnAddName()
+        {
+            if (customNameInputStringBuffer == null || customNameInputStringBuffer.Length == 0) return;
+            string trimmedName = customNameInputStringBuffer.Trim();
+            if (ModSettings.customWeaponNamesPool.Contains(trimmedName)) return;
+            ModSettings.customWeaponNamesPool.Add(trimmedName);
+            Messages.Message("SK_WeaponMastery_CustomNamesAddNameMessage".Translate(trimmedName), MessageTypeDefOf.NeutralEvent);
+            if (ModSettings.customWeaponNamesPool.Count == 1) selectedCustomName = trimmedName;
+        } 
+
+        // Remove custom name from ModSettings
+        private static void OnRemoveName()
+        {
+            if (ModSettings.customWeaponNamesPool.Count == 0) return;
+            ModSettings.customWeaponNamesPool.Remove(selectedCustomName);
+            Messages.Message("SK_WeaponMastery_CustomNamesRemoveNameMessage".Translate(selectedCustomName), MessageTypeDefOf.NeutralEvent);
+            if (ModSettings.customWeaponNamesPool.Count > 0) selectedCustomName = ModSettings.customWeaponNamesPool[0];
+            else selectedCustomName = null;
+        }
+
         // Signal gc to clean variables by setting them to null (Possibly?)
         // Since these are statics, they'll always reserve memory unless
         // I set them to null hopefully
@@ -385,6 +467,7 @@ namespace SK_WeaponMastery
             selectedMeleeDef = null;
             selectedMeleeMasteryStat = null;
             selectedRangedMasteryStat = null;
+            selectedCustomName = null;
         }
 
         // Checks if StatDef is represented by % or numbers

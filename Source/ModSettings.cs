@@ -19,12 +19,14 @@ namespace SK_WeaponMastery
         public static List<int> experiencePerLevel;
         public static int maxLevel = 3;
         public static bool initialLoad = false;
+        public static bool useCustomNames = false;
         public static float chanceToNameWeapon = 0.35f;
         public static float bondedWeaponExperienceMultipier = 1.5f;
         public static int numberOfRelicBonusStats = 5;
         public static List<MasteryStat> rangedStats;
         public static List<MasteryStat> meleeStats;
         public static List<string> weaponNamesPool;
+        public static List<string> customWeaponNamesPool = new List<string>();
         public static List<string> messages;
         private static readonly string WEAPON_NAMES_DEF_PATH = "Languages\\English\\WeaponNamesList.txt";
         private static readonly string MOD_PACKAGE_ID = "Sk.WeaponMastery";
@@ -40,11 +42,20 @@ namespace SK_WeaponMastery
             Scribe_Values.Look(ref chanceToNameWeapon, "chancetonameweapon", 0.35f);
             Scribe_Values.Look(ref bondedWeaponExperienceMultipier, "chancetonameweapon", 1.5f);
             Scribe_Values.Look(ref numberOfRelicBonusStats, "numberofrelicbonusstats", 5);
+            Scribe_Values.Look(ref useCustomNames, "usecustomnames", false);
+            Scribe_Collections.Look(ref customWeaponNamesPool, "customweaponnamespool", LookMode.Value);
         }
 
         // Set default settings
         public static void SetSensibleDefaults()
         {
+            // A user came to me with error in that StatDefOf is null?? 
+            // Even though this function is run on 
+            // LongEventHandler.ExecuteWhenFinished since I don't know  what's 
+            // happening here, I am going to add an extra check to check 
+            // StatDefOf if it's null or not. If it's null we'll use 
+            // DefDatabase instead
+            bool isStatDefOfNull = StatDefOf.ShootingAccuracyPawn == null;
             // Default ExperiencePerLevel
             experiencePerLevel = new List<int>();
             experiencePerLevel.Add(15000);
@@ -53,19 +64,43 @@ namespace SK_WeaponMastery
 
             // Default Ranged Stats
             rangedStats = new List<MasteryStat>();
-            rangedStats.Add(new MasteryStat(StatDefOf.ShootingAccuracyPawn, 0.01f));
-            rangedStats.Add(new MasteryStat(StatDefOf.MoveSpeed, 0.2f));
-            rangedStats.Add(new MasteryStat(StatDefOf.HuntingStealth, 0.01f));
-            rangedStats.Add(new MasteryStat(StatDefOf.RangedWeapon_Cooldown, -0.1f));
-            rangedStats.Add(new MasteryStat(StatDefOf.AimingDelayFactor, -0.02f));
-
+            if (isStatDefOfNull)
+            {
+                List<StatDef> statdefs = DefDatabase<StatDef>.AllDefsListForReading;
+                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "ShootingAccuracyPawn"), 0.01f));
+                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MoveSpeed"), 0.2f));
+                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "HuntingStealth"), 0.01f));
+                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "RangedWeapon_Cooldown"), -0.1f));
+                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "AimingDelayFactor"), -0.02f));
+            }
+            else
+            {
+                rangedStats.Add(new MasteryStat(StatDefOf.ShootingAccuracyPawn, 0.01f));
+                rangedStats.Add(new MasteryStat(StatDefOf.MoveSpeed, 0.2f));
+                rangedStats.Add(new MasteryStat(StatDefOf.HuntingStealth, 0.01f));
+                rangedStats.Add(new MasteryStat(StatDefOf.RangedWeapon_Cooldown, -0.1f));
+                rangedStats.Add(new MasteryStat(StatDefOf.AimingDelayFactor, -0.02f));
+            }
+            
             // Default Melee Stats
             meleeStats = new List<MasteryStat>();
-            meleeStats.Add(new MasteryStat(StatDefOf.MoveSpeed, 0.2f));
-            meleeStats.Add(new MasteryStat(StatDefOf.MeleeDodgeChance, 0.01f));
-            meleeStats.Add(new MasteryStat(StatDefOf.MeleeHitChance, 0.01f));
-            meleeStats.Add(new MasteryStat(StatDefOf.CarryingCapacity, 10f));
-            meleeStats.Add(new MasteryStat(StatDefOf.SuppressionPower, 0.01f));
+            if (isStatDefOfNull)
+            {
+                List<StatDef> statdefs = DefDatabase<StatDef>.AllDefsListForReading;
+                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MoveSpeed"), 0.2f));
+                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MeleeDodgeChance"), 0.01f));
+                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MeleeHitChance"), 0.01f));
+                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "CarryingCapacity"), 10f));
+                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "SuppressionPower"), 0.01f));
+            }
+            else
+            {
+                meleeStats.Add(new MasteryStat(StatDefOf.MoveSpeed, 0.2f));
+                meleeStats.Add(new MasteryStat(StatDefOf.MeleeDodgeChance, 0.01f));
+                meleeStats.Add(new MasteryStat(StatDefOf.MeleeHitChance, 0.01f));
+                meleeStats.Add(new MasteryStat(StatDefOf.CarryingCapacity, 10f));
+                meleeStats.Add(new MasteryStat(StatDefOf.SuppressionPower, 0.01f));
+            }
         }
 
         // Find MasteryStat containing the same StatDef parameter
