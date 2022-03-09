@@ -11,8 +11,9 @@ namespace SK_WeaponMastery
     // original methods
     public static class HarmonyPatcher
     {
+        public static Harmony instance;
 
-        public static void PatchVanillaMethods(Harmony instance)
+        public static void PatchVanillaMethods()
         {
             if (instance == null)
             {
@@ -52,6 +53,11 @@ namespace SK_WeaponMastery
                 HarmonyMethod onNeutralPawnSpawnMethod = new HarmonyMethod(typeof(Core).GetMethod("OnNeutralPawnSpawn"));
                 instance.Patch(spawnPawnsMethod, null, onNeutralPawnSpawnMethod);
             }
+        }
+
+        public static void SetInstance(Harmony instance)
+        {
+            HarmonyPatcher.instance = instance;
         }
     }
 }

@@ -16,8 +16,7 @@ namespace SK_WeaponMastery
             rootDirectory = this.Content.RootDir;
             modName = this.Content.Name;
             Harmony instance = new Harmony("rimworld.sk.weaponmastery");
-
-            HarmonyPatcher.PatchVanillaMethods(instance);
+            HarmonyPatcher.SetInstance(instance);
 
             // Fires when all Defs are loaded
             LongEventHandler.ExecuteWhenFinished(Init);
@@ -34,6 +33,7 @@ namespace SK_WeaponMastery
             Core.InjectStatPartIntoStatDefs();
             ModSettings.LoadWeaponNames();
             ModSettings.InitMessageKeys();
+            HarmonyPatcher.PatchVanillaMethods();
         }
 
         public override void DoSettingsWindowContents(Rect rect)
