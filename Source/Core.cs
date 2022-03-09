@@ -127,5 +127,53 @@ namespace SK_WeaponMastery
                 InjectStatPartIntoStatDefs();
             }
         }
+
+        // Add mastery levels to raid
+        public static void OnRaid(IncidentWorker_Raid __instance, IncidentParms parms, List<Pawn> pawns, bool debugTest, ref bool __result)
+        {
+            if (!__result) return;
+            GenerateMasteriesForPawns(pawns);
+        }
+
+        // Add mastery levels to neutral pawns. Trade caravans, visitors
+        // etc ...
+        public static void OnNeutralPawnSpawn(IncidentWorker_NeutralGroup __instance, IncidentParms parms, ref List<Pawn> __result)
+        {
+            GenerateMasteriesForPawns(__result);
+        }
+
+        // Generate weapon masteries on a list of pawns
+        private static void GenerateMasteriesForPawns(List<Pawn> pawns)
+        {
+            if (pawns == null) return;
+            List<Pawn> clonedReferences = new List<Pawn>(pawns);
+            int masteryOwnersCount = (int)Math.Ceiling(clonedReferences.Count * ModSettings.masteriesPercentagePerEvent);
+            int currentOwnersCount = 0;
+            Random rng = new Random();
+            while (clonedReferences.Count != 0 && currentOwnersCount < masteryOwnersCount)
+            {
+                Pawn selectedPawn = clonedReferences.RandomElement();
+                // Is Pawn Humanoid and has weapon
+                if (selectedPawn.RaceProps.Humanlike && selectedPawn.equipment?.Primary != null)
+                {
+                    MasteryComp comp = selectedPawn.equipment.Primary.TryGetComp<MasteryComp>();
+                    if (comp != null)
+                    {
+                        // Roll stats and weapon name
+                        comp.Init(selectedPawn);
+                        int statsCount = rng.Next(1, ModSettings.maxLevel);
+                        for (int i = 0; i < statsCount; i++)
+                        {
+                            MasteryStat stat = ModSettings.PickBonus(selectedPawn.equipment.Primary.def.IsMeleeWeapon);
+                            comp.AddStatBonus(selectedPawn, stat.GetStat(), stat.GetOffset());
+                        }
+                        float weaponNameRoll = (float)rng.NextDouble();
+                        if (weaponNameRoll <= ModSettings.eventWeaponNameChance) comp.SetWeaponName(ModSettings.PickWeaponName());
+                        currentOwnersCount++;
+                    }
+                }
+                clonedReferences.Remove(selectedPawn);
+            }
+        }
     }
 }

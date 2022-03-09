@@ -28,12 +28,12 @@
                 if (ModSettingsWindow.selectedRangedMasteryStat != null && oldRangedStatOffset != ModSettingsWindow.rangedStatOffset)
                 {
                     oldRangedStatOffset = ModSettingsWindow.rangedStatOffset;
-                    ModSettingsWindow.selectedRangedMasteryStat.SetOffset(ModSettingsWindow.rangedStatOffset);
+                    ModSettingsWindow.selectedRangedMasteryStat.SetOffset((float)System.Math.Round(ModSettingsWindow.rangedStatOffset, 2));
                 }
                 if (ModSettingsWindow.selectedMeleeMasteryStat != null && oldMeleeStatOffset != ModSettingsWindow.meleeStatOffset)
                 {
                     oldMeleeStatOffset = ModSettingsWindow.meleeStatOffset;
-                    ModSettingsWindow.selectedMeleeMasteryStat.SetOffset(ModSettingsWindow.meleeStatOffset);
+                    ModSettingsWindow.selectedMeleeMasteryStat.SetOffset((float)System.Math.Round(ModSettingsWindow.meleeStatOffset));
                 }
                 System.Threading.Thread.Sleep(THREAD_SLEEP_TIME_MS);
             }

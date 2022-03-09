@@ -20,8 +20,11 @@ namespace SK_WeaponMastery
         public static int maxLevel = 3;
         public static bool initialLoad = false;
         public static bool useCustomNames = false;
+        public static bool masteryOnOutsidePawns = true;
         public static float chanceToNameWeapon = 0.35f;
         public static float bondedWeaponExperienceMultipier = 1.5f;
+        public static float masteriesPercentagePerEvent = 0.25f;
+        public static float eventWeaponNameChance = 0.15f;
         public static int numberOfRelicBonusStats = 5;
         public static List<MasteryStat> rangedStats;
         public static List<MasteryStat> meleeStats;
@@ -44,6 +47,9 @@ namespace SK_WeaponMastery
             Scribe_Values.Look(ref numberOfRelicBonusStats, "numberofrelicbonusstats", 5);
             Scribe_Values.Look(ref useCustomNames, "usecustomnames", false);
             Scribe_Collections.Look(ref customWeaponNamesPool, "customweaponnamespool", LookMode.Value);
+            Scribe_Values.Look(ref masteriesPercentagePerEvent, "masteriespercentageperevent", 0.25f);
+            Scribe_Values.Look(ref eventWeaponNameChance, "eventweaponnamechance", 0.15f);
+            Scribe_Values.Look(ref masteryOnOutsidePawns, "masteryonoutsidepawns", true);
         }
 
         // Set default settings
@@ -208,6 +214,14 @@ namespace SK_WeaponMastery
             {
                 messages.Add(key + (i + 1).ToString());
             }
+        }
+
+        public static string PickWeaponName()
+        {
+            if (ModSettings.useCustomNames && ModSettings.customWeaponNamesPool.Count > 0)
+                return ModSettings.customWeaponNamesPool.RandomElement();
+            else
+                return ModSettings.weaponNamesPool.RandomElement();
         }
     }
 }

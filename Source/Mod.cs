@@ -7,7 +7,7 @@ namespace SK_WeaponMastery
     // Main mod file
     public class WeaponMasteryMod : Mod
     {
-        public static bool SHOULD_PRINT_LOG = false;
+        public static bool SHOULD_PRINT_LOG = true;
         // Mod name in about.xml
         public static string modName;
         private static string rootDirectory;

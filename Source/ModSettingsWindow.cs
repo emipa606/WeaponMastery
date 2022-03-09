@@ -261,10 +261,11 @@ namespace SK_WeaponMastery
             Widgets.Dropdown(subSection.GetRect(30), null, null, (string s) => GenerateRangedStatsOptions(), selectedRangedDef.defName);
             subSection.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionLabel".Translate());
             // Percentage stats use values from 0 -> 1 which maps to 0% -> 100%
+            
             if (!isRangedStatPercentage)
-                rangedStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), rangedStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, rangedStatOffset.ToString(), null, null, 0.01f);
+                rangedStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), rangedStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, ((float)System.Math.Round(rangedStatOffset, 2)).ToString(), null, null, 0.01f);
             else
-                rangedStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), rangedStatOffset, -1f, 1f, false, rangedStatOffset.ToString(), null, null, 0.01f);
+                rangedStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), rangedStatOffset, -1f, 1f, false, ((float)System.Math.Round(rangedStatOffset, 2)).ToString(), null, null, 0.01f);
             if (isRangedStatEnabled)
             {
                 bool disableStatButtonClicked = subSection.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton".Translate());
@@ -287,9 +288,9 @@ namespace SK_WeaponMastery
             subSection.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionLabel".Translate());
             // Percentage stats use values from 0 -> 1 which maps to 0% -> 100%
             if (!isMeleeStatPercentage)
-                meleeStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), meleeStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, meleeStatOffset.ToString(), null, null, 0.01f);
+                meleeStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), meleeStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, ((float)System.Math.Round(meleeStatOffset, 2)).ToString(), null, null, 0.01f);
             else
-                meleeStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), meleeStatOffset, -1f, 1f, false, meleeStatOffset.ToString(), null, null, 0.01f);
+                meleeStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), meleeStatOffset, -1f, 1f, false, ((float)System.Math.Round(meleeStatOffset, 2)).ToString(), null, null, 0.01f);
             if (isMeleeStatEnabled)
             {
                 bool disableStatButtonClicked = subSection.ButtonText("SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton".Translate());
@@ -328,13 +329,34 @@ namespace SK_WeaponMastery
                 subSection.Label("SK_WeaponMastery_ModSettingsSectionIdeologyRequiredLabel".Translate());
             subSection.NewColumn();
             subSection.ColumnWidth = 500;
-            subSection.Label("");
+            subSection.Label("SK_WeaponMastery_ModSettingsSectionNote".Translate());
             ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.chanceToNameWeapon, 0.01f, 1f, false, ModSettings.chanceToNameWeapon.ToStringPercent(), null, null, 0.01f);
             if (ModsConfig.RoyaltyActive)
                 ModSettings.bondedWeaponExperienceMultipier = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.bondedWeaponExperienceMultipier, MIN_BONDED_WEAPON_MULTIPLIER, MAX_BONDED_WEAPON_MULTIPLIER, false, ModSettings.bondedWeaponExperienceMultipier.ToString("F1") + "x", null, null, 0.01f);
             if (ModsConfig.IdeologyActive)
                 ModSettings.numberOfRelicBonusStats = (int)Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.numberOfRelicBonusStats, MIN_RELIC_BONUS_STATS, MAX_RELIC_BONUS_STATS, false, ModSettings.numberOfRelicBonusStats.ToString(), null, null, 1f);
             subSection.End();
+            Rect subSectionRect1 = list.GetRect(ModSettings.masteryOnOutsidePawns ? 90 : 30);
+            subSectionRect1.width -= 30;
+            Listing_Standard subSection1 = new Listing_Standard();
+            subSection1.Begin(subSectionRect1);
+            subSection1.CheckboxLabeled("SK_WeaponMastery_ModSettingsSectionMasteryOutsiderPawnsLabel".Translate(), ref ModSettings.masteryOnOutsidePawns, "SK_WeaponMastery_ModSettingsSectionMasteryOutsiderTooltip".Translate());
+            if (ModSettings.masteryOnOutsidePawns)
+            {
+                Rect subSection2Rect = subSection1.GetRect(60);
+                subSection2Rect.width -= 30;
+                Listing_Standard subSection2 = new Listing_Standard();
+                subSection2.Begin(subSection2Rect);
+                subSection2.ColumnWidth = 300;
+                subSection2.Label("SK_WeaponMastery_ModSettingsSectionMasteryGroupPercentage".Translate());
+                subSection2.Label("SK_WeaponMastery_ModSettingsSectionMasteryWeaponNameChancePerPawn".Translate());
+                subSection2.NewColumn();
+                subSection2.ColumnWidth = 500;
+                ModSettings.masteriesPercentagePerEvent = Widgets.HorizontalSlider(subSection2.GetRect(30f), ModSettings.masteriesPercentagePerEvent, 0.01f, 1.0f, false, ModSettings.masteriesPercentagePerEvent.ToString("F2") + "%", null, null, 0.01f);
+                ModSettings.eventWeaponNameChance = Widgets.HorizontalSlider(subSection2.GetRect(30f), ModSettings.eventWeaponNameChance, 0.01f, 1.0f, false, ModSettings.eventWeaponNameChance.ToString("F2") + "%", null, null, 0.01f);
+                subSection2.End();
+            }
+            subSection1.End();
             list.GapLine();
         }
 
