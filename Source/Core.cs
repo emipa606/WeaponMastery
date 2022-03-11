@@ -10,6 +10,8 @@ namespace SK_WeaponMastery
     public static class Core
     {
         private static bool writeLock;
+        public static ThoughtDef MasteredWeaponUnequipped;
+        public static HediffDef MasteredWeaponEquipped;
 
         // Add mastery experience to shooter pawn
         public static void OnPawnShoot(Verb_Shoot __instance)
@@ -96,6 +98,27 @@ namespace SK_WeaponMastery
                 MasteryComp comp = eq.TryGetComp<MasteryComp>();
                 if (comp == null || !comp.IsActive()) return;
                 comp.SetCurrentOwner(__instance.pawn);
+                if (ModSettings.useMoods && comp.PawnHasMastery(__instance.pawn))
+                {
+                    __instance.pawn.health.AddHediff(MasteredWeaponEquipped);
+                    __instance.pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDef(MasteredWeaponUnequipped);
+                }
+            }
+        }
+
+        // When pawns unequips item
+        public static void OnPawnEquipRemove(Pawn_EquipmentTracker __instance, ThingWithComps eq)
+        {
+            if (eq.def.equipmentType == EquipmentType.Primary)
+            {
+                MasteryComp comp = eq.TryGetComp<MasteryComp>();
+                if (comp == null || !comp.IsActive()) return;
+                if (comp.PawnHasMastery(__instance.pawn))
+                {
+                    __instance.pawn.needs.mood.thoughts.memories.TryGainMemory(MasteredWeaponUnequipped);
+                    if (__instance.pawn.health.hediffSet.HasHediff(MasteredWeaponEquipped))
+                        __instance.pawn.health.RemoveHediff(__instance.pawn.health.hediffSet.GetFirstHediffOfDef(MasteredWeaponEquipped));
+                }
             }
         }
 

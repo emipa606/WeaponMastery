@@ -32,8 +32,8 @@ namespace SK_WeaponMastery
 
             // Patch Pawn_EquipmentTracker OnEquipNotify method
             MethodInfo notifyEquipmentAddedMethod = AccessTools.Method(typeof(Pawn_EquipmentTracker), "Notify_EquipmentAdded");
-            HarmonyMethod onPawnEquipMethod = new HarmonyMethod(typeof(Core).GetMethod("OnPawnEquipThing"));
-            instance.Patch(notifyEquipmentAddedMethod, null, onPawnEquipMethod);
+            HarmonyMethod onPawnEquipAddMethod = new HarmonyMethod(typeof(Core).GetMethod("OnPawnEquipThing"));
+            instance.Patch(notifyEquipmentAddedMethod, null, onPawnEquipAddMethod);
 
             // Patch Mod WriteSettings method
             MethodInfo writeSettingsMetho = AccessTools.Method(typeof(Mod), "WriteSettings");
@@ -52,6 +52,14 @@ namespace SK_WeaponMastery
                 MethodInfo spawnPawnsMethod = AccessTools.Method(typeof(IncidentWorker_NeutralGroup), "SpawnPawns");
                 HarmonyMethod onNeutralPawnSpawnMethod = new HarmonyMethod(typeof(Core).GetMethod("OnNeutralPawnSpawn"));
                 instance.Patch(spawnPawnsMethod, null, onNeutralPawnSpawnMethod);
+            }
+
+            if (ModSettings.useMoods)
+            {
+                // Patch Pawn_EquipmentTracker Notify_EquipmentRemoved method
+                MethodInfo notifyEquipmentRemovedMethod = AccessTools.Method(typeof(Pawn_EquipmentTracker), "Notify_EquipmentRemoved");
+                HarmonyMethod onPawnEquipRemoveMethod = new HarmonyMethod(typeof(Core).GetMethod("OnPawnEquipRemove"));
+                instance.Patch(notifyEquipmentRemovedMethod, null, onPawnEquipRemoveMethod);
             }
         }
 

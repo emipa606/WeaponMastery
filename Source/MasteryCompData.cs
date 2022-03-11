@@ -61,6 +61,11 @@ namespace SK_WeaponMastery
             AddStatBonus(bonus.GetStat(), bonus.GetOffset());
         }
 
+        public bool HasMastery()
+        {
+            return this.masteryLevel != 0;
+        }
+
         // Save/Load class variables to/from rws file
         // Store defName string instead of defs to handle defs being removed
         // mid game.

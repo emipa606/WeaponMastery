@@ -21,6 +21,7 @@ namespace SK_WeaponMastery
         public static bool initialLoad = false;
         public static bool useCustomNames = false;
         public static bool masteryOnOutsidePawns = true;
+        public static bool useMoods = false;
         public static float chanceToNameWeapon = 0.35f;
         public static float bondedWeaponExperienceMultipier = 1.5f;
         public static float masteriesPercentagePerEvent = 0.25f;
@@ -41,7 +42,7 @@ namespace SK_WeaponMastery
             Scribe_Collections.Look(ref experiencePerLevel, "experienceperlevel", LookMode.Value);
             Scribe_Collections.Look(ref rangedStats, true, "rangedstats", LookMode.Deep);
             Scribe_Collections.Look(ref meleeStats, true, "meleestats", LookMode.Deep);
-            Scribe_Values.Look(ref maxLevel, "maxLevel");
+            Scribe_Values.Look(ref maxLevel, "maxLevel", 3);
             Scribe_Values.Look(ref chanceToNameWeapon, "chancetonameweapon", 0.35f);
             Scribe_Values.Look(ref bondedWeaponExperienceMultipier, "bondedweaponexperiencemultipier", 1.5f);
             Scribe_Values.Look(ref numberOfRelicBonusStats, "numberofrelicbonusstats", 5);
@@ -50,63 +51,35 @@ namespace SK_WeaponMastery
             Scribe_Values.Look(ref masteriesPercentagePerEvent, "masteriespercentageperevent", 0.25f);
             Scribe_Values.Look(ref eventWeaponNameChance, "eventweaponnamechance", 0.15f);
             Scribe_Values.Look(ref masteryOnOutsidePawns, "masteryonoutsidepawns", true);
+            Scribe_Values.Look(ref useMoods, "usemoods", false);
         }
 
         // Set default settings
         public static void SetSensibleDefaults()
         {
-            // A user came to me with error in that StatDefOf is null?? 
-            // Even though this function is run on 
-            // LongEventHandler.ExecuteWhenFinished since I don't know  what's 
-            // happening here, I am going to add an extra check to check 
-            // StatDefOf if it's null or not. If it's null we'll use 
-            // DefDatabase instead
-            bool isStatDefOfNull = StatDefOf.ShootingAccuracyPawn == null;
             // Default ExperiencePerLevel
             experiencePerLevel = new List<int>();
             experiencePerLevel.Add(15000);
             experiencePerLevel.Add(20000);
             experiencePerLevel.Add(25000);
 
+            List<StatDef> statdefs = DefDatabase<StatDef>.AllDefsListForReading;
+
             // Default Ranged Stats
             rangedStats = new List<MasteryStat>();
-            if (isStatDefOfNull)
-            {
-                List<StatDef> statdefs = DefDatabase<StatDef>.AllDefsListForReading;
-                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "ShootingAccuracyPawn"), 0.01f));
-                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MoveSpeed"), 0.2f));
-                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "HuntingStealth"), 0.01f));
-                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "RangedWeapon_Cooldown"), -0.1f));
-                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "AimingDelayFactor"), -0.02f));
-            }
-            else
-            {
-                rangedStats.Add(new MasteryStat(StatDefOf.ShootingAccuracyPawn, 0.01f));
-                rangedStats.Add(new MasteryStat(StatDefOf.MoveSpeed, 0.2f));
-                rangedStats.Add(new MasteryStat(StatDefOf.HuntingStealth, 0.01f));
-                rangedStats.Add(new MasteryStat(StatDefOf.RangedWeapon_Cooldown, -0.1f));
-                rangedStats.Add(new MasteryStat(StatDefOf.AimingDelayFactor, -0.02f));
-            }
-            
+            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "ShootingAccuracyPawn"), 0.01f));
+            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MoveSpeed"), 0.2f));
+            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "HuntingStealth"), 0.01f));
+            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "RangedWeapon_Cooldown"), -0.1f));
+            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "AimingDelayFactor"), -0.02f));
+
             // Default Melee Stats
             meleeStats = new List<MasteryStat>();
-            if (isStatDefOfNull)
-            {
-                List<StatDef> statdefs = DefDatabase<StatDef>.AllDefsListForReading;
-                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MoveSpeed"), 0.2f));
-                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MeleeDodgeChance"), 0.01f));
-                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MeleeHitChance"), 0.01f));
-                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "CarryingCapacity"), 10f));
-                rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "SuppressionPower"), 0.01f));
-            }
-            else
-            {
-                meleeStats.Add(new MasteryStat(StatDefOf.MoveSpeed, 0.2f));
-                meleeStats.Add(new MasteryStat(StatDefOf.MeleeDodgeChance, 0.01f));
-                meleeStats.Add(new MasteryStat(StatDefOf.MeleeHitChance, 0.01f));
-                meleeStats.Add(new MasteryStat(StatDefOf.CarryingCapacity, 10f));
-                meleeStats.Add(new MasteryStat(StatDefOf.SuppressionPower, 0.01f));
-            }
+            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MoveSpeed"), 0.2f));
+            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MeleeDodgeChance"), 0.01f));
+            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MeleeHitChance"), 0.01f));
+            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "CarryingCapacity"), 10f));
+            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "SuppressionPower"), 0.01f));
         }
 
         // Find MasteryStat containing the same StatDef parameter

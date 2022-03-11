@@ -1,13 +1,14 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 using Verse;
+using RimWorld;
 
 namespace SK_WeaponMastery
 {
     // Main mod file
     public class WeaponMasteryMod : Mod
     {
-        public static bool SHOULD_PRINT_LOG = false;
+        public static bool SHOULD_PRINT_LOG = true;
         // Mod name in about.xml
         public static string modName;
         private static string rootDirectory;
@@ -25,10 +26,12 @@ namespace SK_WeaponMastery
         public void Init()
         {
             GetSettings<ModSettings>();
-            if (!ModSettings.initialLoad) 
-                ModSettings.SetSensibleDefaults(); 
-            else 
+            if (!ModSettings.initialLoad)
+                ModSettings.SetSensibleDefaults();
+            else
                 ModSettings.ResolveStats();
+            Core.MasteredWeaponUnequipped = DefDatabase<ThoughtDef>.AllDefsListForReading.Find((ThoughtDef def) => def.defName == "MasteredWeaponUnequipped");
+            Core.MasteredWeaponEquipped = DefDatabase<HediffDef>.AllDefsListForReading.Find((HediffDef def) => def.defName == "MasteredWeaponEquippedBonusMood");
             Core.AddMasteryCompToWeaponDefs();
             Core.InjectStatPartIntoStatDefs();
             ModSettings.LoadWeaponNames();
