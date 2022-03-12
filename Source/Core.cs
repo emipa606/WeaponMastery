@@ -177,7 +177,7 @@ namespace SK_WeaponMastery
             {
                 Pawn selectedPawn = clonedReferences.RandomElement();
                 // Is Pawn Humanoid and has weapon
-                if (selectedPawn.RaceProps.Humanlike && selectedPawn.equipment?.Primary != null)
+                if (selectedPawn != null && selectedPawn.RaceProps.Humanlike && selectedPawn.equipment?.Primary != null)
                 {
                     MasteryComp comp = selectedPawn.equipment.Primary.TryGetComp<MasteryComp>();
                     if (comp != null)
