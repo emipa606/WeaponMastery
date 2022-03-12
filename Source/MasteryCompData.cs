@@ -58,7 +58,8 @@ namespace SK_WeaponMastery
         private void RollBonusStat(bool isMelee)
         {
             MasteryStat bonus = ModSettings.PickBonus(isMelee);
-            AddStatBonus(bonus.GetStat(), bonus.GetOffset());
+            if (bonus != null)
+                AddStatBonus(bonus.GetStat(), bonus.GetOffset());
         }
 
         public bool HasMastery()

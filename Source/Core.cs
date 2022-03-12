@@ -177,7 +177,7 @@ namespace SK_WeaponMastery
             {
                 Pawn selectedPawn = clonedReferences.RandomElement();
                 // Is Pawn Humanoid and has weapon
-                if (selectedPawn != null && selectedPawn.RaceProps.Humanlike && selectedPawn.equipment?.Primary != null)
+                if (selectedPawn.RaceProps.Humanlike && selectedPawn.equipment?.Primary != null)
                 {
                     MasteryComp comp = selectedPawn.equipment.Primary.TryGetComp<MasteryComp>();
                     if (comp != null)
@@ -188,7 +188,8 @@ namespace SK_WeaponMastery
                         for (int i = 0; i < statsCount; i++)
                         {
                             MasteryStat stat = ModSettings.PickBonus(selectedPawn.equipment.Primary.def.IsMeleeWeapon);
-                            comp.AddStatBonus(selectedPawn, stat.GetStat(), stat.GetOffset());
+                            if (stat != null)
+                                comp.AddStatBonus(selectedPawn, stat.GetStat(), stat.GetOffset());
                         }
                         float weaponNameRoll = (float)rng.NextDouble();
                         if (weaponNameRoll <= ModSettings.eventWeaponNameChance) comp.SetWeaponName(ModSettings.PickWeaponName());

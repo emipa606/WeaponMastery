@@ -32,10 +32,11 @@ namespace SK_WeaponMastery
                 for (int i = 0; i < ModSettings.numberOfRelicBonusStats; i++)
                 {
                     MasteryStat bonus = ModSettings.PickBonus(this.parent.def.IsMeleeWeapon);
-                    if (relicBonuses.ContainsKey(bonus.GetStat()))
-                        relicBonuses[bonus.GetStat()] += bonus.GetOffset();
-                    else
-                        relicBonuses[bonus.GetStat()] = bonus.GetOffset();
+                    if (bonus != null)
+                        if (relicBonuses.ContainsKey(bonus.GetStat()))
+                            relicBonuses[bonus.GetStat()] += bonus.GetOffset();
+                        else
+                            relicBonuses[bonus.GetStat()] = bonus.GetOffset();
                 }
             }
             isActive = true;
