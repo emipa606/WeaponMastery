@@ -67,19 +67,20 @@ namespace SK_WeaponMastery
 
             // Default Ranged Stats
             rangedStats = new List<MasteryStat>();
-            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "ShootingAccuracyPawn"), 0.01f));
-            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MoveSpeed"), 0.2f));
-            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "HuntingStealth"), 0.01f));
-            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "RangedWeapon_Cooldown"), -0.1f));
-            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "AimingDelayFactor"), -0.02f));
+            rangedStats.Add(new MasteryStat(StatDefOf.ShootingAccuracyPawn, 0.01f));
+            rangedStats.Add(new MasteryStat(StatDefOf.MoveSpeed, 0.2f));
+            rangedStats.Add(new MasteryStat(StatDefOf.HuntingStealth, 0.01f));
+            rangedStats.Add(new MasteryStat(StatDefOf.RangedWeapon_Cooldown, -0.1f));
+            rangedStats.Add(new MasteryStat(StatDefOf.AimingDelayFactor, -0.02f));
 
             // Default Melee Stats
             meleeStats = new List<MasteryStat>();
-            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MoveSpeed"), 0.2f));
-            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MeleeDodgeChance"), 0.01f));
-            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "MeleeHitChance"), 0.01f));
-            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "CarryingCapacity"), 10f));
-            rangedStats.Add(new MasteryStat(statdefs.Find((StatDef item) => item.defName == "SuppressionPower"), 0.01f));
+            rangedStats.Add(new MasteryStat(StatDefOf.MoveSpeed, 0.2f));
+            rangedStats.Add(new MasteryStat(StatDefOf.MeleeDodgeChance, 0.01f));
+            rangedStats.Add(new MasteryStat(StatDefOf.MeleeHitChance, 0.01f));
+            rangedStats.Add(new MasteryStat(StatDefOf.CarryingCapacity, 10f));
+            if (ModsConfig.IdeologyActive)
+                rangedStats.Add(new MasteryStat(StatDefOf.SuppressionPower, 0.01f));
         }
 
         // Find MasteryStat containing the same StatDef parameter
