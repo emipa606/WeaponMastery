@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<ThoughtDef>
-    <defName>SK.WM_MasteredWeaponEquipped</defName>
+    <defName>SK_WM_MasteredWeaponEquipped</defName>
     <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>SK.WM_MasteredWeaponEquippedBonusMood</hediff>
+    <hediff>SK_WM_MasteredWeaponEquippedBonusMood</hediff>
     <stages>
       <li>
         <label>Favorite Weapon Equipped</label>
@@ -14,7 +14,7 @@
   </ThoughtDef>
 
   <ThoughtDef>
-    <defName>SK.WM_MasteredWeaponUnequipped</defName>
+    <defName>SK_WM_MasteredWeaponUnequipped</defName>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
     <stages>
