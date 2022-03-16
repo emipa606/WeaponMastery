@@ -23,10 +23,19 @@ namespace SK_WeaponMastery
                 float num2 = __instance.verbProps.AdjustedFullCycleTime(__instance, __instance.CasterPawn);
                 Pawn caster = __instance.Caster as Pawn;
                 Thing weapon = caster.equipment.Primary;
-                MasteryComp comp = weapon.TryGetComp<MasteryComp>();
+                MasteryWeaponComp comp = weapon.TryGetComp<MasteryWeaponComp>();
                 if (comp == null) return;
-                if (!comp.IsActive()) comp.Init(caster);
-                comp.AddExp(caster, (int)(num * num2));
+                comp.SetCurrentOwner(caster);
+                if (ModSettings.useSpecificMasterySystem)
+                {
+                    if (!comp.IsActive()) comp.Init();
+                    comp.AddExp(caster, (int)(num * num2));
+                }
+                if (!ModSettings.useGeneralMasterySystem) return;
+                MasteryPawnComp compPawn = caster.TryGetComp<MasteryPawnComp>();
+                if (compPawn == null) return;
+                if (!compPawn.IsActive()) compPawn.Init();
+                compPawn.AddExp(weapon.def, (int)(num * num2));
             }
         }
 
@@ -41,10 +50,19 @@ namespace SK_WeaponMastery
                 float exp = 200f * __instance.verbProps.AdjustedFullCycleTime(__instance, casterPawn);
                 Thing weapon = casterPawn?.equipment?.Primary;
                 if (weapon == null) return;
-                MasteryComp comp = weapon.TryGetComp<MasteryComp>();
+                MasteryWeaponComp comp = weapon.TryGetComp<MasteryWeaponComp>();
                 if (comp == null) return;
-                if (!comp.IsActive()) comp.Init(casterPawn);
-                comp.AddExp(casterPawn, (int)exp);
+                comp.SetCurrentOwner(casterPawn);
+                if (ModSettings.useSpecificMasterySystem)
+                {
+                    if (!comp.IsActive()) comp.Init();
+                    comp.AddExp(casterPawn, (int)exp);
+                }
+                if (!ModSettings.useGeneralMasterySystem) return;
+                MasteryPawnComp compPawn = casterPawn.TryGetComp<MasteryPawnComp>();
+                if (compPawn == null) return;
+                if (!compPawn.IsActive()) compPawn.Init();
+                compPawn.AddExp(weapon.def, (int)exp);
             }
         }
 
@@ -90,12 +108,12 @@ namespace SK_WeaponMastery
             }
         }
 
-        // Update MasteryComp owner in a weapon
+        // Update MasteryWeaponComp owner in a weapon
         public static void OnPawnEquipThing(Pawn_EquipmentTracker __instance, ThingWithComps eq)
         {
             if (eq.def.equipmentType == EquipmentType.Primary)
             {
-                MasteryComp comp = eq.TryGetComp<MasteryComp>();
+                MasteryWeaponComp comp = eq.TryGetComp<MasteryWeaponComp>();
                 if (comp == null || !comp.IsActive()) return;
                 comp.SetCurrentOwner(__instance.pawn);
                 if (ModSettings.useMoods && comp.PawnHasMastery(__instance.pawn))
@@ -111,7 +129,7 @@ namespace SK_WeaponMastery
         {
             if (eq.def.equipmentType == EquipmentType.Primary)
             {
-                MasteryComp comp = eq.TryGetComp<MasteryComp>();
+                MasteryWeaponComp comp = eq.TryGetComp<MasteryWeaponComp>();
                 if (comp == null || !comp.IsActive()) return;
                 if (comp.PawnHasMastery(__instance.pawn))
                 {
@@ -122,7 +140,7 @@ namespace SK_WeaponMastery
             }
         }
 
-        public static void AddMasteryCompToWeaponDefs()
+        public static void AddMasteryWeaponCompToWeaponDefs()
         {
             // Ensure that def is a weapon
             // Filter bad weapon defs suchs wood logs, thrumbo horns, etc...
@@ -131,7 +149,23 @@ namespace SK_WeaponMastery
                 return def.IsWeapon && def.HasComp(typeof(CompQuality));
             }
 
-            CompProperties compProperties = new Verse.CompProperties { compClass = typeof(MasteryComp) };
+            CompProperties compProperties = new Verse.CompProperties { compClass = typeof(MasteryWeaponComp) };
+            IEnumerable<ThingDef> defs = DefDatabase<ThingDef>.AllDefs.Where(Predicate).ToList();
+
+            foreach (ThingDef def in defs)
+                def.comps.Add(compProperties);
+        }
+
+        public static void AddMasteryPawnCompToHumanoidDefs()
+        {
+            // Ensure that def is a weapon
+            // Filter bad weapon defs suchs wood logs, thrumbo horns, etc...
+            bool Predicate(ThingDef def)
+            {
+                return def.race != null && def.race.Humanlike;
+            }
+
+            CompProperties compProperties = new Verse.CompProperties { compClass = typeof(MasteryPawnComp) };
             IEnumerable<ThingDef> defs = DefDatabase<ThingDef>.AllDefs.Where(Predicate).ToList();
 
             foreach (ThingDef def in defs)
@@ -179,11 +213,12 @@ namespace SK_WeaponMastery
                 // Is Pawn Humanoid and has weapon
                 if (selectedPawn.RaceProps.Humanlike && selectedPawn.equipment?.Primary != null)
                 {
-                    MasteryComp comp = selectedPawn.equipment.Primary.TryGetComp<MasteryComp>();
+                    MasteryWeaponComp comp = selectedPawn.equipment.Primary.TryGetComp<MasteryWeaponComp>();
                     if (comp != null)
                     {
                         // Roll stats and weapon name
-                        comp.Init(selectedPawn);
+                        comp.SetCurrentOwner(selectedPawn);
+                        comp.Init();
                         int statsCount = rng.Next(1, ModSettings.maxLevel);
                         for (int i = 0; i < statsCount; i++)
                         {
@@ -198,6 +233,25 @@ namespace SK_WeaponMastery
                 }
                 clonedReferences.Remove(selectedPawn);
             }
+        }
+
+        // Display general weapon mastery description in pawn's information
+        // tab
+        public static void AddMasteryDescriptionToDrawStats(ThingDef parentDef, StatRequest req, ref IEnumerable<StatDrawEntry> __result)
+        {
+            Pawn pawn = req.Thing as Pawn;
+            if (pawn == null) return;
+            IEnumerable<StatDrawEntry> NewFunc(IEnumerable<StatDrawEntry> functionOutput)
+            {
+                foreach (StatDrawEntry item in functionOutput) yield return item;
+                if (pawn.def.race.Humanlike)
+                {
+                    MasteryPawnComp comp = pawn.TryGetComp<MasteryPawnComp>();
+                    if (comp != null && comp.IsActive())
+                        yield return new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "SK_WeaponMastery_StatWeaponMastery".Translate(), "", comp.GetDescription(), 20);
+                }
+            }
+            __result = NewFunc(__result);
         }
     }
 }

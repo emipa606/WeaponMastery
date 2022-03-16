@@ -22,6 +22,8 @@ namespace SK_WeaponMastery
         public static bool useCustomNames = false;
         public static bool masteryOnOutsidePawns = true;
         public static bool useMoods = false;
+        public static bool useSpecificMasterySystem = true;
+        public static bool useGeneralMasterySystem = false;
         public static float chanceToNameWeapon = 0.35f;
         public static float bondedWeaponExperienceMultipier = 1.5f;
         public static float masteriesPercentagePerEvent = 0.25f;
@@ -52,6 +54,8 @@ namespace SK_WeaponMastery
             Scribe_Values.Look(ref eventWeaponNameChance, "eventweaponnamechance", 0.15f);
             Scribe_Values.Look(ref masteryOnOutsidePawns, "masteryonoutsidepawns", true);
             Scribe_Values.Look(ref useMoods, "usemoods", false);
+            Scribe_Values.Look(ref useSpecificMasterySystem, "usespecificmasterysystem", true);
+            Scribe_Values.Look(ref useGeneralMasterySystem, "usegeneralmasterysystem", false);
         }
 
         // Set default settings

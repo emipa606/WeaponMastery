@@ -30,16 +30,19 @@ namespace SK_WeaponMastery
             HarmonyMethod onPawnMelee = new HarmonyMethod(typeof(Core).GetMethod("OnPawnMelee"));
             instance.Patch(tryCastShotMethod, null, onPawnMelee);
 
-            // Patch Pawn_EquipmentTracker OnEquipNotify method
-            MethodInfo notifyEquipmentAddedMethod = AccessTools.Method(typeof(Pawn_EquipmentTracker), "Notify_EquipmentAdded");
-            HarmonyMethod onPawnEquipAddMethod = new HarmonyMethod(typeof(Core).GetMethod("OnPawnEquipThing"));
-            instance.Patch(notifyEquipmentAddedMethod, null, onPawnEquipAddMethod);
-
             // Patch Mod WriteSettings method
-            MethodInfo writeSettingsMetho = AccessTools.Method(typeof(Mod), "WriteSettings");
+            MethodInfo writeSettingsMethod = AccessTools.Method(typeof(Mod), "WriteSettings");
             HarmonyMethod onModWriteSettingsMethod = new HarmonyMethod(typeof(Core).GetMethod("OnModWriteSettings"));
-            instance.Patch(writeSettingsMetho, null, onModWriteSettingsMethod);
+            instance.Patch(writeSettingsMethod, null, onModWriteSettingsMethod);
 
+            if (ModSettings.useGeneralMasterySystem)
+            {
+                // Patch RaceProperties SpecialDisplayStats method
+                MethodInfo specialDisplayStatsMethod = AccessTools.Method(typeof(RaceProperties), "SpecialDisplayStats");
+                HarmonyMethod addMasteryDescriptionToDrawStatsMethod = new HarmonyMethod(typeof(Core).GetMethod("AddMasteryDescriptionToDrawStats"));
+                instance.Patch(specialDisplayStatsMethod, null, addMasteryDescriptionToDrawStatsMethod);
+            }
+            
             // Patch these when mastery on outsider pawns is enabled in config
             if (ModSettings.masteryOnOutsidePawns)
             {
@@ -52,14 +55,6 @@ namespace SK_WeaponMastery
                 MethodInfo spawnPawnsMethod = AccessTools.Method(typeof(IncidentWorker_NeutralGroup), "SpawnPawns");
                 HarmonyMethod onNeutralPawnSpawnMethod = new HarmonyMethod(typeof(Core).GetMethod("OnNeutralPawnSpawn"));
                 instance.Patch(spawnPawnsMethod, null, onNeutralPawnSpawnMethod);
-            }
-
-            if (ModSettings.useMoods)
-            {
-                // Patch Pawn_EquipmentTracker Notify_EquipmentRemoved method
-                MethodInfo notifyEquipmentRemovedMethod = AccessTools.Method(typeof(Pawn_EquipmentTracker), "Notify_EquipmentRemoved");
-                HarmonyMethod onPawnEquipRemoveMethod = new HarmonyMethod(typeof(Core).GetMethod("OnPawnEquipRemove"));
-                instance.Patch(notifyEquipmentRemovedMethod, null, onPawnEquipRemoveMethod);
             }
         }
 

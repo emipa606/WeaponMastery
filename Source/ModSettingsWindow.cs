@@ -336,10 +336,12 @@ namespace SK_WeaponMastery
             if (ModsConfig.IdeologyActive)
                 ModSettings.numberOfRelicBonusStats = (int)Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.numberOfRelicBonusStats, MIN_RELIC_BONUS_STATS, MAX_RELIC_BONUS_STATS, false, ModSettings.numberOfRelicBonusStats.ToString(), null, null, 1f);
             subSection.End();
-            Rect subSectionRect1 = list.GetRect(ModSettings.masteryOnOutsidePawns ? 110 : 50);
+            Rect subSectionRect1 = list.GetRect(ModSettings.masteryOnOutsidePawns ? 150 : 90);
             subSectionRect1.width -= 30;
             Listing_Standard subSection1 = new Listing_Standard();
             subSection1.Begin(subSectionRect1);
+            subSection1.CheckboxLabeled("SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemLabel".Translate(), ref ModSettings.useSpecificMasterySystem, "SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemTooltip".Translate());
+            subSection1.CheckboxLabeled("SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemLabel".Translate(), ref ModSettings.useGeneralMasterySystem, "SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemTooltip".Translate());
             subSection1.CheckboxLabeled("SK_WeaponMastery_ModSettingsSectionMasteryOutsiderPawnsLabel".Translate(), ref ModSettings.masteryOnOutsidePawns, "SK_WeaponMastery_ModSettingsSectionMasteryOutsiderTooltip".Translate());
             subSection1.CheckboxLabeled("SK_WeaponMastery_ModSettingsUseMoodsCheckboxLabel".Translate(), ref ModSettings.useMoods, "SK_WeaponMastery_ModSettingsUseMoodsCheckboxTooltip".Translate());
             if (ModSettings.masteryOnOutsidePawns)

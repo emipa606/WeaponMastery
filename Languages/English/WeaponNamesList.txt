@@ -248,3 +248,53 @@ Ragnarok
 Rage
 Chance
 Dice
+Exoricst
+Slice
+Revenant
+Meat Grinder
+Solar
+Soul Reaper
+Jim
+Cassie
+Control
+Blink
+Cerberus
+Shade
+Joker
+Doom
+Solo
+Relic
+Power
+Miracle
+Debts
+The Fool
+Jet
+Glacier
+Economic
+War
+Paradox
+Eyecutter
+Magizooka
+Shieldbearer
+Bad Medicine
+Heat
+Matilda
+Brutalizer
+Steel
+Plasteel
+Deadeye
+Corruption
+Annie
+Downpour
+Enterprise
+Siphon
+Dreamhunter
+Dragon
+Gazelle
+Salvation
+Monke
+Tribute
+Trauma
+Dismay
+Frost
+Replica

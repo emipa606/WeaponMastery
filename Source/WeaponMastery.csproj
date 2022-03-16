@@ -61,12 +61,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comps\MasteryPawnComp.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Files.cs" />
     <Compile Include="HarmonyPatcher.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="MasteryComp.cs" />
-    <Compile Include="MasteryCompData.cs" />
+    <Compile Include="Comps\MasteryWeaponComp.cs" />
+    <Compile Include="Comps\Data\MasteryCompData.cs" />
+    <Compile Include="Comps\Data\MasteryWeaponCompData.cs" />
     <Compile Include="MasteryStat.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="ModSettings.cs" />

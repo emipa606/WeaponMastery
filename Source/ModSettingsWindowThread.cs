@@ -35,6 +35,8 @@
                     oldMeleeStatOffset = ModSettingsWindow.meleeStatOffset;
                     ModSettingsWindow.selectedMeleeMasteryStat.SetOffset((float)System.Math.Round(ModSettingsWindow.meleeStatOffset));
                 }
+                if (!ModSettings.useGeneralMasterySystem && !ModSettings.useSpecificMasterySystem)
+                    ModSettings.useSpecificMasterySystem = true;
                 System.Threading.Thread.Sleep(THREAD_SLEEP_TIME_MS);
             }
         }
