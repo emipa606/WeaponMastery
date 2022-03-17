@@ -56,6 +56,7 @@ namespace SK_WeaponMastery
             Scribe_Values.Look(ref useMoods, "usemoods", false);
             Scribe_Values.Look(ref useSpecificMasterySystem, "usespecificmasterysystem", true);
             Scribe_Values.Look(ref useGeneralMasterySystem, "usegeneralmasterysystem", false);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && customWeaponNamesPool == null) customWeaponNamesPool = new List<string>();
         }
 
         // Set default settings
