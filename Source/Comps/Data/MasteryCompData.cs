@@ -21,6 +21,7 @@ namespace SK_WeaponMastery
         {
             if (!bonusStats.ContainsKey(stat))
                 bonusStats[stat] = 0;
+            masteryLevel += 1;
             bonusStats[stat] += value;
         }
 

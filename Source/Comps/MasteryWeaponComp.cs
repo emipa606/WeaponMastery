@@ -199,7 +199,7 @@ namespace SK_WeaponMastery
             return base.TransformLabel(label);
         }
 
-        private void GenerateDescription()
+        public void GenerateDescription()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.AppendLine(base.GetDescriptionPart());

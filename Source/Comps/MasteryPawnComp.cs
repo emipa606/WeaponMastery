@@ -96,7 +96,7 @@ namespace SK_WeaponMastery
                 if (AnyWeaponHasMastery()) GenerateDescription();
         }
 
-        private void GenerateDescription()
+        public void GenerateDescription()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.AppendLine("SK_WeaponMastery_WeaponMasteryDescriptionItem".Translate());

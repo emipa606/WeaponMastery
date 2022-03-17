@@ -210,27 +210,50 @@ namespace SK_WeaponMastery
             while (clonedReferences.Count != 0 && currentOwnersCount < masteryOwnersCount)
             {
                 Pawn selectedPawn = clonedReferences.RandomElement();
+                bool bonusAdded = false;
                 // Is Pawn Humanoid and has weapon
                 if (selectedPawn.RaceProps.Humanlike && selectedPawn.equipment?.Primary != null)
                 {
-                    MasteryWeaponComp comp = selectedPawn.equipment.Primary.TryGetComp<MasteryWeaponComp>();
-                    if (comp != null)
+                    if (ModSettings.useSpecificMasterySystem)
                     {
-                        // Roll stats and weapon name
-                        comp.SetCurrentOwner(selectedPawn);
-                        comp.Init();
-                        int statsCount = rng.Next(1, ModSettings.maxLevel);
-                        for (int i = 0; i < statsCount; i++)
+                        MasteryWeaponComp comp = selectedPawn.equipment.Primary.TryGetComp<MasteryWeaponComp>();
+                        if (comp != null)
                         {
-                            MasteryStat stat = ModSettings.PickBonus(selectedPawn.equipment.Primary.def.IsMeleeWeapon);
-                            if (stat != null)
-                                comp.AddStatBonus(selectedPawn, stat.GetStat(), stat.GetOffset());
+                            // Roll stats and weapon name
+                            comp.SetCurrentOwner(selectedPawn);
+                            comp.Init();
+                            int statsCount = rng.Next(1, ModSettings.maxLevel);
+                            for (int i = 0; i < statsCount; i++)
+                            {
+                                MasteryStat stat = ModSettings.PickBonus(selectedPawn.equipment.Primary.def.IsMeleeWeapon);
+                                if (stat != null)
+                                    comp.AddStatBonus(selectedPawn, stat.GetStat(), stat.GetOffset());
+                            }
+                            float weaponNameRoll = (float)rng.NextDouble();
+                            if (weaponNameRoll <= ModSettings.eventWeaponNameChance) comp.SetWeaponName(ModSettings.PickWeaponName());
+                            comp.GenerateDescription();
+                            bonusAdded = true;
                         }
-                        float weaponNameRoll = (float)rng.NextDouble();
-                        if (weaponNameRoll <= ModSettings.eventWeaponNameChance) comp.SetWeaponName(ModSettings.PickWeaponName());
-                        currentOwnersCount++;
+                    }
+                    if (ModSettings.useGeneralMasterySystem)
+                    {
+                        MasteryPawnComp comp = selectedPawn.TryGetComp<MasteryPawnComp>();
+                        if (comp != null)
+                        {
+                            comp.Init();
+                            int statsCount = rng.Next(1, ModSettings.maxLevel);
+                            for (int i = 0; i < statsCount; i++)
+                            {
+                                MasteryStat stat = ModSettings.PickBonus(selectedPawn.equipment.Primary.def.IsMeleeWeapon);
+                                if (stat != null)
+                                    comp.AddStatBonus(selectedPawn.equipment.Primary.def, stat.GetStat(), stat.GetOffset());
+                            }
+                            comp.GenerateDescription();
+                            bonusAdded = true;
+                        }
                     }
                 }
+                if (bonusAdded) currentOwnersCount++;
                 clonedReferences.Remove(selectedPawn);
             }
         }

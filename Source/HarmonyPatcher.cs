@@ -44,7 +44,7 @@ namespace SK_WeaponMastery
             }
             
             // Patch these when mastery on outsider pawns is enabled in config
-            if (ModSettings.useSpecificMasterySystem && ModSettings.masteryOnOutsidePawns)
+            if (ModSettings.masteryOnOutsidePawns)
             {
                 // Patch IncidentWorker_Raid TryGenerateRaidInfo method
                 MethodInfo tryGenerateRaidMethod = AccessTools.Method(typeof(IncidentWorker_Raid), "TryGenerateRaidInfo");

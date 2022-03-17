@@ -73,7 +73,6 @@ End Of Dreams
 Cataclysm
 Disturbance
 Dragonkiller
-Soulless Godslayer
 Silence
 Headhunter
 The Judge
@@ -274,7 +273,6 @@ Economic
 War
 Paradox
 Eyecutter
-Magizooka
 Shieldbearer
 Bad Medicine
 Heat
@@ -298,3 +296,15 @@ Trauma
 Dismay
 Frost
 Replica
+Snape
+Fusion
+Staircase
+Onisan
+Onesan
+Sofa
+Fortuna
+Keepsake
+Soulless
+Chains
+Chicken
+Ruby
