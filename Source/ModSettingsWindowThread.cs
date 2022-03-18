@@ -33,7 +33,7 @@
                 if (ModSettingsWindow.selectedMeleeMasteryStat != null && oldMeleeStatOffset != ModSettingsWindow.meleeStatOffset)
                 {
                     oldMeleeStatOffset = ModSettingsWindow.meleeStatOffset;
-                    ModSettingsWindow.selectedMeleeMasteryStat.SetOffset((float)System.Math.Round(ModSettingsWindow.meleeStatOffset));
+                    ModSettingsWindow.selectedMeleeMasteryStat.SetOffset((float)System.Math.Round(ModSettingsWindow.meleeStatOffset, 2));
                 }
                 if (!ModSettings.useGeneralMasterySystem && !ModSettings.useSpecificMasterySystem)
                     ModSettings.useSpecificMasterySystem = true;

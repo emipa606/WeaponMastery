@@ -229,6 +229,7 @@ namespace SK_WeaponMastery
                                 if (stat != null)
                                     comp.AddStatBonus(selectedPawn, stat.GetStat(), stat.GetOffset());
                             }
+                            comp.SetLevel(selectedPawn, statsCount);
                             float weaponNameRoll = (float)rng.NextDouble();
                             if (weaponNameRoll <= ModSettings.eventWeaponNameChance) comp.SetWeaponName(ModSettings.PickWeaponName());
                             comp.GenerateDescription();
@@ -248,6 +249,7 @@ namespace SK_WeaponMastery
                                 if (stat != null)
                                     comp.AddStatBonus(selectedPawn.equipment.Primary.def, stat.GetStat(), stat.GetOffset());
                             }
+                            comp.SetLevel(selectedPawn.equipment.Primary.def, statsCount);
                             comp.GenerateDescription();
                             bonusAdded = true;
                         }
@@ -275,6 +277,23 @@ namespace SK_WeaponMastery
                 }
             }
             __result = NewFunc(__result);
+        }
+
+        // On info window opening check if it's one of our comps and regenerate
+        // description. This is used to update experience and levels in the
+        // comp's description.
+        public static void OnInfoWindowSetup(Dialog_InfoCard __instance, Thing ___thing)
+        {
+            if (___thing == null) return;
+            MasteryWeaponComp weaponComp = ___thing.TryGetComp<MasteryWeaponComp>();
+            if (weaponComp != null && weaponComp.IsActive())
+            {
+                weaponComp.GenerateDescription();
+                return;
+            }
+            MasteryPawnComp pawnComp = ___thing.TryGetComp<MasteryPawnComp>();
+            if (pawnComp != null && pawnComp.IsActive())
+                pawnComp.GenerateDescription();
         }
     }
 }

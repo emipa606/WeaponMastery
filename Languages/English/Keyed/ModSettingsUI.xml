@@ -17,6 +17,8 @@
     <SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemTooltip>A pawn mastering an assault rifle will master ALL assault rifles NOT only the assault rifle that is in their possession</SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemTooltip>
     <SK_WeaponMastery_ModSettingsSectionMasteryOutsiderPawnsLabel>Masteries on outsider pawns</SK_WeaponMastery_ModSettingsSectionMasteryOutsiderPawnsLabel>
     <SK_WeaponMastery_ModSettingsSectionMasteryOutsiderTooltip>Allow masteries to spawn on pawns coming from outside your colony. Such as raids, visitors and traders.</SK_WeaponMastery_ModSettingsSectionMasteryOutsiderTooltip>
+    <SK_WeaponMastery_ModSettingsSectionDisplayExperienceLabel>Display Experience</SK_WeaponMastery_ModSettingsSectionDisplayExperienceLabel>
+    <SK_WeaponMastery_ModSettingsSectionDisplayExperienceTooltip>Display experience needed to level up for each weapon in the info tab</SK_WeaponMastery_ModSettingsSectionDisplayExperienceTooltip>
     <SK_WeaponMastery_ModSettingsSectionMasteryGroupPercentage>Percentage of pawns that should spawn with a mastery from a group</SK_WeaponMastery_ModSettingsSectionMasteryGroupPercentage>
     <SK_WeaponMastery_ModSettingsSectionMasteryWeaponNameChancePerPawn>Weapon name chance per pawn</SK_WeaponMastery_ModSettingsSectionMasteryWeaponNameChancePerPawn>
     <SK_WeaponMastery_ModSettingsUseMoodsCheckboxLabel>Weapon mood buff/debuff</SK_WeaponMastery_ModSettingsUseMoodsCheckboxLabel>

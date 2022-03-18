@@ -109,6 +109,7 @@ namespace SK_WeaponMastery
                 sb.AppendLine($"{item.Key.LabelCap}: ");
                 foreach (KeyValuePair<StatDef, float> statbonus in item.Value.GetStatBonusesAsList())
                     sb.AppendLine(" " + statbonus.Key.label.CapitalizeFirst() + (statbonus.Value >= 0f ? positiveValueColumn : negativeValueColumn) + statbonus.Key.ValueToString(statbonus.Value));
+                if (ModSettings.displayExperience && !item.Value.IsMaxLevel()) sb.AppendLine("Level: " + item.Value.GetMasteryLevel() + "  Experience: " + item.Value.GetExperience() + "/" + ModSettings.GetExperienceForLevel(item.Value.GetMasteryLevel()));
             }
             sb.AppendLine();
             masteryDescription = sb.ToString();
@@ -125,8 +126,13 @@ namespace SK_WeaponMastery
 
         public string GetDescription()
         {
-            if (!isActive || !AnyWeaponHasMastery()) return base.GetDescriptionPart();
+            if (!isActive || (!AnyWeaponHasMastery() && !ModSettings.displayExperience)) return base.GetDescriptionPart();
             return masteryDescription;
+        }
+
+        public void SetLevel(ThingDef weapon, int level)
+        {
+            bonusStatsPerWeapon[weapon].SetMasteryLevel(level);
         }
     }
 }

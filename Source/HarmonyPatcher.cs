@@ -56,6 +56,14 @@ namespace SK_WeaponMastery
                 HarmonyMethod onNeutralPawnSpawnMethod = new HarmonyMethod(typeof(Core).GetMethod("OnNeutralPawnSpawn"));
                 instance.Patch(spawnPawnsMethod, null, onNeutralPawnSpawnMethod);
             }
+
+            if (ModSettings.displayExperience)
+            {
+                // Patch Dialog_InfoCard Setup method
+                MethodInfo setupMethod = AccessTools.Method(typeof(Dialog_InfoCard), "Setup");
+                HarmonyMethod onInfoWindowSetup = new HarmonyMethod(typeof(Core).GetMethod("OnInfoWindowSetup"));
+                instance.Patch(setupMethod, null, onInfoWindowSetup);
+            }
         }
 
         public static void SetInstance(Harmony instance)

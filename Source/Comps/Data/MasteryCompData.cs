@@ -21,7 +21,6 @@ namespace SK_WeaponMastery
         {
             if (!bonusStats.ContainsKey(stat))
                 bonusStats[stat] = 0;
-            masteryLevel += 1;
             bonusStats[stat] += value;
         }
 
@@ -34,7 +33,6 @@ namespace SK_WeaponMastery
         public void AddExp(int experience, bool isMelee, Action<int> postLevelUp = null)
         {
             if (IsMaxLevel()) return;
-
             this.experience += experience;
             if (this.experience >= ModSettings.GetExperienceForLevel(masteryLevel))
             {
@@ -45,7 +43,7 @@ namespace SK_WeaponMastery
             }
         }
 
-        private bool IsMaxLevel()
+        public bool IsMaxLevel()
         {
             return masteryLevel == ModSettings.maxLevel;
         }
@@ -98,6 +96,21 @@ namespace SK_WeaponMastery
         public List<KeyValuePair<StatDef, float>> GetStatBonusesAsList()
         {
             return bonusStats.ToList();
+        }
+
+        public int GetExperience()
+        {
+            return experience;
+        }
+
+        public int GetMasteryLevel()
+        {
+            return masteryLevel;
+        }
+
+        public void SetMasteryLevel(int value)
+        {
+            masteryLevel = value;
         }
     }
 }

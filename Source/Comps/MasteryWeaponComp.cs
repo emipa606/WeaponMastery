@@ -213,6 +213,7 @@ namespace SK_WeaponMastery
                 sb.AppendLine(item.Key.Name.ToString());
                 foreach (KeyValuePair<StatDef, float> statbonus in item.Value.GetStatBonusesAsList())
                     sb.AppendLine(" " + statbonus.Key.label.CapitalizeFirst() + (statbonus.Value >= 0f ? positiveValueColumn : negativeValueColumn) + statbonus.Key.ValueToString(statbonus.Value));
+                if (ModSettings.displayExperience && !item.Value.IsMaxLevel()) sb.AppendLine("Level: " + item.Value.GetMasteryLevel() + "  Experience: " + item.Value.GetExperience() + "/" + ModSettings.GetExperienceForLevel(item.Value.GetMasteryLevel()));
             }
             sb.AppendLine();
             if (relicBonuses != null)
@@ -228,7 +229,7 @@ namespace SK_WeaponMastery
         // Display all mastered pawns with their bonuses
         public override string GetDescriptionPart()
         {
-            if (!isActive || !AnyPawnHasMastery()) return base.GetDescriptionPart();
+            if (!isActive || (!AnyPawnHasMastery() && !ModSettings.displayExperience)) return base.GetDescriptionPart();
             return masteryDescription;
         }
 
@@ -277,6 +278,11 @@ namespace SK_WeaponMastery
                 if (pawn.health.hediffSet.HasHediff(Core.MasteredWeaponEquipped))
                     pawn.health.RemoveHediff(pawn.health.hediffSet.GetFirstHediffOfDef(Core.MasteredWeaponEquipped));
             }
+        }
+
+        public void SetLevel(Pawn pawn, int level)
+        {
+            bonusStatsPerPawn[pawn].SetMasteryLevel(level);
         }
     }
 }

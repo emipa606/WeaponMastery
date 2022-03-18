@@ -24,6 +24,7 @@ namespace SK_WeaponMastery
         public static bool useMoods = false;
         public static bool useSpecificMasterySystem = true;
         public static bool useGeneralMasterySystem = false;
+        public static bool displayExperience = false;
         public static float chanceToNameWeapon = 0.35f;
         public static float bondedWeaponExperienceMultipier = 1.5f;
         public static float masteriesPercentagePerEvent = 0.25f;
@@ -56,6 +57,7 @@ namespace SK_WeaponMastery
             Scribe_Values.Look(ref useMoods, "usemoods", false);
             Scribe_Values.Look(ref useSpecificMasterySystem, "usespecificmasterysystem", true);
             Scribe_Values.Look(ref useGeneralMasterySystem, "usegeneralmasterysystem", false);
+            Scribe_Values.Look(ref displayExperience, "displayexperience", false);
             if (Scribe.mode == LoadSaveMode.PostLoadInit && customWeaponNamesPool == null) customWeaponNamesPool = new List<string>();
         }
 
@@ -80,12 +82,12 @@ namespace SK_WeaponMastery
 
             // Default Melee Stats
             meleeStats = new List<MasteryStat>();
-            rangedStats.Add(new MasteryStat(StatDefOf.MoveSpeed, 0.2f));
-            rangedStats.Add(new MasteryStat(StatDefOf.MeleeDodgeChance, 0.01f));
-            rangedStats.Add(new MasteryStat(StatDefOf.MeleeHitChance, 0.01f));
-            rangedStats.Add(new MasteryStat(StatDefOf.CarryingCapacity, 10f));
+            meleeStats.Add(new MasteryStat(StatDefOf.MoveSpeed, 0.2f));
+            meleeStats.Add(new MasteryStat(StatDefOf.MeleeDodgeChance, 0.01f));
+            meleeStats.Add(new MasteryStat(StatDefOf.MeleeHitChance, 0.01f));
+            meleeStats.Add(new MasteryStat(StatDefOf.CarryingCapacity, 10f));
             if (ModsConfig.IdeologyActive)
-                rangedStats.Add(new MasteryStat(StatDefOf.SuppressionPower, 0.01f));
+                meleeStats.Add(new MasteryStat(StatDefOf.SuppressionPower, 0.01f));
         }
 
         // Find MasteryStat containing the same StatDef parameter
