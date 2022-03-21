@@ -107,7 +107,10 @@ namespace SK_WeaponMastery
                         pawn.health.AddHediff(Core.MasteredWeaponEquipped);
                     if (weaponName == null && roll <= ModSettings.chanceToNameWeapon)
                     {
-                        weaponName = ModSettings.PickWeaponName();
+                        if (ModSettings.KeepOriginalWeaponNameQuality)
+                            weaponName = $"\"{ModSettings.PickWeaponName()}\" {this.parent.LabelCap}";
+                        else
+                            weaponName = ModSettings.PickWeaponName();
                         Messages.Message(ModSettings.messages.RandomElement().Translate(pawn.NameShortColored, weaponName), MessageTypeDefOf.NeutralEvent);
                     }
                 }
