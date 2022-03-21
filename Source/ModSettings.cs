@@ -183,7 +183,17 @@ namespace SK_WeaponMastery
             }
             // Default case
             if (weaponNamesPool == null)
-                weaponNamesPool = new List<string>(Files.GetLinesFromTextFile(WEAPON_NAMES_DEF_PATH, true));
+            {
+                string[] defaultWeaponNames = Files.GetLinesFromTextFile(WEAPON_NAMES_DEF_PATH, true);
+                if (defaultWeaponNames != null)
+                    weaponNamesPool = new List<string>(defaultWeaponNames);
+                else
+                {
+                    weaponNamesPool = new List<string>();
+                    weaponNamesPool.Add("Missing Names");
+                }
+            }
+                
         }
 
         // Message Language Keys
