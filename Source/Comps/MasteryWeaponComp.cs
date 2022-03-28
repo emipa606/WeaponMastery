@@ -132,7 +132,7 @@ namespace SK_WeaponMastery
             List<KeyValuePair<Pawn, MasteryWeaponCompData>> filtered = bonusStatsPerPawn.ToList();
             bonusStatsPerPawn.Clear();
             foreach (KeyValuePair<Pawn, MasteryWeaponCompData> item in filtered)
-                if (!item.Key.DestroyedOrNull()) bonusStatsPerPawn.Add(item.Key, item.Value);
+                if (item.Key != null && !item.Key.DestroyedOrNull()) bonusStatsPerPawn.Add(item.Key, item.Value);
             if (bonusStatsPerPawn.Count == 0) bonusStatsPerPawn = null;
         }
 
@@ -212,6 +212,7 @@ namespace SK_WeaponMastery
             string negativeValueColumn = ": ";
             foreach (KeyValuePair<Pawn, MasteryWeaponCompData> item in data)
             {
+                if (item.Key == null || item.Key.DestroyedOrNull()) continue;
                 sb.AppendLine();
                 sb.AppendLine(item.Key.Name.ToString());
                 foreach (KeyValuePair<StatDef, float> statbonus in item.Value.GetStatBonusesAsList())
