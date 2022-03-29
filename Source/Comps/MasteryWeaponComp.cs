@@ -133,8 +133,6 @@ namespace SK_WeaponMastery
             bonusStatsPerPawn.Clear();
             foreach (KeyValuePair<Pawn, MasteryWeaponCompData> item in filtered)
                 if (item.Key != null) bonusStatsPerPawn.Add(item.Key, item.Value);
-            if (bonusStatsPerPawn.Count == 0)
-                bonusStatsPerPawn = null;
         }
 
         // Save/Load comp data to/from rws file
@@ -155,7 +153,7 @@ namespace SK_WeaponMastery
                         isActive = false;
                         return;
                     }
-                    if (bonusStatsPerPawn != null)
+                    if (bonusStatsPerPawn != null && bonusStatsPerPawn.Count > 0)
                     {
                         List<Pawn> pawns = bonusStatsPerPawn.Keys.ToList();
                         List<MasteryWeaponCompData> data = bonusStatsPerPawn.Values.ToList();
