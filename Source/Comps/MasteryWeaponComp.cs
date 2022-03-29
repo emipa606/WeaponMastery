@@ -132,8 +132,9 @@ namespace SK_WeaponMastery
             List<KeyValuePair<Pawn, MasteryWeaponCompData>> filtered = bonusStatsPerPawn.ToList();
             bonusStatsPerPawn.Clear();
             foreach (KeyValuePair<Pawn, MasteryWeaponCompData> item in filtered)
-                if (item.Key != null && !item.Key.DestroyedOrNull()) bonusStatsPerPawn.Add(item.Key, item.Value);
-            if (bonusStatsPerPawn.Count == 0) bonusStatsPerPawn = null;
+                if (item.Key != null) bonusStatsPerPawn.Add(item.Key, item.Value);
+            if (bonusStatsPerPawn.Count == 0)
+                bonusStatsPerPawn = null;
         }
 
         // Save/Load comp data to/from rws file
@@ -148,11 +149,18 @@ namespace SK_WeaponMastery
                 // we don't fill save file with null comps
                 if (isActive)
                 {
-                    List<Pawn> pawns = bonusStatsPerPawn.Keys.ToList();
-                    List<MasteryWeaponCompData> data = bonusStatsPerPawn.Values.ToList();
                     FilterNullPawns();
+                    if (bonusStatsPerPawn == null && weaponName == null && relicBonuses == null)
+                    {
+                        isActive = false;
+                        return;
+                    }
                     if (bonusStatsPerPawn != null)
+                    {
+                        List<Pawn> pawns = bonusStatsPerPawn.Keys.ToList();
+                        List<MasteryWeaponCompData> data = bonusStatsPerPawn.Values.ToList();
                         Scribe_Collections.Look(ref bonusStatsPerPawn, "bonusstatsperpawn", LookMode.Reference, LookMode.Deep, ref pawns, ref data);
+                    }
                     Scribe_Values.Look(ref isActive, "isactive");
                     if (weaponName != null)
                         Scribe_Values.Look(ref weaponName, "weaponname");
@@ -172,11 +180,8 @@ namespace SK_WeaponMastery
                 }
             }
             else if (Scribe.mode == LoadSaveMode.PostLoadInit && isActive)
-            {
-                if (bonusStatsPerPawn == null || bonusStatsPerPawn.Count == 0)
-                    isActive = false;
-                else if (AnyPawnHasMastery()) GenerateDescription();
-            }
+                if (bonusStatsPerPawn != null && AnyPawnHasMastery()) GenerateDescription();
+                else if (bonusStatsPerPawn == null) bonusStatsPerPawn = new Dictionary<Pawn, MasteryWeaponCompData>();
         }
 
         public void SetCurrentOwner(Pawn newOwner)
