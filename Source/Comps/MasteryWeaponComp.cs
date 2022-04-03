@@ -87,7 +87,7 @@ namespace SK_WeaponMastery
         private bool OwnerBelievesInSameIdeology()
         {
             Precept_ThingStyle per = this.parent.StyleSourcePrecept;
-            return per?.ideo == currentOwner.ideo?.Ideo;
+            return per?.ideo == currentOwner.Ideo;
         }
 
         public void AddExp(Pawn pawn, int experience)
@@ -104,7 +104,14 @@ namespace SK_WeaponMastery
                 if (level == 1)
                 {
                     if (ModSettings.useMoods)
-                        pawn.health.AddHediff(Core.MasteredWeaponEquipped);
+                    {
+                        bool shouldAddHediff = true;
+                        // Despised weapons do not give mood buffs
+                        if (ModsConfig.IdeologyActive && pawn.Ideo?.GetDispositionForWeapon(this.parent.def) == IdeoWeaponDisposition.Despised)
+                            shouldAddHediff = false;
+                        if (shouldAddHediff)
+                            pawn.health.AddHediff(Core.MasteredWeaponEquipped);
+                    }
                     if (weaponName == null && roll <= ModSettings.chanceToNameWeapon)
                     {
                         if (ModSettings.KeepOriginalWeaponNameQuality)
@@ -269,6 +276,9 @@ namespace SK_WeaponMastery
             SetCurrentOwner(pawn);
             if (ModSettings.useMoods && PawnHasMastery(pawn))
             {
+                // Despised weapons do not give mood buffs
+                if (ModsConfig.IdeologyActive && pawn.Ideo?.GetDispositionForWeapon(this.parent.def) == IdeoWeaponDisposition.Despised)
+                    return;
                 pawn.health.AddHediff(Core.MasteredWeaponEquipped);
                 pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDef(Core.MasteredWeaponUnequipped);
             }
@@ -281,6 +291,9 @@ namespace SK_WeaponMastery
             if (!isActive || !ModSettings.useMoods) return;
             if (PawnHasMastery(pawn))
             {
+                // Despised weapons do not give mood debuffs
+                if (ModsConfig.IdeologyActive && pawn.Ideo?.GetDispositionForWeapon(this.parent.def) == IdeoWeaponDisposition.Despised)
+                    return;
                 pawn.needs.mood.thoughts.memories.TryGainMemory(Core.MasteredWeaponUnequipped);
                 if (pawn.health.hediffSet.HasHediff(Core.MasteredWeaponEquipped))
                     pawn.health.RemoveHediff(pawn.health.hediffSet.GetFirstHediffOfDef(Core.MasteredWeaponEquipped));
