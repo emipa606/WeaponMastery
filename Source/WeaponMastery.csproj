@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compat\DualWield.cs" />
     <Compile Include="Comps\MasteryPawnComp.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Files.cs" />

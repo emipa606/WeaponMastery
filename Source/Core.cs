@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
+using SK_WeaponMastery.Compat;
 
 namespace SK_WeaponMastery
 {
@@ -22,7 +23,7 @@ namespace SK_WeaponMastery
                 float num = (pawn.HostileTo(__instance.caster) ? 170f : 20f);
                 float num2 = __instance.verbProps.AdjustedFullCycleTime(__instance, __instance.CasterPawn);
                 Pawn caster = __instance.Caster as Pawn;
-                Thing weapon = caster.equipment.Primary;
+                Thing weapon = GetPawnWeapon(caster);
                 MasteryWeaponComp comp = weapon.TryGetComp<MasteryWeaponComp>();
                 if (comp == null) return;
                 comp.SetCurrentOwner(caster);
@@ -37,6 +38,9 @@ namespace SK_WeaponMastery
                 if (!compPawn.IsActive()) compPawn.Init();
                 compPawn.AddExp(weapon.def, (int)(num * num2));
             }
+
+            // Once attack is complete, disable offhand attack
+            DualWieldCompat.isCurrentAttackOffhand = false;
         }
 
         // Add mastery experience to melee pawn
@@ -48,7 +52,7 @@ namespace SK_WeaponMastery
             if ((!(thing.def.category != ThingCategory.Pawn || pawn.Downed || pawn.GetPosture() > PawnPosture.Standing)) && casterPawn.skills != null)
             {
                 float exp = 200f * __instance.verbProps.AdjustedFullCycleTime(__instance, casterPawn);
-                Thing weapon = casterPawn?.equipment?.Primary;
+                Thing weapon = GetPawnWeapon(casterPawn);
                 if (weapon == null) return;
                 MasteryWeaponComp comp = weapon.TryGetComp<MasteryWeaponComp>();
                 if (comp == null) return;
@@ -64,6 +68,9 @@ namespace SK_WeaponMastery
                 if (!compPawn.IsActive()) compPawn.Init();
                 compPawn.AddExp(weapon.def, (int)exp);
             }
+
+            // Once attack is complete, disable offhand attack
+            DualWieldCompat.isCurrentAttackOffhand = false;
         }
 
         // Add custom stat part from my mod into base game stat defs
@@ -294,6 +301,14 @@ namespace SK_WeaponMastery
             MasteryPawnComp pawnComp = ___thing.TryGetComp<MasteryPawnComp>();
             if (pawnComp != null && pawnComp.IsActive())
                 pawnComp.GenerateDescription();
+        }
+
+        // Get pawn's weapon. Takes into account dual wielding
+        public static Thing GetPawnWeapon(Pawn pawn)
+        {
+            if (DualWieldCompat.enabled && DualWieldCompat.isCurrentAttackOffhand)
+                return DualWieldCompat.GetOffhandWeapon(pawn);
+            return pawn?.equipment?.Primary;
         }
     }
 }

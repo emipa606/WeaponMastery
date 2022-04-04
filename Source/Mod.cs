@@ -39,6 +39,8 @@ namespace SK_WeaponMastery
             ModSettings.LoadWeaponNames();
             ModSettings.InitMessageKeys();
             HarmonyPatcher.PatchVanillaMethods();
+            // DualWield Compatibility class
+            SK_WeaponMastery.Compat.DualWieldCompat.Init();
         }
 
         public override void DoSettingsWindowContents(Rect rect)
