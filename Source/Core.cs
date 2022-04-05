@@ -38,9 +38,6 @@ namespace SK_WeaponMastery
                 if (!compPawn.IsActive()) compPawn.Init();
                 compPawn.AddExp(weapon.def, (int)(num * num2));
             }
-
-            // Once attack is complete, disable offhand attack
-            DualWieldCompat.isCurrentAttackOffhand = false;
         }
 
         // Add mastery experience to melee pawn
@@ -68,9 +65,6 @@ namespace SK_WeaponMastery
                 if (!compPawn.IsActive()) compPawn.Init();
                 compPawn.AddExp(weapon.def, (int)exp);
             }
-
-            // Once attack is complete, disable offhand attack
-            DualWieldCompat.isCurrentAttackOffhand = false;
         }
 
         // Add custom stat part from my mod into base game stat defs
