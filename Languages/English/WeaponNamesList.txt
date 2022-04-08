@@ -398,3 +398,13 @@ Sausage
 Warp
 Core
 Elite
+Frost Prime
+Sanguine
+Health
+Mana
+Experience
+Classic
+Classical
+Modern
+Closure
+Flames

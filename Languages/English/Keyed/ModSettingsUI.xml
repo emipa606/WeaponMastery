@@ -45,8 +45,20 @@
     <SK_WeaponMastery_CustomNamesSectionTitle>Custom Weapon Names: </SK_WeaponMastery_CustomNamesSectionTitle>
     <SK_WeaponMastery_CustomNamesSectionCheckbox>Use Custom Weapon Names</SK_WeaponMastery_CustomNamesSectionCheckbox>
     <SK_WeaponMastery_CustomNamesSectionCheckboxTooltip>Using custom names will override the default list</SK_WeaponMastery_CustomNamesSectionCheckboxTooltip>
+    <SK_WeaponMastery_GeneralMasterySectionAddRemoveClassesTitle>Customize Classes Section:</SK_WeaponMastery_GeneralMasterySectionAddRemoveClassesTitle>
+    <SK_WeaponMastery_GeneralMasterySectionAddClassButton>Add Class</SK_WeaponMastery_GeneralMasterySectionAddClassButton>
+    <SK_WeaponMastery_GeneralMasterySectionAddClassLabel>Add a new class: </SK_WeaponMastery_GeneralMasterySectionAddClassLabel>
+    <SK_WeaponMastery_GeneralMasterySectionSelectClassLabel>Select class: </SK_WeaponMastery_GeneralMasterySectionSelectClassLabel>
+    <SK_WeaponMastery_GeneralMasterySectionSelectWeaponLabel>Select weapon: </SK_WeaponMastery_GeneralMasterySectionSelectWeaponLabel>
+    <SK_WeaponMastery_GeneralMasterySectionAssignClassButton>Assign Class</SK_WeaponMastery_GeneralMasterySectionAssignClassButton>
+    <SK_WeaponMastery_GeneralMasterySectionClearClassButton>Clear Class</SK_WeaponMastery_GeneralMasterySectionClearClassButton>
+    <SK_WeaponMastery_GeneralMasterySectionAssignedClassLabel>Assigned Class: {0}</SK_WeaponMastery_GeneralMasterySectionAssignedClassLabel>
+    <SK_WeaponMastery_GeneralMasterySectionNoClassLabel>No Class</SK_WeaponMastery_GeneralMasterySectionNoClassLabel>
     <SK_WeaponMastery_CustomNamesAddNameLabel>Add Name: </SK_WeaponMastery_CustomNamesAddNameLabel>
     <SK_WeaponMastery_CustomNamesRemoveNameLabel>Remove Name: </SK_WeaponMastery_CustomNamesRemoveNameLabel>
+    <SK_WeaponMastery_CustomNamesAddClassMessage>{0} was added to the classes pool</SK_WeaponMastery_CustomNamesAddClassMessage>
+    <SK_WeaponMastery_CustomNamesClassAssignedMessage>{0} was assigned class: {1}</SK_WeaponMastery_CustomNamesClassAssignedMessage>
+    <SK_WeaponMastery_CustomNamesClassClearedMessage>Class cleared</SK_WeaponMastery_CustomNamesClassClearedMessage>
     <SK_WeaponMastery_CustomNamesAddButton>Add</SK_WeaponMastery_CustomNamesAddButton>
     <SK_WeaponMastery_CustomNamesRemoveButton>Remove</SK_WeaponMastery_CustomNamesRemoveButton>
     <SK_WeaponMastery_CustomNamesAddNameMessage>Name: {0} was added to the custom names pool</SK_WeaponMastery_CustomNamesAddNameMessage>

@@ -64,6 +64,7 @@
     <Compile Include="Compat\DualWield.cs" />
     <Compile Include="Comps\MasteryPawnComp.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="DefModExtension_Mastery.cs" />
     <Compile Include="Files.cs" />
     <Compile Include="HarmonyPatcher.cs" />
     <Compile Include="Logger.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="ModSettingsWindowThread.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatPart_Mastery.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

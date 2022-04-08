@@ -31,6 +31,8 @@ namespace SK_WeaponMastery
         public static float masteriesPercentagePerEvent = 0.25f;
         public static float eventWeaponNameChance = 0.15f;
         public static int numberOfRelicBonusStats = 5;
+        public static Dictionary<string, string> overrideClasses = new Dictionary<string, string>();
+        public static Dictionary<ThingDef, string> classes  = new Dictionary<ThingDef, string>();
         public static List<MasteryStat> rangedStats;
         public static List<MasteryStat> meleeStats;
         public static List<string> weaponNamesPool;
@@ -60,6 +62,7 @@ namespace SK_WeaponMastery
             Scribe_Values.Look(ref useGeneralMasterySystem, "usegeneralmasterysystem", false);
             Scribe_Values.Look(ref displayExperience, "displayexperience", false);
             Scribe_Values.Look(ref KeepOriginalWeaponNameQuality, "displayweaponoriginalnamequality", false);
+            Scribe_Collections.Look(ref overrideClasses, "overrideclasses");
             if (Scribe.mode == LoadSaveMode.PostLoadInit && customWeaponNamesPool == null) customWeaponNamesPool = new List<string>();
         }
 
@@ -71,8 +74,6 @@ namespace SK_WeaponMastery
             experiencePerLevel.Add(15000);
             experiencePerLevel.Add(20000);
             experiencePerLevel.Add(25000);
-
-            List<StatDef> statdefs = DefDatabase<StatDef>.AllDefsListForReading;
 
             // Default Ranged Stats
             rangedStats = new List<MasteryStat>();

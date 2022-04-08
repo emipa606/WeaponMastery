@@ -8,7 +8,7 @@ namespace SK_WeaponMastery
     // Main mod file
     public class WeaponMasteryMod : Mod
     {
-        public static bool SHOULD_PRINT_LOG = false;
+        public static bool SHOULD_PRINT_LOG = true;
         // Mod name in about.xml
         public static string modName;
         private static string rootDirectory;
@@ -32,7 +32,8 @@ namespace SK_WeaponMastery
                 ModSettings.ResolveStats();
             Core.MasteredWeaponUnequipped = DefDatabase<ThoughtDef>.AllDefsListForReading.Find((ThoughtDef def) => def.defName == "SK_WM_MasteredWeaponUnequipped");
             Core.MasteredWeaponEquipped = DefDatabase<HediffDef>.AllDefsListForReading.Find((HediffDef def) => def.defName == "SK_WM_MasteredWeaponEquippedBonusMood");
-            Core.AddMasteryWeaponCompToWeaponDefs();
+            Core.AddMasteryWeaponCompToWeaponDefsAndSetClasses();
+            Core.OverrideClasses();
             if (ModSettings.useGeneralMasterySystem)
                 Core.AddMasteryPawnCompToHumanoidDefs();
             Core.InjectStatPartIntoStatDefs();

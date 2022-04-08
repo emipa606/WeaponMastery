@@ -24,6 +24,7 @@ namespace SK_WeaponMastery
                 float num2 = __instance.verbProps.AdjustedFullCycleTime(__instance, __instance.CasterPawn);
                 Pawn caster = __instance.Caster as Pawn;
                 Thing weapon = GetPawnWeapon(caster);
+                if (weapon == null) return;
                 MasteryWeaponComp comp = weapon.TryGetComp<MasteryWeaponComp>();
                 if (comp == null) return;
                 comp.SetCurrentOwner(caster);
@@ -36,7 +37,8 @@ namespace SK_WeaponMastery
                 MasteryPawnComp compPawn = caster.TryGetComp<MasteryPawnComp>();
                 if (compPawn == null) return;
                 if (!compPawn.IsActive()) compPawn.Init();
-                compPawn.AddExp(weapon.def, (int)(num * num2));
+                if (ModSettings.classes.ContainsKey(weapon.def))
+                    compPawn.AddExp(ModSettings.classes[weapon.def], (int)(num * num2), weapon.def.IsMeleeWeapon);
             }
         }
 
@@ -63,7 +65,8 @@ namespace SK_WeaponMastery
                 MasteryPawnComp compPawn = casterPawn.TryGetComp<MasteryPawnComp>();
                 if (compPawn == null) return;
                 if (!compPawn.IsActive()) compPawn.Init();
-                compPawn.AddExp(weapon.def, (int)exp);
+                if (ModSettings.classes.ContainsKey(weapon.def))
+                    compPawn.AddExp(ModSettings.classes[weapon.def], (int)exp, weapon.def.IsMeleeWeapon);
             }
         }
 
@@ -141,20 +144,18 @@ namespace SK_WeaponMastery
             }
         }
 
-        public static void AddMasteryWeaponCompToWeaponDefs()
+        public static void AddMasteryWeaponCompToWeaponDefsAndSetClasses()
         {
-            // Ensure that def is a weapon
-            // Filter bad weapon defs suchs wood logs, thrumbo horns, etc...
-            bool Predicate(ThingDef def)
-            {
-                return def.IsWeapon && def.HasComp(typeof(CompQuality));
-            }
-
             CompProperties compProperties = new Verse.CompProperties { compClass = typeof(MasteryWeaponComp) };
-            IEnumerable<ThingDef> defs = DefDatabase<ThingDef>.AllDefs.Where(Predicate).ToList();
+            IEnumerable<ThingDef> defs = GetModWeapons();
 
             foreach (ThingDef def in defs)
+            {
+                DefModExtension_Mastery ext = def.GetModExtension<DefModExtension_Mastery>();
                 def.comps.Add(compProperties);
+                if (ext == null) continue;
+                ModSettings.classes[def] = ext.gmclass;
+            }
         }
 
         public static void AddMasteryPawnCompToHumanoidDefs()
@@ -240,7 +241,7 @@ namespace SK_WeaponMastery
                     if (ModSettings.useGeneralMasterySystem)
                     {
                         MasteryPawnComp comp = selectedPawn.TryGetComp<MasteryPawnComp>();
-                        if (comp != null)
+                        if (comp != null && ModSettings.classes.ContainsKey(selectedPawn.equipment.Primary.def))
                         {
                             comp.Init();
                             int statsCount = rng.Next(1, ModSettings.maxLevel);
@@ -248,9 +249,9 @@ namespace SK_WeaponMastery
                             {
                                 MasteryStat stat = ModSettings.PickBonus(selectedPawn.equipment.Primary.def.IsMeleeWeapon);
                                 if (stat != null)
-                                    comp.AddStatBonus(selectedPawn.equipment.Primary.def, stat.GetStat(), stat.GetOffset());
+                                    comp.AddStatBonus(ModSettings.classes[selectedPawn.equipment.Primary.def], stat.GetStat(), stat.GetOffset());
                             }
-                            comp.SetLevel(selectedPawn.equipment.Primary.def, statsCount);
+                            comp.SetLevel(ModSettings.classes[selectedPawn.equipment.Primary.def], statsCount);
                             comp.GenerateDescription();
                             bonusAdded = true;
                         }
@@ -303,6 +304,43 @@ namespace SK_WeaponMastery
             if (DualWieldCompat.enabled && DualWieldCompat.isCurrentAttackOffhand)
                 return DualWieldCompat.GetOffhandWeapon(pawn);
             return pawn?.equipment?.Primary;
+        }
+
+        // Let settings override patches
+        public static void OverrideClasses()
+        {
+            if (ModSettings.overrideClasses == null)
+            {
+                ModSettings.overrideClasses = new Dictionary<string, string>();
+                return;
+            }
+            List<string> keysToRemove = new List<string>();
+            foreach (KeyValuePair<string, string> item in ModSettings.overrideClasses)
+            {
+                ThingDef weapon = DefDatabase<ThingDef>.AllDefsListForReading.Find((ThingDef def) => def.defName == item.Key);
+                if (weapon == null) {
+                    keysToRemove.Add(item.Key);
+                    continue;
+                }
+                ModSettings.classes[weapon] = item.Value;
+            }
+            foreach (string key in keysToRemove)
+                ModSettings.overrideClasses.Remove(key);
+        }
+
+        // Returns all weapons that are compatible with mod
+        public static IEnumerable<ThingDef> GetModWeapons()
+        {
+            // Ensure that def is a weapon
+            // Filter bad weapon defs suchs wood logs, thrumbo horns, etc...
+            bool Predicate(ThingDef def)
+            {
+                DefModExtension_Mastery ext = def.GetModExtension<DefModExtension_Mastery>();
+                if (ext != null && ext.blacklisted)
+                    return false;
+                return def.IsWeapon && def.HasComp(typeof(CompQuality));
+            }
+            return DefDatabase<ThingDef>.AllDefs.Where(Predicate).ToList();
         }
     }
 }
