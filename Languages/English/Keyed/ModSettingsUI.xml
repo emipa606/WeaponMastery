@@ -13,7 +13,7 @@
     <SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberTooltip>Bonuses only apply to pawns that believe in the relic's ideology</SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberTooltip>
     <SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemLabel>Enable Specific Mastery System</SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemLabel>
     <SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemTooltip>A pawn mastering an assault rifle will not master ALL assault rifles but only THE assault rifle that is in their possession</SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemTooltip>
-    <SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemLabel>Enable General Mastery System</SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemLabel>
+    <SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemLabel>Enable Class Mastery System</SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemLabel>
     <SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemTooltip>A pawn mastering an assault rifle will master ALL assault rifles NOT only the assault rifle that is in their possession</SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemTooltip>
     <SK_WeaponMastery_ModSettingsSectionMasteryOutsiderPawnsLabel>Masteries on outsider pawns</SK_WeaponMastery_ModSettingsSectionMasteryOutsiderPawnsLabel>
     <SK_WeaponMastery_ModSettingsSectionMasteryOutsiderTooltip>Allow masteries to spawn on pawns coming from outside your colony. Such as raids, visitors and traders.</SK_WeaponMastery_ModSettingsSectionMasteryOutsiderTooltip>

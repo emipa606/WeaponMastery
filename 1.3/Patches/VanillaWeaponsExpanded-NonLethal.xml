@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Weapons Expanded - Non-Lethal</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class ="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="VWE_Gun_Taser"]</xpath>
+					<value>
+						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
+							<gmclass>taser</gmclass>
+						</li>
+					</value>
+				</li>
+				<li Class ="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="VWE_Gun_RubberBulletPistol"]</xpath>
+					<value>
+						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
+							<gmclass>pistol</gmclass>
+						</li>
+					</value>
+				</li>
+				<li Class ="PatchOperationAddModExtension">
+					<xpath>/Defs/ThingDef[defName="VWE_Gun_DartGun"]</xpath>
+					<value>
+						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
+							<gmclass>rifle</gmclass>
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
