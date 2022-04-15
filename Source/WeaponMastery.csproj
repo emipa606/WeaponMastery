@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compat\DualWield.cs" />
+    <Compile Include="Compat\SimpleSidearms.cs" />
     <Compile Include="Comps\MasteryPawnComp.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="DefModExtension_Mastery.cs" />

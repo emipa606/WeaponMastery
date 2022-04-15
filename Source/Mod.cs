@@ -8,7 +8,7 @@ namespace SK_WeaponMastery
     // Main mod file
     public class WeaponMasteryMod : Mod
     {
-        public static bool SHOULD_PRINT_LOG = true;
+        public static bool SHOULD_PRINT_LOG = false;
         // Mod name in about.xml
         public static string modName;
         private static string rootDirectory;
@@ -40,8 +40,10 @@ namespace SK_WeaponMastery
             ModSettings.LoadWeaponNames();
             ModSettings.InitMessageKeys();
             HarmonyPatcher.PatchVanillaMethods();
-            // DualWield Compatibility class
+            // Compatibility classes
             SK_WeaponMastery.Compat.DualWieldCompat.Init();
+            if (ModSettings.useMoods)
+                SK_WeaponMastery.Compat.SimpleSidearmsCompat.Init();
         }
 
         public override void DoSettingsWindowContents(Rect rect)

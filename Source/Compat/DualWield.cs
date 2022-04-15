@@ -8,12 +8,12 @@ namespace SK_WeaponMastery.Compat
     {
         public static bool isCurrentAttackOffhand = false;
         public static bool enabled = false;
+        private static MethodInfo tryGetOffHandEqMethod;
 
         public static Thing GetOffhandWeapon(Pawn pawn)
         {
-            MethodInfo method = AccessTools.Method("DualWield.Ext_Pawn_EquipmentTracker:TryGetOffHandEquipment");
             object[] methodParams = new object[] { pawn.equipment, null };
-            bool result = (bool)method.Invoke(null, methodParams);
+            bool result = (bool)tryGetOffHandEqMethod.Invoke(null, methodParams);
             return result ? (Thing)methodParams[1] : null;
         }
 
@@ -60,6 +60,7 @@ namespace SK_WeaponMastery.Compat
                 enabled = true;
             if (!enabled) return;
             PatchMethods();
+            tryGetOffHandEqMethod = AccessTools.Method("DualWield.Ext_Pawn_EquipmentTracker:TryGetOffHandEquipment");
         }
     }
 }
