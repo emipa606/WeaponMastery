@@ -382,8 +382,12 @@ namespace SK_WeaponMastery
             ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.chanceToNameWeapon, 0.01f, 1f, false, ModSettings.chanceToNameWeapon.ToStringPercent(), null, null, 0.01f);
             if (ModsConfig.RoyaltyActive)
                 ModSettings.bondedWeaponExperienceMultipier = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.bondedWeaponExperienceMultipier, MIN_BONDED_WEAPON_MULTIPLIER, MAX_BONDED_WEAPON_MULTIPLIER, false, ModSettings.bondedWeaponExperienceMultipier.ToString("F1") + "x", null, null, 0.01f);
+            else
+                Widgets.Label(subSection.GetRect(22f), "");
             if (ModsConfig.IdeologyActive)
                 ModSettings.numberOfRelicBonusStats = (int)Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.numberOfRelicBonusStats, MIN_RELIC_BONUS_STATS, MAX_RELIC_BONUS_STATS, false, ModSettings.numberOfRelicBonusStats.ToString(), null, null, 1f);
+            else
+                Widgets.Label(subSection.GetRect(22f), "");
             subSection.End();
             Rect subSectionRect1 = list.GetRect(ModSettings.masteryOnOutsidePawns ? 200 : 140);
             Listing_Standard subSection1 = new Listing_Standard();
