@@ -57,7 +57,7 @@ namespace SK_WeaponMastery
         public override string ExplanationPart(StatRequest req)
         {
             float bonus = 0;
-            if (req.Thing.def.race != null)
+            if (req.HasThing && req.Thing.def.race != null)
             {
                 // Stat bonuses for pawn
                 Pawn pawn = req.Thing as Pawn;
@@ -74,7 +74,7 @@ namespace SK_WeaponMastery
                         bonus += compPawn.GetStatBonus(ModSettings.classes[pawn.equipment.Primary.def], parentStat);
                 }
             }
-            else if (req.Thing.def.HasComp(typeof(MasteryWeaponComp)))
+            else if (req.HasThing && req.Thing.def.HasComp(typeof(MasteryWeaponComp)))
             {
                 // Stat bonuses for gun
                 MasteryWeaponComp comp = req.Thing.TryGetComp<MasteryWeaponComp>();
