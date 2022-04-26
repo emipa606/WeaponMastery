@@ -32,7 +32,7 @@ namespace SK_WeaponMastery
         public static float eventWeaponNameChance = 0.15f;
         public static int numberOfRelicBonusStats = 5;
         public static Dictionary<string, string> overrideClasses = new Dictionary<string, string>();
-        public static Dictionary<ThingDef, string> classes  = new Dictionary<ThingDef, string>();
+        public static Dictionary<ThingDef, string> classes = new Dictionary<ThingDef, string>();
         public static List<MasteryStat> rangedStats;
         public static List<MasteryStat> meleeStats;
         public static List<string> weaponNamesPool;
@@ -123,10 +123,16 @@ namespace SK_WeaponMastery
         // Convert string defnames to StatDefs and remove ones that didn't load
         public static void ResolveStats()
         {
-            foreach (MasteryStat item in rangedStats)
+            for (int i = 0; i < rangedStats.Count; i++)
+            {
+                MasteryStat item = rangedStats[i];
                 item.Resolve();
-            foreach (MasteryStat item in meleeStats)
+            }
+            for (int i = 0; i < meleeStats.Count; i++)
+            {
+                MasteryStat item = meleeStats[i];
                 item.Resolve();
+            }
             rangedStats = rangedStats.Where((MasteryStat item) => item.GetStat() != null).ToList();
             meleeStats = meleeStats.Where((MasteryStat item) => item.GetStat() != null).ToList();
         }
@@ -196,7 +202,7 @@ namespace SK_WeaponMastery
                     weaponNamesPool.Add("Missing Names");
                 }
             }
-                
+
         }
 
         // Message Language Keys

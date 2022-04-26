@@ -68,13 +68,13 @@ namespace SK_WeaponMastery.Compat
                 if (possibleWeapon == null) continue;
                 MasteryWeaponComp comp = item.TryGetComp<MasteryWeaponComp>();
                 if (comp == null || !comp.IsActive()) continue;
-                if (comp.PawnHasMastery(p)) return true;
+                return comp.PawnHasMastery(p);
             }
             ThingWithComps primary = p.equipment.Primary;
             if (primary != null)
             {
                 MasteryWeaponComp comp = primary.TryGetComp<MasteryWeaponComp>();
-                if (comp != null && comp.IsActive() && comp.PawnHasMastery(p)) return true; 
+                return (comp != null && comp.IsActive() && comp.PawnHasMastery(p)); 
             }
             return false;
         }

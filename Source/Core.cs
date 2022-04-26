@@ -75,16 +75,18 @@ namespace SK_WeaponMastery
         public static void InjectStatPartIntoStatDefs()
         {
             List<StatDef> injected = new List<StatDef>();
-            foreach (MasteryStat mStat in ModSettings.rangedStats)
+            for (int i = 0; i < ModSettings.rangedStats.Count; i++)
             {
+                MasteryStat mStat = ModSettings.rangedStats[i];
                 StatDef stat = mStat.GetStat();
                 injected.Add(stat);
                 // I hope this is ok
                 if (stat.parts == null) stat.parts = new List<StatPart>();
                 stat.parts.Add(new StatPart_Mastery(stat));
             }
-            foreach (MasteryStat mStat in ModSettings.meleeStats)
+            for (int i = 0; i < ModSettings.meleeStats.Count; i++)
             {
+                MasteryStat mStat = ModSettings.meleeStats[i];
                 StatDef stat = mStat.GetStat();
                 if (injected.Contains(stat)) continue;
                 injected.Add(stat);
@@ -98,14 +100,16 @@ namespace SK_WeaponMastery
         // Used for reloding configs
         public static void RemoveStatPartFromStatDefs()
         {
-            foreach (MasteryStat mStat in ModSettings.rangedStats)
+            for (int i = 0; i < ModSettings.rangedStats.Count; i++)
             {
+                MasteryStat mStat = ModSettings.rangedStats[i];
                 StatDef stat = mStat.GetStat();
                 if (stat.parts.Any((StatPart item) => item is StatPart_Mastery))
                     stat.parts = stat.parts.Where((StatPart item) => !(item is StatPart_Mastery)).ToList();
             }
-            foreach (MasteryStat mStat in ModSettings.meleeStats)
+            for (int i = 0; i < ModSettings.meleeStats.Count; i++)
             {
+                MasteryStat mStat = ModSettings.meleeStats[i];
                 StatDef stat = mStat.GetStat();
                 if (stat.parts.Any((StatPart item) => item is StatPart_Mastery))
                     stat.parts = stat.parts.Where((StatPart item) => !(item is StatPart_Mastery)).ToList();
@@ -318,7 +322,8 @@ namespace SK_WeaponMastery
             foreach (KeyValuePair<string, string> item in ModSettings.overrideClasses)
             {
                 ThingDef weapon = DefDatabase<ThingDef>.AllDefsListForReading.Find((ThingDef def) => def.defName == item.Key);
-                if (weapon == null) {
+                if (weapon == null)
+                {
                     keysToRemove.Add(item.Key);
                     continue;
                 }

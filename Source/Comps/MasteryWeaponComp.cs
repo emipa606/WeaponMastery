@@ -67,7 +67,7 @@ namespace SK_WeaponMastery
         // Get Relic bonus
         private float GetStatBonusRelic(StatDef stat)
         {
-            if (relicBonuses == null || !relicBonuses.ContainsKey(stat) || currentOwner == null || !OwnerBelievesInSameIdeology())
+            if (relicBonuses == null || !relicBonuses.ContainsKey(stat) || !OwnerBelievesInSameIdeology())
                 return 0;
 
             return relicBonuses[stat];
@@ -138,8 +138,11 @@ namespace SK_WeaponMastery
         {
             List<KeyValuePair<Pawn, MasteryWeaponCompData>> filtered = bonusStatsPerPawn.ToList();
             bonusStatsPerPawn.Clear();
-            foreach (KeyValuePair<Pawn, MasteryWeaponCompData> item in filtered)
+            for (int i = 0; i < filtered.Count; i++)
+            {
+                KeyValuePair<Pawn, MasteryWeaponCompData> item = filtered[i];
                 if (item.Key != null) bonusStatsPerPawn.Add(item.Key, item.Value);
+            }
         }
 
         // Save/Load comp data to/from rws file
@@ -220,8 +223,9 @@ namespace SK_WeaponMastery
             List<KeyValuePair<Pawn, MasteryWeaponCompData>> data = bonusStatsPerPawn.ToList();
             string positiveValueColumn = ": +";
             string negativeValueColumn = ": ";
-            foreach (KeyValuePair<Pawn, MasteryWeaponCompData> item in data)
+            for (int i = 0; i < data.Count; i++)
             {
+                KeyValuePair<Pawn, MasteryWeaponCompData> item = data[i];
                 if (item.Key == null) continue;
                 sb.AppendLine();
                 sb.AppendLine(item.Key.Name.ToString());
@@ -263,8 +267,11 @@ namespace SK_WeaponMastery
         private bool AnyPawnHasMastery()
         {
             List<KeyValuePair<Pawn, MasteryWeaponCompData>> data = bonusStatsPerPawn.ToList();
-            foreach (KeyValuePair<Pawn, MasteryWeaponCompData> item in data)
+            for (int i = 0; i < data.Count; i++)
+            {
+                KeyValuePair<Pawn, MasteryWeaponCompData> item = data[i];
                 if (item.Value.HasMastery()) return true;
+            }
             return false;
         }
 
@@ -293,6 +300,7 @@ namespace SK_WeaponMastery
             {
                 // Despised weapons do not give mood debuffs
                 if (ModsConfig.IdeologyActive && pawn.Ideo?.GetDispositionForWeapon(this.parent.def) == IdeoWeaponDisposition.Despised) return;
+                // Is this a main/sidearm weapon switch?
                 if (Compat.SimpleSidearmsCompat.enabled && (Compat.SimpleSidearmsCompat.weaponSwitch || Compat.SimpleSidearmsCompat.PawnHasAnyMasteredWeapon(pawn))) return;
                 // Trying to strip a dead pawn
                 if (pawn.Dead) return;

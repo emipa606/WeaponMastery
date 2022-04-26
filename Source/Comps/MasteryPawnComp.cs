@@ -110,8 +110,9 @@ namespace SK_WeaponMastery
             List<KeyValuePair<string, MasteryCompData>> data = bonusStatsPerClass.ToList();
             string positiveValueColumn = ": +";
             string negativeValueColumn = ": ";
-            foreach (KeyValuePair<string, MasteryCompData> item in data)
+            for (int i = 0; i < data.Count; i++)
             {
+                KeyValuePair<string, MasteryCompData> item = data[i];
                 sb.AppendLine();
                 sb.AppendLine($"{Utils.Capitalize(item.Key)}: ");
                 foreach (KeyValuePair<StatDef, float> statbonus in item.Value.GetStatBonusesAsList())
@@ -125,9 +126,11 @@ namespace SK_WeaponMastery
         private bool AnyWeaponHasMastery()
         {
             List<KeyValuePair<string, MasteryCompData>> data = bonusStatsPerClass.ToList();
-            foreach (KeyValuePair<string, MasteryCompData> item in data)
+            for (int i = 0; i < data.Count; i++)
+            {
+                KeyValuePair<string, MasteryCompData> item = data[i];
                 if (item.Value.HasMastery()) return true;
-
+            }
             return false;
         }
 
