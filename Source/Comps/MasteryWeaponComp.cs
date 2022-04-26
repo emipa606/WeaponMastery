@@ -294,6 +294,8 @@ namespace SK_WeaponMastery
                 // Despised weapons do not give mood debuffs
                 if (ModsConfig.IdeologyActive && pawn.Ideo?.GetDispositionForWeapon(this.parent.def) == IdeoWeaponDisposition.Despised) return;
                 if (Compat.SimpleSidearmsCompat.enabled && (Compat.SimpleSidearmsCompat.weaponSwitch || Compat.SimpleSidearmsCompat.PawnHasAnyMasteredWeapon(pawn))) return;
+                // Trying to strip a dead pawn
+                if (pawn.Dead) return;
                 pawn.needs.mood.thoughts.memories.TryGainMemory(Core.MasteredWeaponUnequipped);
                 if (pawn.health.hediffSet.HasHediff(Core.MasteredWeaponEquipped))
                     pawn.health.RemoveHediff(pawn.health.hediffSet.GetFirstHediffOfDef(Core.MasteredWeaponEquipped));
