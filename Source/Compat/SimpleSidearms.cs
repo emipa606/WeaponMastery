@@ -60,21 +60,26 @@ namespace SK_WeaponMastery.Compat
                 owner.health.RemoveHediff(owner.health.hediffSet.GetFirstHediffOfDef(Core.MasteredWeaponEquipped));
         }
 
+        /// <summary>
+        /// Check if pawn has any mastered weapons from main equiment or
+        /// sidearms
+        /// </summary>
         public static bool PawnHasAnyMasteredWeapon(Pawn p)
         {
-            foreach (Thing item in p.inventory.innerContainer)
+            for (int i = 0; i < p.inventory.innerContainer.Count; i++)
             {
+                Thing item = p.inventory.innerContainer[i];
                 ThingWithComps possibleWeapon = item as ThingWithComps;
                 if (possibleWeapon == null) continue;
                 MasteryWeaponComp comp = item.TryGetComp<MasteryWeaponComp>();
                 if (comp == null || !comp.IsActive()) continue;
-                return comp.PawnHasMastery(p);
+                if (comp.PawnHasMastery(p)) return true;
             }
             ThingWithComps primary = p.equipment.Primary;
             if (primary != null)
             {
                 MasteryWeaponComp comp = primary.TryGetComp<MasteryWeaponComp>();
-                return (comp != null && comp.IsActive() && comp.PawnHasMastery(p)); 
+                return (comp != null && comp.IsActive() && comp.PawnHasMastery(p));
             }
             return false;
         }
