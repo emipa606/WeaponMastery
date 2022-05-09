@@ -7,7 +7,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_Gun_GaussRifle"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_Gun_GaussRifle"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>gauss rifle</gmclass>
@@ -15,7 +15,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_Gun_GaussMagnum"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_Gun_GaussMagnum"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>gauss pistol</gmclass>
@@ -23,7 +23,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_Gun_GaussLance"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_Gun_GaussLance"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>gauss sniper rifle</gmclass>

@@ -7,7 +7,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_PowerFist"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_PowerFist"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>power fist</gmclass>
@@ -15,7 +15,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_PowerClaw"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_PowerClaw"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>power claw</gmclass>
@@ -23,7 +23,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_ChainSword"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_ChainSword"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sword</gmclass>
@@ -31,7 +31,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_ImpactBlade"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_ImpactBlade"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sword</gmclass>
@@ -39,7 +39,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_HeaterSaw"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_HeaterSaw"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>saw</gmclass>
@@ -47,7 +47,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_ImpactAxe"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_ImpactAxe"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>axe</gmclass>
@@ -55,7 +55,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_ImpactHammer"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_ImpactHammer"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>hammer</gmclass>
@@ -63,7 +63,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_GoliathSledge"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_GoliathSledge"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>hammer</gmclass>
@@ -71,7 +71,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_DrillSpear"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_DrillSpear"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>spear</gmclass>
@@ -79,7 +79,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_RocketLance"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_RocketLance"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>spear</gmclass>
@@ -87,7 +87,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_Cyrogatana"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_Cyrogatana"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sword</gmclass>
@@ -95,7 +95,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_MeleeWeapon_GunLance"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_GunLance"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>spear</gmclass>
@@ -103,7 +103,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="IM_ImpactBow"]</xpath>
+					<xpath>Defs/ThingDef[defName="IM_ImpactBow"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>bow</gmclass>

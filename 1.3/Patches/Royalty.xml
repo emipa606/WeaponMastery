@@ -7,7 +7,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension" MayRequire="ludeon.rimworld.royalty">
-					<xpath>/Defs/ThingDef[defName="MeleeWeapon_MonoSword"]</xpath>
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_MonoSword"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sword</gmclass>
@@ -15,7 +15,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension" MayRequire="ludeon.rimworld.royalty">
-					<xpath>/Defs/ThingDef[defName="MeleeWeapon_Zeushammer"]</xpath>
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_Zeushammer"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>hammer</gmclass>
@@ -23,7 +23,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension" MayRequire="ludeon.rimworld.royalty">
-					<xpath>/Defs/ThingDef[defName="MeleeWeapon_Axe"]</xpath>
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_Axe"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>axe</gmclass>
@@ -31,7 +31,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension" MayRequire="ludeon.rimworld.royalty">
-					<xpath>/Defs/ThingDef[defName="MeleeWeapon_Warhammer"]</xpath>
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_Warhammer"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>hammer</gmclass>
@@ -39,7 +39,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension" MayRequire="ludeon.rimworld.royalty">
-					<xpath>/Defs/ThingDef[defName="MeleeWeapon_PlasmaSword"]</xpath>
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaSword"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sword</gmclass>
@@ -47,7 +47,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension" MayRequire="ludeon.rimworld.royalty">
-					<xpath>/Defs/ThingDef[defName="MeleeWeapon_PlasmaSwordBladelink"]</xpath>
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaSwordBladelink"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sword</gmclass>
@@ -55,7 +55,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension" MayRequire="ludeon.rimworld.royalty">
-					<xpath>/Defs/ThingDef[defName="MeleeWeapon_ZeusHammerBladelink"]</xpath>
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_ZeusHammerBladelink"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>hammer</gmclass>
@@ -63,7 +63,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension" MayRequire="ludeon.rimworld.royalty">
-					<xpath>/Defs/ThingDef[defName="MeleeWeapon_MonoSwordBladelink"]</xpath>
+					<xpath>Defs/ThingDef[defName="MeleeWeapon_MonoSwordBladelink"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sword</gmclass>

@@ -7,7 +7,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_Gun_AutomaticPistol"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_Gun_AutomaticPistol"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>pistol</gmclass>
@@ -15,7 +15,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_Gun_BullpupRifle"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_Gun_BullpupRifle"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>assault rifle</gmclass>
@@ -23,7 +23,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_Gun_BullpupDMR"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_Gun_BullpupDMR"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sniper rifle</gmclass>
@@ -31,7 +31,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_Gun_PDW"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_Gun_PDW"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>smg</gmclass>

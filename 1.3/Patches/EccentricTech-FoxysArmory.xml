@@ -7,7 +7,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Eccentric_Gun_E9C"]</xpath>
+					<xpath>Defs/ThingDef[defName="Eccentric_Gun_E9C"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>rifle</gmclass>
@@ -15,7 +15,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Eccentric_Gun_E15CR"]</xpath>
+					<xpath>Defs/ThingDef[defName="Eccentric_Gun_E15CR"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>rifle</gmclass>
@@ -23,7 +23,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Eccentric_Gun_E16PR"]</xpath>
+					<xpath>Defs/ThingDef[defName="Eccentric_Gun_E16PR"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>rifle</gmclass>
@@ -31,7 +31,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Eccentric_Gun_E18DMR"]</xpath>
+					<xpath>Defs/ThingDef[defName="Eccentric_Gun_E18DMR"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sniper rifle</gmclass>
@@ -39,7 +39,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Eccentric_Gun_L20C"]</xpath>
+					<xpath>Defs/ThingDef[defName="Eccentric_Gun_L20C"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>lmg</gmclass>
@@ -47,7 +47,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Eccentric_Rosethorn"]</xpath>
+					<xpath>Defs/ThingDef[defName="Eccentric_Rosethorn"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>knife</gmclass>
@@ -55,7 +55,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Eccentric_Gun_S8P"]</xpath>
+					<xpath>Defs/ThingDef[defName="Eccentric_Gun_S8P"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>pistol</gmclass>
@@ -63,7 +63,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Eccentric_Gun_P12PDW"]</xpath>
+					<xpath>Defs/ThingDef[defName="Eccentric_Gun_P12PDW"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>smg</gmclass>

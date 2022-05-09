@@ -7,7 +7,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VFEM_Wine"]</xpath>
+					<xpath>Defs/ThingDef[defName="VFEM_Wine"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<blacklisted>true</blacklisted>
@@ -15,7 +15,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VFEM_MeleeWeapon_Claymore"]</xpath>
+					<xpath>Defs/ThingDef[defName="VFEM_MeleeWeapon_Claymore"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sword</gmclass>
@@ -23,7 +23,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VFEM_MeleeWeapon_HeavyMace"]</xpath>
+					<xpath>Defs/ThingDef[defName="VFEM_MeleeWeapon_HeavyMace"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>mace</gmclass>
@@ -31,7 +31,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VFEM_Bow_HeavyCrossbow"]</xpath>
+					<xpath>Defs/ThingDef[defName="VFEM_Bow_HeavyCrossbow"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>crossbow</gmclass>

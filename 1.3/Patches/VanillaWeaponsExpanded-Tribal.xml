@@ -7,7 +7,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_MeleeWeapon_HeavyClub"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_HeavyClub"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>club</gmclass>
@@ -15,7 +15,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_MeleeWeapon_LightClub"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_LightClub"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>club</gmclass>
@@ -23,7 +23,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_MeleeWeapon_TribalAxe"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_TribalAxe"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>axe</gmclass>
@@ -31,7 +31,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_MeleeWeapon_Shiv"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Shiv"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>knife</gmclass>
@@ -39,7 +39,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_Sling"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_Sling"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>sling</gmclass>
@@ -47,7 +47,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>throwing shards</gmclass>
@@ -55,7 +55,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>throwing shards</gmclass>

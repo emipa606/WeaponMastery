@@ -7,7 +7,7 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Rimlaser_TeslaGun"]</xpath>
+					<xpath>Defs/ThingDef[defName="Rimlaser_TeslaGun"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>tesla gun</gmclass>
@@ -15,7 +15,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Rimlaser_DeathRay"]</xpath>
+					<xpath>Defs/ThingDef[defName="Rimlaser_DeathRay"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>laser heavy</gmclass>
@@ -23,7 +23,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Rimlaser_LaserMinigun"]</xpath>
+					<xpath>Defs/ThingDef[defName="Rimlaser_LaserMinigun"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>laser heavy</gmclass>
@@ -31,7 +31,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Rimlaser_LaserSniper"]</xpath>
+					<xpath>Defs/ThingDef[defName="Rimlaser_LaserSniper"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>laser sniper</gmclass>
@@ -39,7 +39,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Rimlaser_LaserIncendiary"]</xpath>
+					<xpath>Defs/ThingDef[defName="Rimlaser_LaserIncendiary"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>laser rifle</gmclass>
@@ -47,7 +47,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Rimlaser_LaserHeavy"]</xpath>
+					<xpath>Defs/ThingDef[defName="Rimlaser_LaserHeavy"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>laser heavy</gmclass>
@@ -55,7 +55,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Rimlaser_LaserPistol"]</xpath>
+					<xpath>Defs/ThingDef[defName="Rimlaser_LaserPistol"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>laser pistol</gmclass>
@@ -63,7 +63,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>/Defs/ThingDef[defName="Rimlaser_LaserRifle"]</xpath>
+					<xpath>Defs/ThingDef[defName="Rimlaser_LaserRifle"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>laser rifle</gmclass>

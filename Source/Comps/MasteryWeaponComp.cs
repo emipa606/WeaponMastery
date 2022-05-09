@@ -100,7 +100,7 @@ namespace SK_WeaponMastery
 
             bonusStatsPerPawn[pawn].AddExp((int)(experience * multiplier), this.parent.def.IsMeleeWeapon, delegate (int level)
             {
-                float roll = (float)new System.Random().NextDouble();
+                float roll = Rand.Value;
                 if (level == 1)
                 {
                     if (ModSettings.useMoods)
@@ -251,9 +251,12 @@ namespace SK_WeaponMastery
             return masteryDescription;
         }
 
-        public void SetWeaponName(string name)
+        public void GenerateWeaponName()
         {
-            weaponName = name;
+            if (ModSettings.KeepOriginalWeaponNameQuality)
+                weaponName = $"\"{ModSettings.PickWeaponName()}\" {this.parent.LabelCap}";
+            else
+                weaponName = ModSettings.PickWeaponName();
         }
 
         // Check if pawn mastered this weapon

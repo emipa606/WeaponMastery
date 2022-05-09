@@ -212,7 +212,6 @@ namespace SK_WeaponMastery
             List<Pawn> clonedReferences = new List<Pawn>(pawns);
             int masteryOwnersCount = (int)Math.Ceiling(clonedReferences.Count * ModSettings.masteriesPercentagePerEvent);
             int currentOwnersCount = 0;
-            Random rng = new Random();
             while (clonedReferences.Count != 0 && currentOwnersCount < masteryOwnersCount)
             {
                 Pawn selectedPawn = clonedReferences.RandomElement();
@@ -228,7 +227,7 @@ namespace SK_WeaponMastery
                             // Roll stats and weapon name
                             comp.SetCurrentOwner(selectedPawn);
                             comp.Init();
-                            int statsCount = rng.Next(1, ModSettings.maxLevel);
+                            int statsCount = Rand.RangeInclusive(1, ModSettings.maxLevel);
                             for (int i = 0; i < statsCount; i++)
                             {
                                 MasteryStat stat = ModSettings.PickBonus(selectedPawn.equipment.Primary.def.IsMeleeWeapon);
@@ -236,8 +235,8 @@ namespace SK_WeaponMastery
                                     comp.AddStatBonus(selectedPawn, stat.GetStat(), stat.GetOffset());
                             }
                             comp.SetLevel(selectedPawn, statsCount);
-                            float weaponNameRoll = (float)rng.NextDouble();
-                            if (weaponNameRoll <= ModSettings.eventWeaponNameChance) comp.SetWeaponName(ModSettings.PickWeaponName());
+                            float weaponNameRoll = Rand.Value;
+                            if (weaponNameRoll <= ModSettings.eventWeaponNameChance) comp.GenerateWeaponName();
                             comp.GenerateDescription();
                             bonusAdded = true;
                         }
@@ -248,7 +247,7 @@ namespace SK_WeaponMastery
                         if (comp != null && ModSettings.classes.ContainsKey(selectedPawn.equipment.Primary.def))
                         {
                             comp.Init();
-                            int statsCount = rng.Next(1, ModSettings.maxLevel);
+                            int statsCount = Rand.RangeInclusive(1, ModSettings.maxLevel);
                             for (int i = 0; i < statsCount; i++)
                             {
                                 MasteryStat stat = ModSettings.PickBonus(selectedPawn.equipment.Primary.def.IsMeleeWeapon);
