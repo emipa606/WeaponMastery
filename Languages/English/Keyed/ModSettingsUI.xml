@@ -3,7 +3,7 @@
 <LanguageData>
     <SK_WeaponMastery_SettingsListItemName>Weapon Mastery</SK_WeaponMastery_SettingsListItemName>
     <SK_WeaponMastery_ModSettingsSectionTitle>Mod Settings: </SK_WeaponMastery_ModSettingsSectionTitle>
-    <SK_WeaponMastery_ModSettingsSectionNote>(Certain changes require a restart in order to take effect)</SK_WeaponMastery_ModSettingsSectionNote>
+    <SK_WeaponMastery_ModSettingsSectionNote>(Options starting with a * require restart in order to take effect)</SK_WeaponMastery_ModSettingsSectionNote>
     <SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel>Chance for weapon to be renamed: </SK_WeaponMastery_ModSettingsSectionWeaponNameChanceLabel>
     <SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip>On gaining the first mastery level, there's a chance for pawns to rename their weapon</SK_WeaponMastery_ModSettingsSectionWeaponNameChanceTooltip>
     <SK_WeaponMastery_ModSettingsSectionRoyaltyRequiredLabel>This configuration option requires Royalty DLC</SK_WeaponMastery_ModSettingsSectionRoyaltyRequiredLabel>
@@ -11,19 +11,19 @@
     <SK_WeaponMastery_ModSettingsSectionBondedWeaponExperienceMultiplierLabel>Bonded weapon experience multiplier: </SK_WeaponMastery_ModSettingsSectionBondedWeaponExperienceMultiplierLabel>
     <SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberLabel>Number of bonus stats for relic: </SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberLabel>
     <SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberTooltip>Bonuses only apply to pawns that believe in the relic's ideology</SK_WeaponMastery_ModSettingsSectionRelicBonusStatsNumberTooltip>
-    <SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemLabel>Enable Specific Mastery System</SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemLabel>
+    <SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemLabel>[*]Enable Specific Mastery System</SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemLabel>
     <SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemTooltip>A pawn mastering an assault rifle will not master ALL assault rifles but only THE assault rifle that is in their possession</SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemTooltip>
-    <SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemLabel>Enable Class Mastery System</SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemLabel>
+    <SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemLabel>[*]Enable Class Mastery System</SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemLabel>
     <SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemTooltip>A pawn mastering an assault rifle will master ALL assault rifles NOT only the assault rifle that is in their possession</SK_WeaponMastery_ModSettingsSectionGeneralMasterySystemTooltip>
-    <SK_WeaponMastery_ModSettingsSectionMasteryOutsiderPawnsLabel>Masteries on outsider pawns</SK_WeaponMastery_ModSettingsSectionMasteryOutsiderPawnsLabel>
+    <SK_WeaponMastery_ModSettingsSectionMasteryOutsiderPawnsLabel>[*]Masteries on outsider pawns</SK_WeaponMastery_ModSettingsSectionMasteryOutsiderPawnsLabel>
     <SK_WeaponMastery_ModSettingsSectionMasteryOutsiderTooltip>Allow masteries to spawn on pawns coming from outside your colony. Such as raids, visitors and traders.</SK_WeaponMastery_ModSettingsSectionMasteryOutsiderTooltip>
-    <SK_WeaponMastery_ModSettingsSectionDisplayExperienceLabel>Display Experience</SK_WeaponMastery_ModSettingsSectionDisplayExperienceLabel>
+    <SK_WeaponMastery_ModSettingsSectionDisplayExperienceLabel>[*]Display Experience</SK_WeaponMastery_ModSettingsSectionDisplayExperienceLabel>
     <SK_WeaponMastery_ModSettingsSectionDisplayExperienceTooltip>Display experience needed to level up for each weapon in the info tab</SK_WeaponMastery_ModSettingsSectionDisplayExperienceTooltip>
     <SK_WeaponMastery_ModSettingsSectionKeepOriginalNameAndQualityLabel>Keep Original Name and Quality</SK_WeaponMastery_ModSettingsSectionKeepOriginalNameAndQualityLabel>
     <SK_WeaponMastery_ModSettingsSectionKeepOriginalNameAndQualityTooltip>When a weapon name is generated, the mod will keep the original weapon's name and quality in the generated name. Example: "Boomer" Revolver (normal). Do keep in mind this might make certain weapon names too long to be fully displayed.</SK_WeaponMastery_ModSettingsSectionKeepOriginalNameAndQualityTooltip>
     <SK_WeaponMastery_ModSettingsSectionMasteryGroupPercentage>Percentage of pawns that should spawn with a mastery from a group</SK_WeaponMastery_ModSettingsSectionMasteryGroupPercentage>
     <SK_WeaponMastery_ModSettingsSectionMasteryWeaponNameChancePerPawn>Weapon name chance per pawn</SK_WeaponMastery_ModSettingsSectionMasteryWeaponNameChancePerPawn>
-    <SK_WeaponMastery_ModSettingsUseMoodsCheckboxLabel>Weapon mood buff/debuff</SK_WeaponMastery_ModSettingsUseMoodsCheckboxLabel>
+    <SK_WeaponMastery_ModSettingsUseMoodsCheckboxLabel>[*]Weapon mood buff/debuff</SK_WeaponMastery_ModSettingsUseMoodsCheckboxLabel>
     <SK_WeaponMastery_ModSettingsUseMoodsCheckboxTooltip>When equipping a mastered weapon, pawn gains a mood bonus and vice versa (Specific Weapon Mastery Only)</SK_WeaponMastery_ModSettingsUseMoodsCheckboxTooltip>
     <SK_WeaponMastery_LevelSectionTitle>Levels Section: </SK_WeaponMastery_LevelSectionTitle>
     <SK_WeaponMastery_LevelSectionDetail>Add or remove mastery levels up to a max of 15 levels. Each time a pawn levels up, they will get a random stat bonus.</SK_WeaponMastery_LevelSectionDetail>

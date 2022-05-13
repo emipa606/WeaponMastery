@@ -38,7 +38,7 @@ namespace SK_WeaponMastery
         public static List<string> weaponNamesPool;
         public static List<string> customWeaponNamesPool = new List<string>();
         public static List<string> messages;
-        private static readonly string WEAPON_NAMES_DEF_PATH = "Languages\\English\\WeaponNamesList.txt";
+        private static readonly string WEAPON_NAMES_DEF_PATH = System.IO.Path.Combine("Languages", "English", "WeaponNamesList.txt");
         private static readonly string MOD_PACKAGE_ID = "Sk.WeaponMastery";
 
         public override void ExposeData()
@@ -183,8 +183,8 @@ namespace SK_WeaponMastery
             // current language
             foreach (string path in dependecyModsRootDirectories)
             {
-                string[] namesFromLegacyFolder = Files.GetLinesFromTextFile(path + "\\Languages\\" + LanguageDatabase.activeLanguage.LegacyFolderName + "\\WeaponNamesList.txt", false);
-                string[] namesFromCurrentFolder = Files.GetLinesFromTextFile(path + "\\Languages\\" + LanguageDatabase.activeLanguage.folderName + "\\WeaponNamesList.txt", false);
+                string[] namesFromLegacyFolder = Files.GetLinesFromTextFile(System.IO.Path.Combine(path, "Languages", LanguageDatabase.activeLanguage.LegacyFolderName, "WeaponNamesList.txt"), false);
+                string[] namesFromCurrentFolder = Files.GetLinesFromTextFile(System.IO.Path.Combine(path, "Languages", LanguageDatabase.activeLanguage.folderName, "WeaponNamesList.txt"), false);
                 if (namesFromCurrentFolder != null)
                     weaponNamesPool = new List<string>(namesFromCurrentFolder);
                 else if (namesFromLegacyFolder != null)
