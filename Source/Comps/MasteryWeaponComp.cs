@@ -141,7 +141,7 @@ namespace SK_WeaponMastery
             for (int i = 0; i < filtered.Count; i++)
             {
                 KeyValuePair<Pawn, MasteryWeaponCompData> item = filtered[i];
-                if (item.Key != null) bonusStatsPerPawn.Add(item.Key, item.Value);
+                if (!item.Key.DestroyedOrNull()) bonusStatsPerPawn.Add(item.Key, item.Value);
             }
         }
 

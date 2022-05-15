@@ -178,7 +178,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_Gun_BattleRifle"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>assualt rifle</gmclass>
+							<gmclass>assault rifle</gmclass>
 						</li>
 					</value>
 				</li>
