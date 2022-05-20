@@ -54,8 +54,11 @@ namespace SK_WeaponMastery.Compat
             foreach (Thing t in list)
                 if (t is Pawn)
                     owner = t as Pawn;
-            if (owner == null || PawnHasAnyMasteredWeapon(owner)) return;
-            owner.needs.mood.thoughts.memories.TryGainMemory(Core.MasteredWeaponUnequipped);
+
+            // Misc Robots have no mood
+            // Animals have no equipment
+            if (owner == null || owner.equipment == null || owner.needs.mood == null ||  PawnHasAnyMasteredWeapon(owner)) return;
+
             if (owner.health.hediffSet.HasHediff(Core.MasteredWeaponEquipped))
                 owner.health.RemoveHediff(owner.health.hediffSet.GetFirstHediffOfDef(Core.MasteredWeaponEquipped));
         }
