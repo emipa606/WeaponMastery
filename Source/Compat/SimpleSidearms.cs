@@ -19,9 +19,12 @@ namespace SK_WeaponMastery.Compat
             HarmonyMethod afterSwitchMethod = new HarmonyMethod(typeof(SimpleSidearmsCompat).GetMethod("AfterWeaponSwitch"));
             HarmonyPatcher.instance.Patch(switchWeaponMethod, beforeSwitchMethod, afterSwitchMethod);
 
-            MethodInfo tryDropMethod = AccessTools.Method(typeof(ThingOwner<>).MakeGenericType(new Type[] { typeof(Thing) }), "TryDrop", new Type[] { typeof(Thing), typeof(IntVec3), typeof(Map), typeof(ThingPlaceMode), typeof(Thing).MakeByRefType(), typeof(Action<Thing, int>), typeof(Predicate<IntVec3>) });
-            HarmonyMethod afterDropMethod = new HarmonyMethod(typeof(SimpleSidearmsCompat).GetMethod("AfterDropMethod"));
-            HarmonyPatcher.instance.Patch(tryDropMethod, null, afterDropMethod);
+            if (ModSettings.useMoods)
+            {
+                MethodInfo tryDropMethod = AccessTools.Method(typeof(ThingOwner<>).MakeGenericType(new Type[] { typeof(Thing) }), "TryDrop", new Type[] { typeof(Thing), typeof(IntVec3), typeof(Map), typeof(ThingPlaceMode), typeof(Thing).MakeByRefType(), typeof(Action<Thing, int>), typeof(Predicate<IntVec3>) });
+                HarmonyMethod afterDropMethod = new HarmonyMethod(typeof(SimpleSidearmsCompat).GetMethod("AfterDropMethod"));
+                HarmonyPatcher.instance.Patch(tryDropMethod, null, afterDropMethod);
+            }
         }
         public static void Init()
         {
