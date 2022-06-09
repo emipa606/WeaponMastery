@@ -18,7 +18,7 @@
 					<xpath>Defs/ThingDef[defName="MeleeWeapon_Zeushammer"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>hammer</gmclass>
+							<gmclass>blunt weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -34,7 +34,7 @@
 					<xpath>Defs/ThingDef[defName="MeleeWeapon_Warhammer"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>hammer</gmclass>
+							<gmclass>blunt weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -58,7 +58,7 @@
 					<xpath>Defs/ThingDef[defName="MeleeWeapon_ZeusHammerBladelink"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>hammer</gmclass>
+							<gmclass>blunt weapons</gmclass>
 						</li>
 					</value>
 				</li>
