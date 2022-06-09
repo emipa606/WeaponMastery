@@ -26,7 +26,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_CombatKnife"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>knife</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>

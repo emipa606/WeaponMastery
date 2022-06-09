@@ -1,0 +1,46 @@
+List of All Classes:
+
+blunt weapons
+bladed weapons
+spear
+pistol
+smg
+rifle
+shotgun
+lmg
+assault rifle
+sniper rifle
+bow
+saw
+rifle
+power fist
+power claw
+hammer
+tesla gun
+laser heavy
+laser sniper
+laser rifle
+laser pistol
+laser smg
+laser shotgun
+laser minigun
+axe
+shovel
+baton
+wrench
+cleaver
+scalpel
+pickaxe
+battle axe
+crossbow
+whip
+throwing knives
+gauss rifle
+gauss pistol
+gauss sniper rifle
+taser
+sling
+throwing shards
+halberd
+hmg
+throwing rocks

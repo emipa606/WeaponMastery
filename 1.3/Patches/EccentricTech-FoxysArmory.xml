@@ -50,7 +50,7 @@
 					<xpath>Defs/ThingDef[defName="Eccentric_Rosethorn"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>knife</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>

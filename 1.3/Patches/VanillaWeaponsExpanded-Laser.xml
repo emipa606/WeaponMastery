@@ -98,7 +98,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_LaserSword"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>

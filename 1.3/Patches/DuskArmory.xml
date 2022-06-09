@@ -50,7 +50,7 @@
 					<xpath>Defs/ThingDef[defName="DF_Dusk_Kris"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -58,7 +58,7 @@
 					<xpath>Defs/ThingDef[defName="DF_Dusk_Razor"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>

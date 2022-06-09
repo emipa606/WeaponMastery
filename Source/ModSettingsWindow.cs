@@ -15,7 +15,8 @@ namespace SK_WeaponMastery
         private static int selectedClassIndex;
         private static string selectedLevelStringBuffer;
         private static string customNameInputStringBuffer;
-        private static string classInputStringBuffer;
+        private static string addClassInputStringBuffer;
+        private static string removeClassInputStringBuffer;
         private static string selectedCustomName;
         private static ModSettingsWindowThread thread;
         private static List<StatDef> allStatDefs;
@@ -66,7 +67,7 @@ namespace SK_WeaponMastery
             foreach (string gmclass in ModSettings.classes.Values)
                 if (!allClasses.Contains(gmclass))
                     allClasses.Add(gmclass);
-                
+
 
             selectedRangedMasteryStat = ModSettings.FindStatWithStatDef(allStatDefs[0], false);
             if (selectedRangedMasteryStat != null)
@@ -311,7 +312,7 @@ namespace SK_WeaponMastery
             Widgets.Dropdown(subSection.GetRect(30), null, null, (string s) => GenerateRangedStatsOptions(), selectedRangedDef.defName);
             subSection.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionLabel".Translate());
             // Percentage stats use values from 0 -> 1 which maps to 0% -> 100%
-            
+
             if (!isRangedStatPercentage)
                 rangedStatOffset = Widgets.HorizontalSlider(subSection.GetRect(22f), rangedStatOffset, MIN_STAT_BONUS, MAX_STAT_BONUS, false, ((float)System.Math.Round(rangedStatOffset, 2)).ToString(), null, null, 0.1f);
             else
@@ -461,6 +462,8 @@ namespace SK_WeaponMastery
             subSection.Gap();
             subSection.Label("SK_WeaponMastery_GeneralMasterySectionAddClassLabel".Translate());
             subSection.Gap();
+            subSection.Label("SK_WeaponMastery_GeneralMasterySectionRemoveClassLabel".Translate());
+            subSection.Gap();
             Rect lblRect = subSection.Label("SK_WeaponMastery_GeneralMasterySectionSelectClassLabel".Translate());
             Rect dropdownRect = new Rect(lblRect.x + 100, lblRect.y, 120, 30);
             Widgets.Dropdown(dropdownRect, null, null, (string s) => GenerateClassOptions(), allClasses[selectedClassIndex]);
@@ -472,7 +475,9 @@ namespace SK_WeaponMastery
             subSection.ColumnWidth = 250;
             subSection.Label("");
             subSection.Gap();
-            classInputStringBuffer = subSection.TextEntry(classInputStringBuffer);
+            addClassInputStringBuffer = subSection.TextEntry(addClassInputStringBuffer);
+            subSection.Gap();
+            removeClassInputStringBuffer = subSection.TextEntry(removeClassInputStringBuffer);
             subSection.ButtonImage(cachedWeaponTexture, 100, 100);
             subSection.Gap();
             subSection.Label("SK_WeaponMastery_GeneralMasterySectionAssignedClassLabel".Translate(ModSettings.classes.ContainsKey(allWeapons[selectedWeaponIndex]) ? Utils.Capitalize(ModSettings.classes[allWeapons[selectedWeaponIndex]]) : "SK_WeaponMastery_GeneralMasterySectionNoClassLabel".Translate().ToString()));
@@ -481,6 +486,7 @@ namespace SK_WeaponMastery
             subSection.Label("");
             subSection.Gap();
             bool addClassButtonClicked = subSection.ButtonText("SK_WeaponMastery_GeneralMasterySectionAddClassButton".Translate());
+            bool removeClassButtonClicked = subSection.ButtonText("SK_WeaponMastery_GeneralMasterySectionRemoveClassButton".Translate());
             subSection.Gap();
             subSection.Gap();
             bool assignClassButtonClicked = subSection.ButtonText("SK_WeaponMastery_GeneralMasterySectionAssignClassButton".Translate());
@@ -490,6 +496,9 @@ namespace SK_WeaponMastery
 
             if (addClassButtonClicked)
                 OnClassAdded();
+
+            if (removeClassButtonClicked)
+                OnRemoveClass();
 
             if (assignClassButtonClicked)
                 OnAssignClass();
@@ -561,23 +570,42 @@ namespace SK_WeaponMastery
 
         private static void OnClassAdded()
         {
-            if (classInputStringBuffer == null || classInputStringBuffer.Length == 0 || allClasses.Contains(classInputStringBuffer)) return;
-            Messages.Message("SK_WeaponMastery_CustomNamesAddClassMessage".Translate(classInputStringBuffer.CapitalizeFirst()), MessageTypeDefOf.NeutralEvent);
-            allClasses.Add(classInputStringBuffer);
+            if (addClassInputStringBuffer == null || addClassInputStringBuffer.Length == 0 || allClasses.Contains(addClassInputStringBuffer)) return;
+            Messages.Message("SK_WeaponMastery_GeneralMasterySectionAddClassMessage".Translate(addClassInputStringBuffer.CapitalizeFirst()), MessageTypeDefOf.NeutralEvent);
+            allClasses.Add(addClassInputStringBuffer);
         }
 
-        public static void OnAssignClass()
+        private static void OnAssignClass()
         {
             ModSettings.classes[allWeapons[selectedWeaponIndex]] = allClasses[selectedClassIndex];
             ModSettings.overrideClasses[allWeapons[selectedWeaponIndex].defName] = allClasses[selectedClassIndex];
-            Messages.Message("SK_WeaponMastery_CustomNamesClassAssignedMessage".Translate(allWeapons[selectedWeaponIndex].LabelCap, allClasses[selectedClassIndex]), MessageTypeDefOf.NeutralEvent);
+            Messages.Message("SK_WeaponMastery_GeneralMasterySectionClassAssignedMessage".Translate(allWeapons[selectedWeaponIndex].LabelCap, allClasses[selectedClassIndex]), MessageTypeDefOf.NeutralEvent);
         }
 
-        public static void OnClearClass()
+        private static void OnClearClass()
         {
             ModSettings.classes.Remove(allWeapons[selectedWeaponIndex]);
             ModSettings.overrideClasses.Remove(allWeapons[selectedWeaponIndex].defName);
-            Messages.Message("SK_WeaponMastery_CustomNamesClassClearedMessage".Translate(), MessageTypeDefOf.NeutralEvent);
+            Messages.Message("SK_WeaponMastery_GeneralMasterySectionClassClearedMessage".Translate(), MessageTypeDefOf.NeutralEvent);
+        }
+
+        private static void OnRemoveClass()
+        {
+            if (removeClassInputStringBuffer == null || removeClassInputStringBuffer.Length == 0 || !allClasses.Contains(removeClassInputStringBuffer)) return;
+            List<ThingDef> toRemove = new List<ThingDef>();
+            List<string> toRemoveOverride = new List<string>();
+            foreach (KeyValuePair<ThingDef, string> item in ModSettings.classes)
+                if (item.Value == removeClassInputStringBuffer)
+                    toRemove.Add(item.Key);
+            for (int i = 0; i < toRemove.Count; i++)
+                ModSettings.classes.Remove(toRemove[i]);
+            foreach (KeyValuePair<string, string> item in ModSettings.overrideClasses)
+                if (item.Value == removeClassInputStringBuffer)
+                    toRemoveOverride.Add(item.Key);
+            for (int i = 0; i < toRemoveOverride.Count; i++)
+                ModSettings.overrideClasses.Remove(toRemoveOverride[i]);
+            allClasses.Remove(removeClassInputStringBuffer);
+            Messages.Message("SK_WeaponMastery_GeneralMasterySectionRemoveClassMessage".Translate(removeClassInputStringBuffer), MessageTypeDefOf.NeutralEvent);
         }
 
         // Add custom name to ModSettings
@@ -589,7 +617,7 @@ namespace SK_WeaponMastery
             ModSettings.customWeaponNamesPool.Add(trimmedName);
             Messages.Message("SK_WeaponMastery_CustomNamesAddNameMessage".Translate(trimmedName), MessageTypeDefOf.NeutralEvent);
             if (ModSettings.customWeaponNamesPool.Count == 1) selectedCustomName = trimmedName;
-        } 
+        }
 
         // Remove custom name from ModSettings
         private static void OnRemoveName()

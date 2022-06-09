@@ -10,7 +10,7 @@
 					<xpath>Defs/ThingDef[defName="MeleeWeapon_MonoSword"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -42,7 +42,7 @@
 					<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaSword"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -50,7 +50,7 @@
 					<xpath>Defs/ThingDef[defName="MeleeWeapon_PlasmaSwordBladelink"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -66,7 +66,7 @@
 					<xpath>Defs/ThingDef[defName="MeleeWeapon_MonoSwordBladelink"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>

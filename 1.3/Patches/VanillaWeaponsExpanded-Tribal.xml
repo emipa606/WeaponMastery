@@ -10,7 +10,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_HeavyClub"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>club</gmclass>
+							<gmclass>blunt weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -18,7 +18,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_LightClub"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>club</gmclass>
+							<gmclass>blunt weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -34,7 +34,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Shiv"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>knife</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>

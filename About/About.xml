@@ -10,7 +10,7 @@
     <li>brrainz.harmony</li>
   </loadAfter>
   <description>
-    v2.0.15
+    v2.1.0
 
     Adds a new simple weapon mastery mechanic into the game. Pawns use the same weapon for a decent amount of time, naturally they should start getting better at handling/using said weapon. This mod adds a new hidden skill that levels up as pawns use their weapons (similar to shooting/melee). Pawns will gradually receive some minor randomized bonuses from mastering weapons and will also rename their weapon for sentimental value.</description>
 </ModMetaData>

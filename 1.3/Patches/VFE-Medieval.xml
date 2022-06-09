@@ -18,7 +18,7 @@
 					<xpath>Defs/ThingDef[defName="VFEM_MeleeWeapon_Claymore"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -26,7 +26,7 @@
 					<xpath>Defs/ThingDef[defName="VFEM_MeleeWeapon_HeavyMace"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>mace</gmclass>
+							<gmclass>blunt weapons</gmclass>
 						</li>
 					</value>
 				</li>

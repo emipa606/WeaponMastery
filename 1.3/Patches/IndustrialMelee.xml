@@ -26,7 +26,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_ChainSword"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -34,7 +34,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_ImpactBlade"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>
@@ -90,7 +90,7 @@
 					<xpath>Defs/ThingDef[defName="IM_Cyrogatana"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sword</gmclass>
+							<gmclass>bladed weapons</gmclass>
 						</li>
 					</value>
 				</li>

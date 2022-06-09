@@ -4,7 +4,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_Mace"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>mace</gmclass>
+				<gmclass>blunt weapons</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -12,7 +12,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_Gladius"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>sword</gmclass>
+				<gmclass>bladed weapons</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -20,7 +20,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_LongSword"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>sword</gmclass>
+				<gmclass>bladed weapons</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -28,7 +28,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>knife</gmclass>
+				<gmclass>bladed weapons</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -36,7 +36,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>knife</gmclass>
+				<gmclass>bladed weapons</gmclass>
 			</li>
 		</value>
 	</Operation>
