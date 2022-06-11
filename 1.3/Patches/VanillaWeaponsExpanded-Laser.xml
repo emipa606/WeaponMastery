@@ -7,10 +7,10 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="VWEL_Bullet_LaserPistol"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWEL_Gun_LaserPistol"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser pistol</gmclass>
+							<gmclass>Pistol</gmclass>
 						</li>
 					</value>
 				</li>
@@ -18,7 +18,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_Gun_LaserSMG"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser smg</gmclass>
+							<gmclass>SMG</gmclass>
 						</li>
 					</value>
 				</li>
@@ -26,7 +26,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_Gun_LaserRifle"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser rifle</gmclass>
+							<gmclass>Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -34,7 +34,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_Gun_LaserShotgun"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser shotgun</gmclass>
+							<gmclass>Shotgun</gmclass>
 						</li>
 					</value>
 				</li>
@@ -42,7 +42,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_Gun_LaserSniperRifle"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser rifle</gmclass>
+							<gmclass>Sniper Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -50,7 +50,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_Gun_LaserMinigun"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser minigun</gmclass>
+							<gmclass>Machine Gun</gmclass>
 						</li>
 					</value>
 				</li>
@@ -58,7 +58,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_Gun_TeslaGun"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>telsa gun</gmclass>
+							<gmclass>Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -66,7 +66,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_Gun_SalvagedLaserPistol"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser pistol</gmclass>
+							<gmclass>Pistol</gmclass>
 						</li>
 					</value>
 				</li>
@@ -74,7 +74,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_Gun_SalvagedLaserRifle"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser rifle</gmclass>
+							<gmclass>Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -82,7 +82,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_Gun_SalvagedLaserShotgun"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser shotgun</gmclass>
+							<gmclass>Shotgun</gmclass>
 						</li>
 					</value>
 				</li>
@@ -90,7 +90,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_Gun_SalvagedLaserSniperRifle"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser rifle</gmclass>
+							<gmclass>Sniper Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -98,7 +98,7 @@
 					<xpath>Defs/ThingDef[defName="VWEL_LaserSword"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>bladed weapons</gmclass>
+							<gmclass>Bladed</gmclass>
 						</li>
 					</value>
 				</li>

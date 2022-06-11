@@ -10,7 +10,7 @@
 					<xpath>Defs/ThingDef[defName="Rimlaser_TeslaGun"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>tesla gun</gmclass>
+							<gmclass>Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -18,7 +18,7 @@
 					<xpath>Defs/ThingDef[defName="Rimlaser_DeathRay"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser heavy</gmclass>
+							<gmclass>Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -26,7 +26,7 @@
 					<xpath>Defs/ThingDef[defName="Rimlaser_LaserMinigun"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser heavy</gmclass>
+							<gmclass>Machine Gun</gmclass>
 						</li>
 					</value>
 				</li>
@@ -34,7 +34,7 @@
 					<xpath>Defs/ThingDef[defName="Rimlaser_LaserSniper"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser sniper</gmclass>
+							<gmclass>Sniper Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -42,7 +42,7 @@
 					<xpath>Defs/ThingDef[defName="Rimlaser_LaserIncendiary"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser rifle</gmclass>
+							<gmclass>Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -50,7 +50,7 @@
 					<xpath>Defs/ThingDef[defName="Rimlaser_LaserHeavy"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser heavy</gmclass>
+							<gmclass>Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -58,7 +58,7 @@
 					<xpath>Defs/ThingDef[defName="Rimlaser_LaserPistol"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser pistol</gmclass>
+							<gmclass>Pistol</gmclass>
 						</li>
 					</value>
 				</li>
@@ -66,7 +66,7 @@
 					<xpath>Defs/ThingDef[defName="Rimlaser_LaserRifle"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>laser rifle</gmclass>
+							<gmclass>Rifle</gmclass>
 						</li>
 					</value>
 				</li>

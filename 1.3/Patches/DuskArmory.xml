@@ -10,7 +10,7 @@
 					<xpath>Defs/ThingDef[defName="DF_Dusk_Carbine"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>assault rifle</gmclass>
+							<gmclass>Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -18,7 +18,7 @@
 					<xpath>Defs/ThingDef[defName="DF_Dusk_Enforcer"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>pistol</gmclass>
+							<gmclass>Pistol</gmclass>
 						</li>
 					</value>
 				</li>
@@ -26,7 +26,7 @@
 					<xpath>Defs/ThingDef[defName="DF_Dusk_MAG"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>lmg</gmclass>
+							<gmclass>Machine Gun</gmclass>
 						</li>
 					</value>
 				</li>
@@ -34,7 +34,7 @@
 					<xpath>Defs/ThingDef[defName="DF_Dusk_SMG"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>smg</gmclass>
+							<gmclass>SMG</gmclass>
 						</li>
 					</value>
 				</li>
@@ -42,7 +42,7 @@
 					<xpath>Defs/ThingDef[defName="DF_Dusk_Striker"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>shotgun</gmclass>
+							<gmclass>Shotgun</gmclass>
 						</li>
 					</value>
 				</li>
@@ -50,7 +50,7 @@
 					<xpath>Defs/ThingDef[defName="DF_Dusk_Kris"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>bladed weapons</gmclass>
+							<gmclass>Bladed</gmclass>
 						</li>
 					</value>
 				</li>
@@ -58,7 +58,7 @@
 					<xpath>Defs/ThingDef[defName="DF_Dusk_Razor"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>bladed weapons</gmclass>
+							<gmclass>Bladed</gmclass>
 						</li>
 					</value>
 				</li>
@@ -66,10 +66,18 @@
 					<xpath>Defs/ThingDef[defName="DF_Dusk_Saw"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>saw</gmclass>
+							<gmclass>Bladed</gmclass>
 						</li>
 					</value>
 				</li>
+        <li Class ="PatchOperationAddModExtension">
+          <xpath>Defs/ThingDef[defName="DF_Dusk_Launcher"]</xpath>
+          <value>
+            <li Class="SK_WeaponMastery.DefModExtension_Mastery">
+              <gmclass>Launcher</gmclass>
+            </li>
+          </value>
+        </li>
 			</operations>
 		</match>
 	</Operation>

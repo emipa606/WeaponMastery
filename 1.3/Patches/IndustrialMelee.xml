@@ -10,7 +10,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_PowerFist"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>power fist</gmclass>
+							<gmclass>Fist</gmclass>
 						</li>
 					</value>
 				</li>
@@ -18,7 +18,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_PowerClaw"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>power claw</gmclass>
+							<gmclass>Fist</gmclass>
 						</li>
 					</value>
 				</li>
@@ -26,7 +26,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_ChainSword"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>bladed weapons</gmclass>
+							<gmclass>Bladed</gmclass>
 						</li>
 					</value>
 				</li>
@@ -34,7 +34,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_ImpactBlade"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>bladed weapons</gmclass>
+							<gmclass>Bladed</gmclass>
 						</li>
 					</value>
 				</li>
@@ -42,7 +42,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_HeaterSaw"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>saw</gmclass>
+							<gmclass>Bladed</gmclass>
 						</li>
 					</value>
 				</li>
@@ -50,7 +50,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_ImpactAxe"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>axe</gmclass>
+							<gmclass>Axe</gmclass>
 						</li>
 					</value>
 				</li>
@@ -58,7 +58,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_ImpactHammer"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>blunt weapons</gmclass>
+							<gmclass>Blunt</gmclass>
 						</li>
 					</value>
 				</li>
@@ -66,7 +66,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_GoliathSledge"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>blunt weapons</gmclass>
+							<gmclass>Blunt</gmclass>
 						</li>
 					</value>
 				</li>
@@ -74,7 +74,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_DrillSpear"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>spear</gmclass>
+							<gmclass>Piercing</gmclass>
 						</li>
 					</value>
 				</li>
@@ -82,7 +82,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_RocketLance"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>spear</gmclass>
+							<gmclass>Piercing</gmclass>
 						</li>
 					</value>
 				</li>
@@ -90,7 +90,7 @@
 					<xpath>Defs/ThingDef[defName="IM_Cyrogatana"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>bladed weapons</gmclass>
+							<gmclass>Bladed</gmclass>
 						</li>
 					</value>
 				</li>
@@ -98,7 +98,7 @@
 					<xpath>Defs/ThingDef[defName="IM_MeleeWeapon_GunLance"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>spear</gmclass>
+							<gmclass>Rifle</gmclass>
 						</li>
 					</value>
 				</li>
@@ -106,7 +106,7 @@
 					<xpath>Defs/ThingDef[defName="IM_ImpactBow"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>bow</gmclass>
+							<gmclass>Bow</gmclass>
 						</li>
 					</value>
 				</li>

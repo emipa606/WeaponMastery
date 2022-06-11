@@ -2,12 +2,12 @@
 <Patch>
 	<Operation Class="PatchOperationFindMod">
 		<mods>
-			<li>Vanilla Weapons Expanded - Coilguns</li>
+			<li>[KIR]Extra Mechanoid Units and Equipment</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="VWE_Gun_GaussRifle"]</xpath>
+					<xpath>Defs/ThingDef[defName="Gun_AssaultChargeBlaster_EMUE"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>Rifle</gmclass>
@@ -15,18 +15,10 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="VWE_Gun_GaussMagnum"]</xpath>
+					<xpath>Defs/ThingDef[defName="Gun_ChargeScatterer_EMUE"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>Pistol</gmclass>
-						</li>
-					</value>
-				</li>
-				<li Class ="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="VWE_Gun_GaussLance"]</xpath>
-					<value>
-						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>Sniper Rifle</gmclass>
+							<gmclass>Shotgun</gmclass>
 						</li>
 					</value>
 				</li>

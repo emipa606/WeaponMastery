@@ -4,7 +4,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_Mace"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>blunt weapons</gmclass>
+				<gmclass>Blunt</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -12,7 +12,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_Gladius"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>bladed weapons</gmclass>
+				<gmclass>Bladed</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -20,7 +20,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_LongSword"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>bladed weapons</gmclass>
+				<gmclass>Bladed</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -28,7 +28,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>bladed weapons</gmclass>
+				<gmclass>Bladed</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -36,7 +36,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_Knife"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>bladed weapons</gmclass>
+				<gmclass>Bladed</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -44,7 +44,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_Ikwa"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>spear</gmclass>
+				<gmclass>Piercing</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -52,7 +52,7 @@
 		<xpath>Defs/ThingDef[defName="MeleeWeapon_Spear"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>spear</gmclass>
+				<gmclass>Piercing</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -60,7 +60,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_Revolver"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>pistol</gmclass>
+				<gmclass>Pistol</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -68,7 +68,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_Autopistol"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>pistol</gmclass>
+				<gmclass>Pistol</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -76,7 +76,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_MachinePistol"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>smg</gmclass>
+				<gmclass>SMG</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -84,7 +84,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_BoltActionRifle"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>rifle</gmclass>
+				<gmclass>Rifle</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -92,7 +92,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_PumpShotgun"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>shotgun</gmclass>
+				<gmclass>Shotgun</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -100,7 +100,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_ChainShotgun"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>shotgun</gmclass>
+				<gmclass>Shotgun</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -108,7 +108,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_HeavySMG"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>smg</gmclass>
+				<gmclass>SMG</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -116,7 +116,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_LMG"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>lmg</gmclass>
+				<gmclass>Machine Gun</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -124,7 +124,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_AssaultRifle"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>assault rifle</gmclass>
+				<gmclass>Rifle</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -132,7 +132,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_SniperRifle"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>sniper rifle</gmclass>
+				<gmclass>Sniper Rifle</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -140,7 +140,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_Minigun"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>lmg</gmclass>
+				<gmclass>Machine Gun</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -148,7 +148,7 @@
 		<xpath>Defs/ThingDef[defName="Bow_Short"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>bow</gmclass>
+				<gmclass>Bow</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -156,7 +156,7 @@
 		<xpath>Defs/ThingDef[defName="Pila"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>spear</gmclass>
+				<gmclass>Thrown</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -164,7 +164,7 @@
 		<xpath>Defs/ThingDef[defName="Bow_Recurve"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>bow</gmclass>
+				<gmclass>Bow</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -172,7 +172,7 @@
 		<xpath>Defs/ThingDef[defName="Bow_Great"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>bow</gmclass>
+				<gmclass>Bow</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -180,7 +180,7 @@
 		<xpath>Defs/ThingDef[defName="Gun_ChargeRifle"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>assault rifle</gmclass>
+				<gmclass>Rifle</gmclass>
 			</li>
 		</value>
 	</Operation>
@@ -188,8 +188,56 @@
 		<xpath>Defs/ThingDef[defName="Gun_ChargeLance"]</xpath>
 		<value>
 			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-				<gmclass>sniper rifle</gmclass>
+				<gmclass>Sniper Rifle</gmclass>
 			</li>
 		</value>
 	</Operation>
+	<Operation Class ="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="MeleeWeapon_BreachAxe"]</xpath>
+		<value>
+			<li Class="SK_WeaponMastery.DefModExtension_Mastery">
+				<gmclass>Blunt</gmclass>
+			</li>
+		</value>
+	</Operation>
+  <Operation Class ="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Gun_IncendiaryLauncher"]</xpath>
+    <value>
+      <li Class="SK_WeaponMastery.DefModExtension_Mastery">
+        <gmclass>Launcher</gmclass>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class ="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Gun_SmokeLauncher"]</xpath>
+    <value>
+      <li Class="SK_WeaponMastery.DefModExtension_Mastery">
+        <gmclass>Launcher</gmclass>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class ="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Gun_EmpLauncher"]</xpath>
+    <value>
+      <li Class="SK_WeaponMastery.DefModExtension_Mastery">
+        <gmclass>Launcher</gmclass>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class ="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Gun_TripleRocket"]</xpath>
+    <value>
+      <li Class="SK_WeaponMastery.DefModExtension_Mastery">
+        <gmclass>Launcher</gmclass>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class ="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Gun_DoomsdayRocket"]</xpath>
+    <value>
+      <li Class="SK_WeaponMastery.DefModExtension_Mastery">
+        <gmclass>Launcher</gmclass>
+      </li>
+    </value>
+  </Operation>
 </Patch>

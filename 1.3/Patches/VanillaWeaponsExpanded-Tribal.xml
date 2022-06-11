@@ -10,7 +10,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_HeavyClub"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>blunt weapons</gmclass>
+							<gmclass>Blunt</gmclass>
 						</li>
 					</value>
 				</li>
@@ -18,7 +18,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_LightClub"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>blunt weapons</gmclass>
+							<gmclass>Blunt</gmclass>
 						</li>
 					</value>
 				</li>
@@ -26,7 +26,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_TribalAxe"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>axe</gmclass>
+							<gmclass>Axe</gmclass>
 						</li>
 					</value>
 				</li>
@@ -34,7 +34,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_MeleeWeapon_Shiv"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>bladed weapons</gmclass>
+							<gmclass>Bladed</gmclass>
 						</li>
 					</value>
 				</li>
@@ -42,7 +42,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_Sling"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>sling</gmclass>
+							<gmclass>Thrown</gmclass>
 						</li>
 					</value>
 				</li>
@@ -50,15 +50,7 @@
 					<xpath>Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>throwing shards</gmclass>
-						</li>
-					</value>
-				</li>
-				<li Class ="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="VWE_Throwing_Shards"]</xpath>
-					<value>
-						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>throwing shards</gmclass>
+							<gmclass>Thrown</gmclass>
 						</li>
 					</value>
 				</li>

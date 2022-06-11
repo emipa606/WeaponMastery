@@ -7,18 +7,10 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="VFEM_Wine"]</xpath>
-					<value>
-						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<blacklisted>true</blacklisted>
-						</li>
-					</value>
-				</li>
-				<li Class ="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="VFEM_MeleeWeapon_Claymore"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>bladed weapons</gmclass>
+							<gmclass>Bladed</gmclass>
 						</li>
 					</value>
 				</li>
@@ -26,7 +18,7 @@
 					<xpath>Defs/ThingDef[defName="VFEM_MeleeWeapon_HeavyMace"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>blunt weapons</gmclass>
+							<gmclass>Blunt</gmclass>
 						</li>
 					</value>
 				</li>
@@ -34,7 +26,7 @@
 					<xpath>Defs/ThingDef[defName="VFEM_Bow_HeavyCrossbow"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>crossbow</gmclass>
+							<gmclass>Bow</gmclass>
 						</li>
 					</value>
 				</li>
