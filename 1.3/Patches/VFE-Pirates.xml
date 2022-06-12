@@ -102,7 +102,7 @@
             </li>
           </value>
         </li>
-        <!--<li Class="PatchOperationFindMod">
+        <li Class="PatchOperationFindMod">
           <mods>
             <li>Vanilla Weapons Expanded - Laser</li>
           </mods>
@@ -126,7 +126,7 @@
               </li>
             </operations>
           </match>
-        </li>-->
+        </li>
         <li Class="PatchOperationFindMod">
           <mods>
             <li>Vanilla Weapons Expanded - Coilguns</li>
