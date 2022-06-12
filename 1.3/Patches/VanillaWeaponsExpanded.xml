@@ -111,7 +111,7 @@
 					</value>
 				</li>
 				<li Class ="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="VWE_Gun_CombatHandgun"]</xpath>
+					<xpath>Defs/ThingDef[defName="VWE_CombatHandgun"]</xpath>
 					<value>
 						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
 							<gmclass>Pistol</gmclass>

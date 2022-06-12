@@ -36,7 +36,7 @@ namespace SK_WeaponMastery
         public static bool isOpen = false;
         public static bool initSemaphore = false;
         private static Vector2 scrollPosition = Vector2.zero;
-        public const int MAX_LEVELS = 15;
+        public const int MAX_LEVELS = 100;
         private readonly static int DEFAULT_EXP = 15000;
         private readonly static float DEFAULT_STAT_OFFSET = 1f;
         private readonly static float MIN_STAT_BONUS = -5f;
