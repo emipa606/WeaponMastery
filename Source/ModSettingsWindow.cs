@@ -380,7 +380,7 @@ namespace SK_WeaponMastery
             subSection.NewColumn();
             subSection.ColumnWidth = 470;
             subSection.Label("SK_WeaponMastery_ModSettingsSectionNote".Translate());
-            ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.chanceToNameWeapon, 0.01f, 1f, false, ModSettings.chanceToNameWeapon.ToStringPercent(), null, null, 0.01f);
+            ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.chanceToNameWeapon, 0.0f, 1f, false, ModSettings.chanceToNameWeapon.ToStringPercent(), null, null, 0.01f);
             if (ModsConfig.RoyaltyActive)
                 ModSettings.bondedWeaponExperienceMultipier = Widgets.HorizontalSlider(subSection.GetRect(22f), ModSettings.bondedWeaponExperienceMultipier, MIN_BONDED_WEAPON_MULTIPLIER, MAX_BONDED_WEAPON_MULTIPLIER, false, ModSettings.bondedWeaponExperienceMultipier.ToString("F1") + "x", null, null, 0.01f);
             else
