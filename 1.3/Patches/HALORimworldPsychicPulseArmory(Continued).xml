@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>HALO: Rimworld Psychic Pulse Armory (Continued)</li>
-		</mods>
-		<match Class="PatchOperationSequence">
-			<operations>
-				<li Class ="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseBlade"]</xpath>
-					<value>
-						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>Bladed</gmclass>
-						</li>
-					</value>
-				</li>
-				<li Class ="PatchOperationAddModExtension">
-					<xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseCannon"]</xpath>
-					<value>
-						<li Class="SK_WeaponMastery.DefModExtension_Mastery">
-							<gmclass>Pistol</gmclass>
-						</li>
-					</value>
-				</li>
-        <li Class ="PatchOperationAddModExtension">
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>HALO: Rimworld Psychic Pulse Armory (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseBlade"]</xpath>
+          <value>
+            <li Class="SK_WeaponMastery.DefModExtension_Mastery">
+              <gmclass>Bladed</gmclass>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
+          <xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseCannon"]</xpath>
+          <value>
+            <li Class="SK_WeaponMastery.DefModExtension_Mastery">
+              <gmclass>Pistol</gmclass>
+            </li>
+          </value>
+        </li>
+        <li Class="PatchOperationAddModExtension">
           <xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseRepeater"]</xpath>
           <value>
             <li Class="SK_WeaponMastery.DefModExtension_Mastery">
@@ -30,7 +30,7 @@
             </li>
           </value>
         </li>
-        <li Class ="PatchOperationAddModExtension">
+        <li Class="PatchOperationAddModExtension">
           <xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseSpinner"]</xpath>
           <value>
             <li Class="SK_WeaponMastery.DefModExtension_Mastery">
@@ -38,7 +38,7 @@
             </li>
           </value>
         </li>
-        <li Class ="PatchOperationAddModExtension">
+        <li Class="PatchOperationAddModExtension">
           <xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseScatter"]</xpath>
           <value>
             <li Class="SK_WeaponMastery.DefModExtension_Mastery">
@@ -46,7 +46,7 @@
             </li>
           </value>
         </li>
-        <li Class ="PatchOperationAddModExtension">
+        <li Class="PatchOperationAddModExtension">
           <xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseReacher"]</xpath>
           <value>
             <li Class="SK_WeaponMastery.DefModExtension_Mastery">
@@ -54,7 +54,7 @@
             </li>
           </value>
         </li>
-        <li Class ="PatchOperationAddModExtension">
+        <li Class="PatchOperationAddModExtension">
           <xpath>Defs/ThingDef[defName="HRPPA_PsychicPulseLancer"]</xpath>
           <value>
             <li Class="SK_WeaponMastery.DefModExtension_Mastery">
@@ -62,7 +62,7 @@
             </li>
           </value>
         </li>
-			</operations>
-		</match>
-	</Operation>
+      </operations>
+    </match>
+  </Operation>
 </Patch>
