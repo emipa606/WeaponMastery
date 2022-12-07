@@ -1,5 +1,8 @@
 # Changelog for WeaponMastery
 
+1.4.2 - Fixed the patched for vanilla weapons expanded
+
+
 1.4.1 - Updated to 1.4.
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 
