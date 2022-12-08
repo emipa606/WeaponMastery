@@ -1,5 +1,8 @@
 # Changelog for WeaponMastery
 
+1.4.3 - Vanilla Factions Expanded - Medieval had removed the claymore, fixed the patch
+
+
 1.4.2 - Fixed the patched for vanilla weapons expanded
 
 
