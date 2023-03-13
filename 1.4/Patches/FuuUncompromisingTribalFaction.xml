@@ -7,7 +7,7 @@
     <match Class="PatchOperationSequence">
       <operations>
         <li Class="PatchOperationAddModExtension">
-          <xpath>Defs/ThingDef[defName="UncompromisingTribalFaction_FireBow"]</xpath>
+          <xpath>Defs/ThingDef[defName="UncompromisingTribalFaction_GreatFlamebow"]</xpath>
           <value>
             <li Class="WeaponMastery.DefModExtension_Mastery">
               <gmclass>Bow</gmclass>
