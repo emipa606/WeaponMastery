@@ -358,12 +358,14 @@ public static class ModSettingsWindow
         listing_Standard.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionLabel".Translate());
         if (!isRangedStatPercentage)
         {
-            rangedStatOffset = Widgets.HorizontalSlider(listing_Standard.GetRect(22f), rangedStatOffset, MIN_STAT_BONUS,
+            rangedStatOffset = Widgets.HorizontalSlider_NewTemp(listing_Standard.GetRect(22f), rangedStatOffset,
+                MIN_STAT_BONUS,
                 MAX_STAT_BONUS, false, ((float)Math.Round(rangedStatOffset, 2)).ToString(), null, null, 0.1f);
         }
         else
         {
-            rangedStatOffset = Widgets.HorizontalSlider(listing_Standard.GetRect(22f), rangedStatOffset, -1f, 1f, false,
+            rangedStatOffset = Widgets.HorizontalSlider_NewTemp(listing_Standard.GetRect(22f), rangedStatOffset, -1f,
+                1f, false,
                 ((float)Math.Round(rangedStatOffset, 2)).ToString(), null, null, 0.01f);
         }
 
@@ -388,12 +390,14 @@ public static class ModSettingsWindow
         listing_Standard.Label("SK_WeaponMastery_RangedAndMeleeStatsSectionLabel".Translate());
         if (!isMeleeStatPercentage)
         {
-            meleeStatOffset = Widgets.HorizontalSlider(listing_Standard.GetRect(22f), meleeStatOffset, MIN_STAT_BONUS,
+            meleeStatOffset = Widgets.HorizontalSlider_NewTemp(listing_Standard.GetRect(22f), meleeStatOffset,
+                MIN_STAT_BONUS,
                 MAX_STAT_BONUS, false, ((float)Math.Round(meleeStatOffset, 2)).ToString(), null, null, 0.1f);
         }
         else
         {
-            meleeStatOffset = Widgets.HorizontalSlider(listing_Standard.GetRect(22f), meleeStatOffset, -1f, 1f, false,
+            meleeStatOffset = Widgets.HorizontalSlider_NewTemp(listing_Standard.GetRect(22f), meleeStatOffset, -1f, 1f,
+                false,
                 ((float)Math.Round(meleeStatOffset, 2)).ToString(), null, null, 0.01f);
         }
 
@@ -445,12 +449,13 @@ public static class ModSettingsWindow
         listing_Standard.NewColumn();
         listing_Standard.ColumnWidth = 470f;
         listing_Standard.Label("SK_WeaponMastery_ModSettingsSectionNote".Translate());
-        ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider(listing_Standard.GetRect(22f),
+        ModSettings.chanceToNameWeapon = Widgets.HorizontalSlider_NewTemp(listing_Standard.GetRect(22f),
             ModSettings.chanceToNameWeapon, 0f, 1f, false, ModSettings.chanceToNameWeapon.ToStringPercent(), null, null,
             0.01f);
         if (ModsConfig.RoyaltyActive)
         {
-            ModSettings.bondedWeaponExperienceMultipier = Widgets.HorizontalSlider(listing_Standard.GetRect(22f),
+            ModSettings.bondedWeaponExperienceMultipier = Widgets.HorizontalSlider_NewTemp(
+                listing_Standard.GetRect(22f),
                 ModSettings.bondedWeaponExperienceMultipier, MIN_BONDED_WEAPON_MULTIPLIER, MAX_BONDED_WEAPON_MULTIPLIER,
                 false, $"{ModSettings.bondedWeaponExperienceMultipier:F1}x", null, null, 0.01f);
         }
@@ -461,7 +466,7 @@ public static class ModSettingsWindow
 
         if (ModsConfig.IdeologyActive)
         {
-            ModSettings.numberOfRelicBonusStats = (int)Widgets.HorizontalSlider(listing_Standard.GetRect(22f),
+            ModSettings.numberOfRelicBonusStats = (int)Widgets.HorizontalSlider_NewTemp(listing_Standard.GetRect(22f),
                 ModSettings.numberOfRelicBonusStats, MIN_RELIC_BONUS_STATS, MAX_RELIC_BONUS_STATS, false,
                 ModSettings.numberOfRelicBonusStats.ToString(), null, null, 1f);
         }
@@ -471,7 +476,7 @@ public static class ModSettingsWindow
         }
 
         listing_Standard.End();
-        var rect2 = list.GetRect(ModSettings.masteryOnOutsidePawns ? 230 : 170);
+        var rect2 = list.GetRect(200);
         var listing_Standard2 = new Listing_Standard();
         listing_Standard2.Begin(rect2);
         listing_Standard2.CheckboxLabeled("SK_WeaponMastery_ModSettingsSectionSpecificMasterySystemLabel".Translate(),
@@ -492,6 +497,11 @@ public static class ModSettingsWindow
             "SK_WeaponMastery_ModSettingsSectionKeepOriginalNameAndQualityLabel".Translate(),
             ref ModSettings.KeepOriginalWeaponNameQuality,
             "SK_WeaponMastery_ModSettingsSectionKeepOriginalNameAndQualityTooltip".Translate());
+        if (listing_Standard2.ButtonText("Reset".Translate()))
+        {
+            ModSettings.Reset();
+        }
+
         if (ModSettings.masteryOnOutsidePawns)
         {
             var rect3 = listing_Standard2.GetRect(60f);
@@ -502,10 +512,10 @@ public static class ModSettingsWindow
             listing_Standard3.Label("SK_WeaponMastery_ModSettingsSectionMasteryWeaponNameChancePerPawn".Translate());
             listing_Standard3.NewColumn();
             listing_Standard3.ColumnWidth = 470f;
-            ModSettings.masteriesPercentagePerEvent = Widgets.HorizontalSlider(listing_Standard3.GetRect(30f),
+            ModSettings.masteriesPercentagePerEvent = Widgets.HorizontalSlider_NewTemp(listing_Standard3.GetRect(30f),
                 ModSettings.masteriesPercentagePerEvent, 0.01f, 1f, false,
                 $"{ModSettings.masteriesPercentagePerEvent:F2}%", null, null, 0.01f);
-            ModSettings.eventWeaponNameChance = Widgets.HorizontalSlider(listing_Standard3.GetRect(30f),
+            ModSettings.eventWeaponNameChance = Widgets.HorizontalSlider_NewTemp(listing_Standard3.GetRect(30f),
                 ModSettings.eventWeaponNameChance, 0.01f, 1f, false,
                 $"{ModSettings.eventWeaponNameChance:F2}%", null, null, 0.01f);
             listing_Standard3.End();

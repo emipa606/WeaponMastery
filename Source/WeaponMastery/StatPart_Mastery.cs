@@ -40,9 +40,9 @@ internal class StatPart_Mastery : StatPart
 
             var masteryPawnComp = masteryWeaponComp.GetCurrentOwner().TryGetComp<MasteryPawnComp>();
             if (masteryPawnComp != null && masteryPawnComp.IsActive() &&
-                ModSettings.classes.ContainsKey(pawn.equipment.Primary.def))
+                ModSettings.classes.TryGetValue(pawn.equipment.Primary.def, out var @class))
             {
-                val += masteryPawnComp.GetStatBonus(ModSettings.classes[pawn.equipment.Primary.def], parentStat);
+                val += masteryPawnComp.GetStatBonus(@class, parentStat);
             }
         }
         else
@@ -67,9 +67,9 @@ internal class StatPart_Mastery : StatPart
 
             var masteryPawnComp2 = masteryWeaponComp2.GetCurrentOwner().TryGetComp<MasteryPawnComp>();
             if (masteryPawnComp2 != null && masteryPawnComp2.IsActive() &&
-                ModSettings.classes.ContainsKey(req.Thing.def))
+                ModSettings.classes.TryGetValue(req.Thing.def, out var @class))
             {
-                val += masteryPawnComp2.GetStatBonus(ModSettings.classes[req.Thing.def], parentStat);
+                val += masteryPawnComp2.GetStatBonus(@class, parentStat);
             }
         }
     }
@@ -98,9 +98,9 @@ internal class StatPart_Mastery : StatPart
                 {
                     var masteryPawnComp = masteryWeaponComp.GetCurrentOwner().TryGetComp<MasteryPawnComp>();
                     if (masteryPawnComp != null && masteryPawnComp.IsActive() &&
-                        ModSettings.classes.ContainsKey(pawn.equipment.Primary.def))
+                        ModSettings.classes.TryGetValue(pawn.equipment.Primary.def, out var @class))
                     {
-                        num += masteryPawnComp.GetStatBonus(ModSettings.classes[pawn.equipment.Primary.def],
+                        num += masteryPawnComp.GetStatBonus(@class,
                             parentStat);
                     }
                 }
@@ -121,9 +121,9 @@ internal class StatPart_Mastery : StatPart
                 {
                     var masteryPawnComp2 = masteryWeaponComp2.GetCurrentOwner().TryGetComp<MasteryPawnComp>();
                     if (masteryPawnComp2 != null && masteryPawnComp2.IsActive() &&
-                        ModSettings.classes.ContainsKey(req.Thing.def))
+                        ModSettings.classes.TryGetValue(req.Thing.def, out var @class))
                     {
-                        num += masteryPawnComp2.GetStatBonus(ModSettings.classes[req.Thing.def], parentStat);
+                        num += masteryPawnComp2.GetStatBonus(@class, parentStat);
                     }
                 }
 

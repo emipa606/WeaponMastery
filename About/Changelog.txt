@@ -1,5 +1,8 @@
 # Changelog for WeaponMastery
 
+1.4.5 - Added a reset-button to the settings
+
+
 1.4.4 - Fixed the patch for [Fuu] Uncompromising Tribal Faction
 
 

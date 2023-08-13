@@ -60,9 +60,9 @@ public static class Core
             masteryPawnComp.Init();
         }
 
-        if (ModSettings.classes.ContainsKey(pawnWeapon.def))
+        if (ModSettings.classes.TryGetValue(pawnWeapon.def, out var weaponClass))
         {
-            masteryPawnComp.AddExp(ModSettings.classes[pawnWeapon.def], (int)(num * num2),
+            masteryPawnComp.AddExp(weaponClass, (int)(num * num2),
                 pawnWeapon.def.IsMeleeWeapon);
         }
     }
@@ -114,9 +114,9 @@ public static class Core
             masteryPawnComp.Init();
         }
 
-        if (ModSettings.classes.ContainsKey(pawnWeapon.def))
+        if (ModSettings.classes.TryGetValue(pawnWeapon.def, out var @class))
         {
-            masteryPawnComp.AddExp(ModSettings.classes[pawnWeapon.def], (int)num, pawnWeapon.def.IsMeleeWeapon);
+            masteryPawnComp.AddExp(@class, (int)num, pawnWeapon.def.IsMeleeWeapon);
         }
     }
 

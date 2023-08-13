@@ -63,10 +63,7 @@ public class MasteryCompData : IExposable
 
     public void AddStatBonus(StatDef stat, float value)
     {
-        if (!bonusStats.ContainsKey(stat))
-        {
-            bonusStats[stat] = 0f;
-        }
+        bonusStats.TryAdd(stat, 0f);
 
         bonusStats[stat] += value;
     }

@@ -110,4 +110,4 @@ Why are you still here? I just wanted to say this is my first mod so please have
 
 
 '
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2898431155]Last updated 2023-03-13
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2898431155]Last updated 2023-08-13

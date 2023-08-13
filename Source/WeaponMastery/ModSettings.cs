@@ -84,6 +84,28 @@ public class ModSettings : Verse.ModSettings
         }
     }
 
+    public static void Reset()
+    {
+        experiencePerLevel = new List<int>();
+        rangedStats = new List<MasteryStat>();
+        meleeStats = new List<MasteryStat>();
+        maxLevel = 3;
+        chanceToNameWeapon = 0.35f;
+        bondedWeaponExperienceMultipier = 1.5f;
+        numberOfRelicBonusStats = 5;
+        useCustomNames = false;
+        masteriesPercentagePerEvent = 0.25f;
+        eventWeaponNameChance = 0.15f;
+        masteryOnOutsidePawns = true;
+        useMoods = false;
+        useSpecificMasterySystem = true;
+        useGeneralMasterySystem = false;
+        displayExperience = false;
+        KeepOriginalWeaponNameQuality = false;
+        overrideClasses = new Dictionary<string, string>();
+        SetSensibleDefaults();
+    }
+
     public static void SetSensibleDefaults()
     {
         experiencePerLevel = new List<int>
