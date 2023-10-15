@@ -263,6 +263,7 @@ public class MasteryWeaponComp : ThingComp
     public void GenerateDescription()
     {
         var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine(parent.def.LabelCap);
         stringBuilder.AppendLine(base.GetDescriptionPart());
         stringBuilder.AppendLine("SK_WeaponMastery_WeaponMasteryDescriptionItem".Translate());
         var list = bonusStatsPerPawn.ToList();

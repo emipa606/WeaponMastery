@@ -1,5 +1,8 @@
 # Changelog for WeaponMastery
 
+1.4.6 - Added the original weapon name to the detailed description of mastered weapons
+
+
 1.4.5 - Added a reset-button to the settings
 
 

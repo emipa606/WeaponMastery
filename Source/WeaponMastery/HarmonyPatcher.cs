@@ -16,30 +16,31 @@ public static class HarmonyPatcher
             return;
         }
 
-        var original = AccessTools.Method(typeof(Verb_Shoot), "WarmupComplete");
-        var postfix = new HarmonyMethod(typeof(Core).GetMethod("OnPawnShoot"));
-        instance.Patch(original, null, postfix);
-        var original2 = AccessTools.Method(typeof(Verb_MeleeAttack), "TryCastShot");
-        var postfix2 = new HarmonyMethod(typeof(Core).GetMethod("OnPawnMelee"));
-        instance.Patch(original2, null, postfix2);
-        var original3 = AccessTools.Method(typeof(Mod), "WriteSettings");
-        var postfix3 = new HarmonyMethod(typeof(Core).GetMethod("OnModWriteSettings"));
-        instance.Patch(original3, null, postfix3);
+        var originalWarmupComplete = AccessTools.Method(typeof(Verb_Shoot), "WarmupComplete");
+        var postfixOnPawnShoot = new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.OnPawnShoot)));
+        instance.Patch(originalWarmupComplete, null, postfixOnPawnShoot);
+        var originalTryCastShot = AccessTools.Method(typeof(Verb_MeleeAttack), "TryCastShot");
+        var postfixOnPawnMelee = new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.OnPawnMelee)));
+        instance.Patch(originalTryCastShot, null, postfixOnPawnMelee);
+        var originalWriteSettings = AccessTools.Method(typeof(Mod), "WriteSettings");
+        var postfixOnModWriteSettings = new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.OnModWriteSettings)));
+        instance.Patch(originalWriteSettings, null, postfixOnModWriteSettings);
         if (ModSettings.useGeneralMasterySystem)
         {
-            var original4 = AccessTools.Method(typeof(RaceProperties), "SpecialDisplayStats");
-            var postfix4 = new HarmonyMethod(typeof(Core).GetMethod("AddMasteryDescriptionToDrawStats"));
-            instance.Patch(original4, null, postfix4);
+            var originalSpecialDisplayStats = AccessTools.Method(typeof(RaceProperties), "SpecialDisplayStats");
+            var postfixAddMasteryDescriptionToDrawStats =
+                new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.AddMasteryDescriptionToDrawStats)));
+            instance.Patch(originalSpecialDisplayStats, null, postfixAddMasteryDescriptionToDrawStats);
         }
 
         if (ModSettings.masteryOnOutsidePawns)
         {
-            var original5 = AccessTools.Method(typeof(IncidentWorker_Raid), "TryGenerateRaidInfo");
-            var postfix5 = new HarmonyMethod(typeof(Core).GetMethod("OnRaid"));
-            instance.Patch(original5, null, postfix5);
-            var original6 = AccessTools.Method(typeof(IncidentWorker_NeutralGroup), "SpawnPawns");
-            var postfix6 = new HarmonyMethod(typeof(Core).GetMethod("OnNeutralPawnSpawn"));
-            instance.Patch(original6, null, postfix6);
+            var originalTryGenerateRaidInfo = AccessTools.Method(typeof(IncidentWorker_Raid), "TryGenerateRaidInfo");
+            var postfixOnRaid = new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.OnRaid)));
+            instance.Patch(originalTryGenerateRaidInfo, null, postfixOnRaid);
+            var originalSpawnPawns = AccessTools.Method(typeof(IncidentWorker_NeutralGroup), "SpawnPawns");
+            var postfixOnNeutralPawnSpawn = new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.OnNeutralPawnSpawn)));
+            instance.Patch(originalSpawnPawns, null, postfixOnNeutralPawnSpawn);
         }
 
         if (!ModSettings.displayExperience)
@@ -47,9 +48,9 @@ public static class HarmonyPatcher
             return;
         }
 
-        var original7 = AccessTools.Method(typeof(Dialog_InfoCard), "Setup");
-        var postfix7 = new HarmonyMethod(typeof(Core).GetMethod("OnInfoWindowSetup"));
-        instance.Patch(original7, null, postfix7);
+        var originalSetup = AccessTools.Method(typeof(Dialog_InfoCard), "Setup");
+        var postfixOnInfoWindowSetup = new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.OnInfoWindowSetup)));
+        instance.Patch(originalSetup, null, postfixOnInfoWindowSetup);
     }
 
     public static void SetInstance(Harmony instance)
