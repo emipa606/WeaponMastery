@@ -9,10 +9,6 @@ public class MasteryWeaponCompData : MasteryCompData
 {
     private Pawn pawn;
 
-    public MasteryWeaponCompData()
-    {
-    }
-
     public MasteryWeaponCompData(Pawn pawn)
     {
         this.pawn = pawn;

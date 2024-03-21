@@ -8,16 +8,11 @@ namespace WeaponMastery;
 
 public class MasteryCompData : IExposable
 {
-    protected Dictionary<StatDef, float> bonusStats;
+    protected Dictionary<StatDef, float> bonusStats = new Dictionary<StatDef, float>();
 
     protected int experience;
 
     protected int masteryLevel;
-
-    public MasteryCompData()
-    {
-        bonusStats = new Dictionary<StatDef, float>();
-    }
 
     public virtual void ExposeData()
     {
@@ -70,7 +65,7 @@ public class MasteryCompData : IExposable
 
     public float GetStatBonus(StatDef stat)
     {
-        return !bonusStats.ContainsKey(stat) ? 0f : bonusStats[stat];
+        return bonusStats.GetValueOrDefault(stat, 0f);
     }
 
     public void AddExp(int experience, bool isMelee, Action<int> postLevelUp = null)

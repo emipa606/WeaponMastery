@@ -22,16 +22,15 @@ public static class SimpleSidearmsCompat
         }
 
         var original2 = AccessTools.Method(typeof(ThingOwner<>).MakeGenericType(typeof(Thing)), "TryDrop",
-            new[]
-            {
-                typeof(Thing),
-                typeof(IntVec3),
-                typeof(Map),
-                typeof(ThingPlaceMode),
-                typeof(Thing).MakeByRefType(),
-                typeof(Action<Thing, int>),
-                typeof(Predicate<IntVec3>)
-            });
+        [
+            typeof(Thing),
+            typeof(IntVec3),
+            typeof(Map),
+            typeof(ThingPlaceMode),
+            typeof(Thing).MakeByRefType(),
+            typeof(Action<Thing, int>),
+            typeof(Predicate<IntVec3>)
+        ]);
         var postfix2 = new HarmonyMethod(typeof(SimpleSidearmsCompat).GetMethod("AfterDropMethod"));
         HarmonyPatcher.instance.Patch(original2, null, postfix2);
     }
@@ -77,7 +76,7 @@ public static class SimpleSidearmsCompat
             }
         }
 
-        if (pawn is { equipment: { } } && pawn.needs.mood != null && !PawnHasAnyMasteredWeapon(pawn) &&
+        if (pawn is { equipment: not null } && pawn.needs.mood != null && !PawnHasAnyMasteredWeapon(pawn) &&
             pawn.health.hediffSet.HasHediff(Core.MasteredWeaponEquipped))
         {
             pawn.health.RemoveHediff(pawn.health.hediffSet.GetFirstHediffOfDef(Core.MasteredWeaponEquipped));

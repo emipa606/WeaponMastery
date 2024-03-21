@@ -129,7 +129,7 @@ public static class Core
             list.Add(stat);
             if (stat.parts == null)
             {
-                stat.parts = new List<StatPart>();
+                stat.parts = [];
             }
 
             stat.parts.Add(new StatPart_Mastery(stat));
@@ -146,7 +146,7 @@ public static class Core
             list.Add(stat2);
             if (stat2.parts == null)
             {
-                stat2.parts = new List<StatPart>();
+                stat2.parts = [];
             }
 
             stat2.parts.Add(new StatPart_Mastery(stat2));
@@ -248,6 +248,8 @@ public static class Core
         {
             item2.comps.Add(compProperties);
         }
+
+        return;
 
         static bool Predicate(ThingDef def)
         {
@@ -374,6 +376,8 @@ public static class Core
         {
             __result = NewFunc(__result);
         }
+
+        return;
 
         IEnumerable<StatDrawEntry> NewFunc(IEnumerable<StatDrawEntry> functionOutput)
         {

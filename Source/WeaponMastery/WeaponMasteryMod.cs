@@ -8,7 +8,7 @@ namespace WeaponMastery;
 
 public class WeaponMasteryMod : Mod
 {
-    public static bool SHOULD_PRINT_LOG = false;
+    public static readonly bool SHOULD_PRINT_LOG = false;
 
     public static string modName;
 

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef>
+    <defName>SK_WM_MasteredWeaponEquippedBonusMood</defName>
+    <description>This hediff adds a positive bonus thought to a pawn</description>
+    <stages>
+      <li>
+        <label>MasteredWeaponEquippedBonusMood</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

@@ -110,7 +110,6 @@ Why are you still here? I just wanted to say this is my first mod so please have
 -  Use https://github.com/RimSort/RimSort/releases/latest]RimSort to sort your mods
 
 
-'
 
 https://steamcommunity.com/sharedfiles/filedetails/changelog/2898431155]![Image](https://img.shields.io/github/v/release/emipa606/WeaponMastery?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
 

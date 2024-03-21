@@ -40,7 +40,7 @@ public class ModSettings : Verse.ModSettings
 
     public static Dictionary<string, string> overrideClasses = new Dictionary<string, string>();
 
-    public static Dictionary<ThingDef, string> classes = new Dictionary<ThingDef, string>();
+    public static readonly Dictionary<ThingDef, string> classes = new Dictionary<ThingDef, string>();
 
     public static List<MasteryStat> rangedStats;
 
@@ -48,7 +48,7 @@ public class ModSettings : Verse.ModSettings
 
     public static List<string> weaponNamesPool;
 
-    public static List<string> customWeaponNamesPool = new List<string>();
+    public static List<string> customWeaponNamesPool = [];
 
     public static List<string> messages;
 
@@ -61,8 +61,8 @@ public class ModSettings : Verse.ModSettings
         initialLoad = true;
         base.ExposeData();
         Scribe_Collections.Look(ref experiencePerLevel, "experienceperlevel", LookMode.Value);
-        Scribe_Collections.Look(ref rangedStats, true, "rangedstats", LookMode.Deep);
-        Scribe_Collections.Look(ref meleeStats, true, "meleestats", LookMode.Deep);
+        Scribe_Collections.Look(ref rangedStats, "rangedstats", LookMode.Deep);
+        Scribe_Collections.Look(ref meleeStats, "meleestats", LookMode.Deep);
         Scribe_Values.Look(ref maxLevel, "maxLevel", 3);
         Scribe_Values.Look(ref chanceToNameWeapon, "chancetonameweapon", 0.35f);
         Scribe_Values.Look(ref bondedWeaponExperienceMultipier, "bondedweaponexperiencemultipier", 1.5f);
@@ -80,15 +80,15 @@ public class ModSettings : Verse.ModSettings
         Scribe_Collections.Look(ref overrideClasses, "overrideclasses");
         if (Scribe.mode == LoadSaveMode.PostLoadInit && customWeaponNamesPool == null)
         {
-            customWeaponNamesPool = new List<string>();
+            customWeaponNamesPool = [];
         }
     }
 
     public static void Reset()
     {
-        experiencePerLevel = new List<int>();
-        rangedStats = new List<MasteryStat>();
-        meleeStats = new List<MasteryStat>();
+        experiencePerLevel = [];
+        rangedStats = [];
+        meleeStats = [];
         maxLevel = 3;
         chanceToNameWeapon = 0.35f;
         bondedWeaponExperienceMultipier = 1.5f;
@@ -108,27 +108,27 @@ public class ModSettings : Verse.ModSettings
 
     public static void SetSensibleDefaults()
     {
-        experiencePerLevel = new List<int>
-        {
+        experiencePerLevel =
+        [
             15000,
             20000,
             25000
-        };
-        rangedStats = new List<MasteryStat>
-        {
+        ];
+        rangedStats =
+        [
             new MasteryStat(StatDefOf.ShootingAccuracyPawn, 0.01f),
             new MasteryStat(StatDefOf.MoveSpeed, 0.2f),
             new MasteryStat(StatDefOf.HuntingStealth, 0.01f),
             new MasteryStat(StatDefOf.RangedWeapon_Cooldown, -0.1f),
             new MasteryStat(StatDefOf.AimingDelayFactor, -0.02f)
-        };
-        meleeStats = new List<MasteryStat>
-        {
+        ];
+        meleeStats =
+        [
             new MasteryStat(StatDefOf.MoveSpeed, 0.2f),
             new MasteryStat(StatDefOf.MeleeDodgeChance, 0.01f),
             new MasteryStat(StatDefOf.MeleeHitChance, 0.01f),
             new MasteryStat(StatDefOf.CarryingCapacity, 10f)
-        };
+        ];
         if (ModsConfig.IdeologyActive)
         {
             meleeStats.Add(new MasteryStat(StatDefOf.SuppressionPower, 0.01f));
@@ -240,11 +240,11 @@ public class ModSettings : Verse.ModSettings
                 false);
             if (linesFromTextFile2 != null)
             {
-                weaponNamesPool = new List<string>(linesFromTextFile2);
+                weaponNamesPool = [..linesFromTextFile2];
             }
             else if (linesFromTextFile != null)
             {
-                weaponNamesPool = new List<string>(linesFromTextFile);
+                weaponNamesPool = [..linesFromTextFile];
             }
         }
 
@@ -256,16 +256,16 @@ public class ModSettings : Verse.ModSettings
         var linesFromTextFile3 = Files.GetLinesFromTextFile(WEAPON_NAMES_DEF_PATH, true);
         if (linesFromTextFile3 != null)
         {
-            weaponNamesPool = new List<string>(linesFromTextFile3);
+            weaponNamesPool = [..linesFromTextFile3];
             return;
         }
 
-        weaponNamesPool = new List<string> { "Missing Names" };
+        weaponNamesPool = ["Missing Names"];
     }
 
     public static void InitMessageKeys()
     {
-        messages = new List<string>();
+        messages = [];
         var text = "SK_WeaponMastery_Message";
         for (var i = 0; i < 4; i++)
         {
