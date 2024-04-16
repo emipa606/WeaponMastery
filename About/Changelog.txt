@@ -1,5 +1,8 @@
 # Changelog for WeaponMastery
 
+1.5.1 - Fixed NRE regarding the MasteryWeaponComp
+
+
 1.5.0 - Mod updated for 1.5 and passed autotests
 
 

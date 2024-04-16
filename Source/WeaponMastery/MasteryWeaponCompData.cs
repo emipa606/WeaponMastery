@@ -15,6 +15,11 @@ public class MasteryWeaponCompData : MasteryCompData
         bonusStats = new Dictionary<StatDef, float>();
     }
 
+    public MasteryWeaponCompData()
+    {
+        bonusStats = new Dictionary<StatDef, float>();
+    }
+
     public override void ExposeData()
     {
         switch (Scribe.mode)

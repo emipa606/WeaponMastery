@@ -334,10 +334,15 @@ public class MasteryWeaponComp : ThingComp
 
     private bool AnyPawnHasMastery()
     {
-        var list = bonusStatsPerPawn.ToList();
+        var list = bonusStatsPerPawn?.ToList();
+        if (list == null)
+        {
+            return false;
+        }
+
         foreach (var keyValuePair in list)
         {
-            if (keyValuePair.Value.HasMastery())
+            if (keyValuePair.Value?.HasMastery() == true)
             {
                 return true;
             }
