@@ -7,7 +7,7 @@ public static class Logger
 {
     public static void WriteToHarmonyFile(string message)
     {
-        if (WeaponMasteryMod.SHOULD_PRINT_LOG)
+        if (WeaponMasteryMod.ShouldPrintLOG)
         {
             FileLog.Log(message);
         }
@@ -15,7 +15,7 @@ public static class Logger
 
     public static void WriteToGameConsole(string message)
     {
-        if (WeaponMasteryMod.SHOULD_PRINT_LOG)
+        if (WeaponMasteryMod.ShouldPrintLOG)
         {
             Log.Message(message);
         }

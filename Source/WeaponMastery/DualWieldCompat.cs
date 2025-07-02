@@ -18,15 +18,15 @@ public static class DualWieldCompat
         return (bool)tryGetOffHandEqMethod.Invoke(null, array) ? (Thing)array[1] : null;
     }
 
-    public static void PatchMethods()
+    private static void PatchMethods()
     {
         var original = AccessTools.Method("DualWield.Ext_Verb:OffhandTryStartCastOn");
-        var prefix = new HarmonyMethod(typeof(DualWieldCompat).GetMethod("OffhandTryStartCastOnPrefix"));
-        var postfix = new HarmonyMethod(typeof(DualWieldCompat).GetMethod("OffhandTryStartCastOnPostfix"));
+        var prefix = new HarmonyMethod(typeof(DualWieldCompat).GetMethod(nameof(OffhandTryStartCastOnPrefix)));
+        var postfix = new HarmonyMethod(typeof(DualWieldCompat).GetMethod(nameof(OffhandTryStartCastOnPostfix)));
         HarmonyPatcher.instance.Patch(original, prefix, postfix);
         var original2 = AccessTools.Method("DualWield.Stances.Stance_Warmup_DW:Expire");
-        var prefix2 = new HarmonyMethod(typeof(DualWieldCompat).GetMethod("ExpirePrefix"));
-        var postfix2 = new HarmonyMethod(typeof(DualWieldCompat).GetMethod("ExpirePostfix"));
+        var prefix2 = new HarmonyMethod(typeof(DualWieldCompat).GetMethod(nameof(ExpirePrefix)));
+        var postfix2 = new HarmonyMethod(typeof(DualWieldCompat).GetMethod(nameof(ExpirePostfix)));
         HarmonyPatcher.instance.Patch(original2, prefix2, postfix2);
     }
 

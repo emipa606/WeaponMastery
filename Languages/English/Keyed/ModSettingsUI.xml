@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <SK_WeaponMastery_SettingsListItemName>Weapon Mastery</SK_WeaponMastery_SettingsListItemName>
   <SK_WeaponMastery_ModSettingsSectionTitle>Mod Settings: </SK_WeaponMastery_ModSettingsSectionTitle>
@@ -36,7 +36,7 @@
   <SK_WeaponMastery_RangedAndMeleeStatsSectionEnableButton>Enable Stat</SK_WeaponMastery_RangedAndMeleeStatsSectionEnableButton>
   <SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton>Disable Stat</SK_WeaponMastery_RangedAndMeleeStatsSectionDisableButton>
   <SK_WeaponMastery_RangedAndMeleeStatsSectionWarning>Warning: Only certain stat defs are applicable to weapons and pawns, the rest are just ignored. If you don't know what you're doing, I would highly recommend not editing anything in this section.</SK_WeaponMastery_RangedAndMeleeStatsSectionWarning>
-  <SK_WeaponMastery_RangedAndMeleeStatsSectionNote>Note: Percentage stats use values from 0 -&gt; 1 which maps to 0% -&gt; 100%</SK_WeaponMastery_RangedAndMeleeStatsSectionNote>
+  <SK_WeaponMastery_RangedAndMeleeStatsSectionNote>Note: Percentage stats use values from 0 -> 1 which maps to 0% -> 100%</SK_WeaponMastery_RangedAndMeleeStatsSectionNote>
   <SK_WeaponMastery_MessageEnabledRangedStat>{0} was added to the pool of ranged weapon stats</SK_WeaponMastery_MessageEnabledRangedStat>
   <SK_WeaponMastery_MessageEnabledMeleeStat>{0} was added to the pool of melee weapon stats</SK_WeaponMastery_MessageEnabledMeleeStat>
   <SK_WeaponMastery_MessageDisabledRangedStat>{0} was remove from the pool of ranged weapon stats</SK_WeaponMastery_MessageDisabledRangedStat>

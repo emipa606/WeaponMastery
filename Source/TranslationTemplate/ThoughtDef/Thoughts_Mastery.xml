@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Favorite Weapon Equipped -->
+  <SK_WM_MasteredWeaponEquipped.stages.Favorite_Weapon_Equipped.label>Favorite Weapon Equipped</SK_WM_MasteredWeaponEquipped.stages.Favorite_Weapon_Equipped.label>
+  <!-- EN: I feel like I can take an army with this weapon. -->
+  <SK_WM_MasteredWeaponEquipped.stages.Favorite_Weapon_Equipped.description>I feel like I can take an army with this weapon.</SK_WM_MasteredWeaponEquipped.stages.Favorite_Weapon_Equipped.description>
+  <!-- EN: Favorite Weapon Lost -->
+  <SK_WM_MasteredWeaponUnequipped.stages.Favorite_Weapon_Lost.label>Favorite Weapon Lost</SK_WM_MasteredWeaponUnequipped.stages.Favorite_Weapon_Lost.label>
+  <!-- EN: Oh, what am I going to do without that weapon? -->
+  <SK_WM_MasteredWeaponUnequipped.stages.Favorite_Weapon_Lost.description>Oh, what am I going to do without that weapon?</SK_WM_MasteredWeaponUnequipped.stages.Favorite_Weapon_Lost.description>
+</LanguageData>

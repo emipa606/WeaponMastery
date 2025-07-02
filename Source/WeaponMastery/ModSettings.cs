@@ -26,7 +26,7 @@ public class ModSettings : Verse.ModSettings
 
     public static bool displayExperience;
 
-    public static bool KeepOriginalWeaponNameQuality;
+    public static bool keepOriginalWeaponNameQuality;
 
     public static float chanceToNameWeapon = 0.35f;
 
@@ -38,15 +38,15 @@ public class ModSettings : Verse.ModSettings
 
     public static int numberOfRelicBonusStats = 5;
 
-    public static Dictionary<string, string> overrideClasses = new Dictionary<string, string>();
+    public static Dictionary<string, string> overrideClasses = new();
 
-    public static readonly Dictionary<ThingDef, string> classes = new Dictionary<ThingDef, string>();
+    public static readonly Dictionary<ThingDef, string> classes = new();
 
     public static List<MasteryStat> rangedStats;
 
     public static List<MasteryStat> meleeStats;
 
-    public static List<string> weaponNamesPool;
+    private static List<string> weaponNamesPool;
 
     public static List<string> customWeaponNamesPool = [];
 
@@ -76,7 +76,7 @@ public class ModSettings : Verse.ModSettings
         Scribe_Values.Look(ref useSpecificMasterySystem, "usespecificmasterysystem", true);
         Scribe_Values.Look(ref useGeneralMasterySystem, "usegeneralmasterysystem");
         Scribe_Values.Look(ref displayExperience, "displayexperience");
-        Scribe_Values.Look(ref KeepOriginalWeaponNameQuality, "displayweaponoriginalnamequality");
+        Scribe_Values.Look(ref keepOriginalWeaponNameQuality, "displayweaponoriginalnamequality");
         Scribe_Collections.Look(ref overrideClasses, "overrideclasses");
         if (Scribe.mode == LoadSaveMode.PostLoadInit && customWeaponNamesPool == null)
         {
@@ -101,7 +101,7 @@ public class ModSettings : Verse.ModSettings
         useSpecificMasterySystem = true;
         useGeneralMasterySystem = false;
         displayExperience = false;
-        KeepOriginalWeaponNameQuality = false;
+        keepOriginalWeaponNameQuality = false;
         overrideClasses = new Dictionary<string, string>();
         SetSensibleDefaults();
     }

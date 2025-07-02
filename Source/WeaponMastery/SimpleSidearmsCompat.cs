@@ -10,11 +10,11 @@ public static class SimpleSidearmsCompat
 
     public static bool weaponSwitch;
 
-    public static void PatchMethods()
+    private static void PatchMethods()
     {
         var original = AccessTools.Method("PeteTimesSix.SimpleSidearms.Utilities.WeaponAssingment:equipSpecificWeapon");
-        var prefix = new HarmonyMethod(typeof(SimpleSidearmsCompat).GetMethod("BeforeWeaponSwitch"));
-        var postfix = new HarmonyMethod(typeof(SimpleSidearmsCompat).GetMethod("AfterWeaponSwitch"));
+        var prefix = new HarmonyMethod(typeof(SimpleSidearmsCompat).GetMethod(nameof(BeforeWeaponSwitch)));
+        var postfix = new HarmonyMethod(typeof(SimpleSidearmsCompat).GetMethod(nameof(AfterWeaponSwitch)));
         HarmonyPatcher.instance.Patch(original, prefix, postfix);
         if (!ModSettings.useMoods)
         {
@@ -31,7 +31,7 @@ public static class SimpleSidearmsCompat
             typeof(Action<Thing, int>),
             typeof(Predicate<IntVec3>)
         ]);
-        var postfix2 = new HarmonyMethod(typeof(SimpleSidearmsCompat).GetMethod("AfterDropMethod"));
+        var postfix2 = new HarmonyMethod(typeof(SimpleSidearmsCompat).GetMethod(nameof(AfterDropMethod)));
         HarmonyPatcher.instance.Patch(original2, null, postfix2);
     }
 

@@ -52,7 +52,7 @@ internal class MasteryPawnComp : ThingComp
         }
 
         var num = 1f;
-        if (ModsConfig.RoyaltyActive && IsBondedWeapon())
+        if (ModsConfig.RoyaltyActive && isBondedWeapon())
         {
             num = ModSettings.bondedWeaponExperienceMultipier;
         }
@@ -60,7 +60,7 @@ internal class MasteryPawnComp : ThingComp
         bonusStatsPerClass[weaponClass].AddExp((int)(experience * num), isMelee, delegate { GenerateDescription(); });
     }
 
-    private bool IsBondedWeapon()
+    private bool isBondedWeapon()
     {
         var pawn = parent as Pawn;
         return pawn?.equipment?.Primary?.TryGetComp<CompBladelinkWeapon>()?.CodedPawn == pawn;
@@ -103,7 +103,7 @@ internal class MasteryPawnComp : ThingComp
                 {
                     bonusStatsPerClass = new Dictionary<string, MasteryCompData>();
                 }
-                else if (AnyWeaponHasMastery())
+                else if (anyWeaponHasMastery())
                 {
                     GenerateDescription();
                 }
@@ -141,7 +141,7 @@ internal class MasteryPawnComp : ThingComp
         masteryDescription = stringBuilder.ToString();
     }
 
-    private bool AnyWeaponHasMastery()
+    private bool anyWeaponHasMastery()
     {
         var list = bonusStatsPerClass.ToList();
         foreach (var keyValuePair in list)
@@ -157,7 +157,7 @@ internal class MasteryPawnComp : ThingComp
 
     public string GetDescription()
     {
-        if (!isActive || !AnyWeaponHasMastery() && !ModSettings.displayExperience)
+        if (!isActive || !anyWeaponHasMastery() && !ModSettings.displayExperience)
         {
             return base.GetDescriptionPart();
         }

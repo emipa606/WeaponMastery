@@ -52,17 +52,17 @@ public static class ModSettingsWindow
 
     public static float meleeStatOffset;
 
-    public static bool isRangedStatEnabled;
+    private static bool isRangedStatEnabled;
 
-    public static bool isMeleeStatEnabled;
+    private static bool isMeleeStatEnabled;
 
-    public static bool isRangedStatPercentage;
+    private static bool isRangedStatPercentage;
 
-    public static bool isMeleeStatPercentage;
+    private static bool isMeleeStatPercentage;
 
     public static bool isOpen;
 
-    public static bool initSemaphore;
+    private static bool initSemaphore;
 
     private static Vector2 scrollPosition = Vector2.zero;
 
@@ -82,7 +82,7 @@ public static class ModSettingsWindow
 
     private static readonly int MAX_RELIC_BONUS_STATS = 10;
 
-    public static void Init()
+    private static void Init()
     {
         if (initSemaphore)
         {
@@ -495,7 +495,7 @@ public static class ModSettingsWindow
             "SK_WeaponMastery_ModSettingsSectionDisplayExperienceTooltip".Translate());
         listing_Standard2.CheckboxLabeled(
             "SK_WeaponMastery_ModSettingsSectionKeepOriginalNameAndQualityLabel".Translate(),
-            ref ModSettings.KeepOriginalWeaponNameQuality,
+            ref ModSettings.keepOriginalWeaponNameQuality,
             "SK_WeaponMastery_ModSettingsSectionKeepOriginalNameAndQualityTooltip".Translate());
         if (listing_Standard2.ButtonText("Reset".Translate()))
         {

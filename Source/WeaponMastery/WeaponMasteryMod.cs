@@ -8,7 +8,7 @@ namespace WeaponMastery;
 
 public class WeaponMasteryMod : Mod
 {
-    public static readonly bool SHOULD_PRINT_LOG = false;
+    public const bool ShouldPrintLOG = false;
 
     public static string modName;
 
@@ -23,10 +23,10 @@ public class WeaponMasteryMod : Mod
         currentVersion = VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
         var instance = new Harmony("rimworld.sk.weaponmastery");
         HarmonyPatcher.SetInstance(instance);
-        LongEventHandler.ExecuteWhenFinished(Init);
+        LongEventHandler.ExecuteWhenFinished(init);
     }
 
-    public void Init()
+    private void init()
     {
         GetSettings<ModSettings>();
         if (!ModSettings.initialLoad)

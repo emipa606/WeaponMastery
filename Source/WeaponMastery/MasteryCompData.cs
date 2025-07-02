@@ -8,7 +8,7 @@ namespace WeaponMastery;
 
 public class MasteryCompData : IExposable
 {
-    protected Dictionary<StatDef, float> bonusStats = new Dictionary<StatDef, float>();
+    protected Dictionary<StatDef, float> bonusStats = new();
 
     protected int experience;
 
@@ -83,7 +83,7 @@ public class MasteryCompData : IExposable
 
         this.experience -= ModSettings.GetExperienceForLevel(masteryLevel);
         masteryLevel++;
-        RollBonusStat(isMelee);
+        rollBonusStat(isMelee);
         postLevelUp?.Invoke(masteryLevel);
     }
 
@@ -92,7 +92,7 @@ public class MasteryCompData : IExposable
         return masteryLevel == ModSettings.maxLevel;
     }
 
-    private void RollBonusStat(bool isMelee)
+    private void rollBonusStat(bool isMelee)
     {
         var masteryStat = ModSettings.PickBonus(isMelee);
         if (masteryStat != null)

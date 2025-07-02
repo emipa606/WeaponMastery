@@ -16,18 +16,19 @@ public static class HarmonyPatcher
             return;
         }
 
-        var originalWarmupComplete = AccessTools.Method(typeof(Verb_Shoot), "WarmupComplete");
+        var originalWarmupComplete = AccessTools.Method(typeof(Verb_Shoot), nameof(Verb_Shoot.WarmupComplete));
         var postfixOnPawnShoot = new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.OnPawnShoot)));
         instance.Patch(originalWarmupComplete, null, postfixOnPawnShoot);
         var originalTryCastShot = AccessTools.Method(typeof(Verb_MeleeAttack), "TryCastShot");
         var postfixOnPawnMelee = new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.OnPawnMelee)));
         instance.Patch(originalTryCastShot, null, postfixOnPawnMelee);
-        var originalWriteSettings = AccessTools.Method(typeof(Mod), "WriteSettings");
+        var originalWriteSettings = AccessTools.Method(typeof(Mod), nameof(Mod.WriteSettings));
         var postfixOnModWriteSettings = new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.OnModWriteSettings)));
         instance.Patch(originalWriteSettings, null, postfixOnModWriteSettings);
         if (ModSettings.useGeneralMasterySystem)
         {
-            var originalSpecialDisplayStats = AccessTools.Method(typeof(RaceProperties), "SpecialDisplayStats");
+            var originalSpecialDisplayStats =
+                AccessTools.Method(typeof(RaceProperties), nameof(RaceProperties.SpecialDisplayStats));
             var postfixAddMasteryDescriptionToDrawStats =
                 new HarmonyMethod(typeof(Core).GetMethod(nameof(Core.AddMasteryDescriptionToDrawStats)));
             instance.Patch(originalSpecialDisplayStats, null, postfixAddMasteryDescriptionToDrawStats);

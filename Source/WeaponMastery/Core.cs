@@ -127,10 +127,7 @@ public static class Core
         {
             var stat = masteryStat.GetStat();
             list.Add(stat);
-            if (stat.parts == null)
-            {
-                stat.parts = [];
-            }
+            stat.parts ??= [];
 
             stat.parts.Add(new StatPart_Mastery(stat));
         }
@@ -144,16 +141,13 @@ public static class Core
             }
 
             list.Add(stat2);
-            if (stat2.parts == null)
-            {
-                stat2.parts = [];
-            }
+            stat2.parts ??= [];
 
             stat2.parts.Add(new StatPart_Mastery(stat2));
         }
     }
 
-    public static void RemoveStatPartFromStatDefs()
+    private static void removeStatPartFromStatDefs()
     {
         foreach (var masteryStat in ModSettings.rangedStats)
         {
@@ -171,51 +165,6 @@ public static class Core
             {
                 stat.parts = stat.parts.Where(item => item is not StatPart_Mastery).ToList();
             }
-        }
-    }
-
-    public static void OnPawnEquipThing(Pawn_EquipmentTracker __instance, ThingWithComps eq)
-    {
-        if (eq.def.equipmentType != EquipmentType.Primary)
-        {
-            return;
-        }
-
-        var masteryWeaponComp = eq.TryGetComp<MasteryWeaponComp>();
-        if (masteryWeaponComp == null || !masteryWeaponComp.IsActive())
-        {
-            return;
-        }
-
-        masteryWeaponComp.SetCurrentOwner(__instance.pawn);
-        if (!ModSettings.useMoods || !masteryWeaponComp.PawnHasMastery(__instance.pawn))
-        {
-            return;
-        }
-
-        __instance.pawn.health.AddHediff(MasteredWeaponEquipped);
-        __instance.pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDef(MasteredWeaponUnequipped);
-    }
-
-    public static void OnPawnEquipRemove(Pawn_EquipmentTracker __instance, ThingWithComps eq)
-    {
-        if (eq.def.equipmentType != EquipmentType.Primary)
-        {
-            return;
-        }
-
-        var masteryWeaponComp = eq.TryGetComp<MasteryWeaponComp>();
-        if (masteryWeaponComp == null || !masteryWeaponComp.IsActive() ||
-            !masteryWeaponComp.PawnHasMastery(__instance.pawn))
-        {
-            return;
-        }
-
-        __instance.pawn.needs.mood.thoughts.memories.TryGainMemory(MasteredWeaponUnequipped);
-        if (__instance.pawn.health.hediffSet.HasHediff(MasteredWeaponEquipped))
-        {
-            __instance.pawn.health.RemoveHediff(
-                __instance.pawn.health.hediffSet.GetFirstHediffOfDef(MasteredWeaponEquipped));
         }
     }
 
@@ -243,7 +192,7 @@ public static class Core
         {
             compClass = typeof(MasteryPawnComp)
         };
-        IEnumerable<ThingDef> enumerable = DefDatabase<ThingDef>.AllDefs.Where(Predicate).ToList();
+        IEnumerable<ThingDef> enumerable = DefDatabase<ThingDef>.AllDefs.Where(predicate).ToList();
         foreach (var item2 in enumerable)
         {
             item2.comps.Add(compProperties);
@@ -251,7 +200,7 @@ public static class Core
 
         return;
 
-        static bool Predicate(ThingDef def)
+        static bool predicate(ThingDef def)
         {
             return def.race is { Humanlike: true };
         }
@@ -271,12 +220,11 @@ public static class Core
         }
 
         ModSettingsWindow.Destroy();
-        RemoveStatPartFromStatDefs();
+        removeStatPartFromStatDefs();
         InjectStatPartIntoStatDefs();
     }
 
-    public static void OnRaid(IncidentWorker_Raid __instance, IncidentParms parms, List<Pawn> pawns, bool debugTest,
-        ref bool __result)
+    public static void OnRaid(IncidentParms parms, List<Pawn> pawns, ref bool __result)
     {
         if (__result)
         {
@@ -284,8 +232,7 @@ public static class Core
         }
     }
 
-    public static void OnNeutralPawnSpawn(IncidentWorker_NeutralGroup __instance, IncidentParms parms,
-        ref List<Pawn> __result)
+    public static void OnNeutralPawnSpawn(ref List<Pawn> __result)
     {
         GenerateMasteriesForPawns(__result);
     }
@@ -368,8 +315,7 @@ public static class Core
         }
     }
 
-    public static void AddMasteryDescriptionToDrawStats(ThingDef parentDef, StatRequest req,
-        ref IEnumerable<StatDrawEntry> __result)
+    public static void AddMasteryDescriptionToDrawStats(StatRequest req, ref IEnumerable<StatDrawEntry> __result)
     {
         var pawn = req.Thing as Pawn;
         if (pawn != null)
@@ -398,7 +344,7 @@ public static class Core
         }
     }
 
-    public static void OnInfoWindowSetup(Dialog_InfoCard __instance, Thing ___thing)
+    public static void OnInfoWindowSetup(Thing ___thing)
     {
         if (___thing == null)
         {
@@ -419,7 +365,7 @@ public static class Core
         }
     }
 
-    public static Thing GetPawnWeapon(Pawn pawn)
+    private static Thing GetPawnWeapon(Pawn pawn)
     {
         if (DualWieldCompat.enabled && DualWieldCompat.isCurrentAttackOffhand)
         {

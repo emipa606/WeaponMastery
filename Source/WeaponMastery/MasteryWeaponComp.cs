@@ -67,14 +67,14 @@ public class MasteryWeaponComp : ThingComp
         return isActive;
     }
 
-    private float GetStatBonus(StatDef stat)
+    private float getStatBonus(StatDef stat)
     {
         return !bonusStatsPerPawn.ContainsKey(currentOwner) ? 0f : bonusStatsPerPawn[currentOwner].GetStatBonus(stat);
     }
 
-    private float GetStatBonusRelic(StatDef stat)
+    private float getStatBonusRelic(StatDef stat)
     {
-        if (relicBonuses == null || !relicBonuses.ContainsKey(stat) || !OwnerBelievesInSameIdeology())
+        if (relicBonuses == null || !relicBonuses.ContainsKey(stat) || !ownerBelievesInSameIdeology())
         {
             return 0f;
         }
@@ -89,10 +89,10 @@ public class MasteryWeaponComp : ThingComp
             return 0f;
         }
 
-        return GetStatBonus(stat) + GetStatBonusRelic(stat);
+        return getStatBonus(stat) + getStatBonusRelic(stat);
     }
 
-    private bool OwnerBelievesInSameIdeology()
+    private bool ownerBelievesInSameIdeology()
     {
         return parent.StyleSourcePrecept?.ideo == currentOwner.Ideo;
     }
@@ -105,7 +105,7 @@ public class MasteryWeaponComp : ThingComp
         }
 
         var num = 1f;
-        if (ModsConfig.RoyaltyActive && IsBondedWeapon())
+        if (ModsConfig.RoyaltyActive && isBondedWeapon())
         {
             num = ModSettings.bondedWeaponExperienceMultipier;
         }
@@ -135,7 +135,7 @@ public class MasteryWeaponComp : ThingComp
 
                 if (weaponName == null && value <= ModSettings.chanceToNameWeapon)
                 {
-                    weaponName = ModSettings.KeepOriginalWeaponNameQuality
+                    weaponName = ModSettings.keepOriginalWeaponNameQuality
                         ? $"\"{ModSettings.PickWeaponName()}\" {parent.LabelCap}"
                         : ModSettings.PickWeaponName();
 
@@ -148,12 +148,12 @@ public class MasteryWeaponComp : ThingComp
         });
     }
 
-    private bool IsBondedWeapon()
+    private bool isBondedWeapon()
     {
         return parent.TryGetComp<CompBladelinkWeapon>()?.CodedPawn == currentOwner;
     }
 
-    private void FilterNullPawns()
+    private void filterNullPawns()
     {
         var list = bonusStatsPerPawn.ToList();
         bonusStatsPerPawn.Clear();
@@ -176,7 +176,7 @@ public class MasteryWeaponComp : ThingComp
                 return;
             case LoadSaveMode.Saving:
             {
-                FilterNullPawns();
+                filterNullPawns();
                 if (bonusStatsPerPawn == null && weaponName == null && relicBonuses == null)
                 {
                     isActive = false;
@@ -221,7 +221,7 @@ public class MasteryWeaponComp : ThingComp
             }
             case LoadSaveMode.PostLoadInit when isActive:
             {
-                if (bonusStatsPerPawn != null && AnyPawnHasMastery())
+                if (bonusStatsPerPawn != null && anyPawnHasMastery())
                 {
                     GenerateDescription();
                 }
@@ -307,7 +307,7 @@ public class MasteryWeaponComp : ThingComp
 
     public override string GetDescriptionPart()
     {
-        if (!isActive || !AnyPawnHasMastery() && !ModSettings.displayExperience)
+        if (!isActive || !anyPawnHasMastery() && !ModSettings.displayExperience)
         {
             return base.GetDescriptionPart();
         }
@@ -317,7 +317,7 @@ public class MasteryWeaponComp : ThingComp
 
     public void GenerateWeaponName()
     {
-        weaponName = ModSettings.KeepOriginalWeaponNameQuality
+        weaponName = ModSettings.keepOriginalWeaponNameQuality
             ? $"\"{ModSettings.PickWeaponName()}\" {parent.LabelCap}"
             : ModSettings.PickWeaponName();
     }
@@ -332,7 +332,7 @@ public class MasteryWeaponComp : ThingComp
         return bonusStatsPerPawn[pawn].HasMastery();
     }
 
-    private bool AnyPawnHasMastery()
+    private bool anyPawnHasMastery()
     {
         var list = bonusStatsPerPawn?.ToList();
         if (list == null)

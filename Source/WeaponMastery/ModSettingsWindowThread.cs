@@ -5,7 +5,10 @@ namespace WeaponMastery;
 
 internal class ModSettingsWindowThread(int oldSelectedLevelValue, float oldRangedStatOffset, float oldMeleeStatOffset)
 {
-    private const int THREAD_SLEEP_TIME_MS = 100;
+    private const int ThreadSleepTimeMS = 100;
+    private float oldMeleeStatOffset = oldMeleeStatOffset;
+    private float oldRangedStatOffset = oldRangedStatOffset;
+    private int oldSelectedLevelValue = oldSelectedLevelValue;
 
     public void Run()
     {
@@ -39,7 +42,7 @@ internal class ModSettingsWindowThread(int oldSelectedLevelValue, float oldRange
                 ModSettings.useSpecificMasterySystem = true;
             }
 
-            Thread.Sleep(THREAD_SLEEP_TIME_MS);
+            Thread.Sleep(ThreadSleepTimeMS);
         }
     }
 }
