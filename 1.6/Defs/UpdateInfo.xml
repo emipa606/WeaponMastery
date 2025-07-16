@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<TabulaRasa.UpdateDef Abstract="true" Name="WeaponMastery_UpdateInfoBase">
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2898431155</linkUrl>
+		<banner>UpdateInfo/WeaponMastery</banner>
+	</TabulaRasa.UpdateDef>
+	<TabulaRasa.UpdateDef ParentName="WeaponMastery_UpdateInfoBase" MayRequire="neronix17.toolbox">
+		<defName>WeaponMastery_1_6_0</defName>
+		<date>2025/7/16</date>
+		<content>The original version of this mod has been updated, please use it instead. This version will remain, but unlisted and will not be updated further.</content>
+	</TabulaRasa.UpdateDef>
+</Defs>
+
